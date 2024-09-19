@@ -4,15 +4,21 @@ import * as React from "react";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { LuMenu } from "react-icons/lu";
 import { TbSlashes } from "react-icons/tb";
 
 import { getSidebarActiveTitle, isExistingUrl } from "@/_constants/SIDEBAR_DATA";
 import { generatePaths } from "@/utils";
 
 import { Breadcrumbs, BreadcrumbsItem, BreadcrumbsLink, BreadcrumbsSeparator } from "../_mijn-ui/Breadcrumbs";
+import { Button } from "../_mijn-ui/Button";
 import { cn } from "../_mijn-ui/utils";
 
-const Navbar = () => {
+type NavbarProps = {
+  setIsSidebarActive: (isOpen: boolean) => void;
+};
+
+const Navbar = ({ setIsSidebarActive }: NavbarProps) => {
   const pathname = usePathname();
 
   const paths = React.useMemo(() => generatePaths(pathname), [pathname]);
@@ -22,6 +28,9 @@ const Navbar = () => {
   return (
     <header className="w-full flex items-center justify-between">
       <nav>
+        <Button onClick={() => setIsSidebarActive(true)} variant={"ghost"} size={"icon"}>
+          <LuMenu size={20} />
+        </Button>
         <h3 className="text-lg font-semibold">{title || "Pico Demo Business"}</h3>
 
         {isDashboardPage ? (

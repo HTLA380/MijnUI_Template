@@ -7,6 +7,7 @@ import { PiDotOutlineFill } from "react-icons/pi";
 
 import { SidebarListsType } from "../../_constants/SIDEBAR_DATA";
 import { Button } from "../_mijn-ui/Button";
+import { useMediaQuery } from "../_mijn-ui/hooks/use-media-query";
 import {
   ListItem,
   ListItemContent,
@@ -20,13 +21,19 @@ type CollapsibleListProps = {
   lists: SidebarListsType[];
   activeIndex: number;
   setActiveIndex: (index: number) => void;
+  onClick: (isOpen: boolean) => void;
 };
 
-const CollapsibleLists = ({ lists, activeIndex, setActiveIndex }: CollapsibleListProps) => {
+const CollapsibleLists = ({ lists, activeIndex, setActiveIndex, onClick }: CollapsibleListProps) => {
   const [animateOnMount, setAnimateOnMount] = React.useState(false);
+  const isMobile = useMediaQuery("(max-width: 768px)");
 
   const handleToggle = (index: number) => {
     setActiveIndex(index === activeIndex ? -1 : index);
+  };
+
+  const handleClick = () => {
+    return isMobile && onClick(false);
   };
 
   if (!lists) return null;
@@ -54,7 +61,11 @@ const CollapsibleLists = ({ lists, activeIndex, setActiveIndex }: CollapsibleLis
 
               <ListSubMenuContent animateOnMount={animateOnMount} className="w-full">
                 {list?.map(({ name, link }, index) => (
-                  <ListItem key={`list-item-${index}`} className="pl-7 hover:text-primary text-muted-text">
+                  <ListItem
+                    onClick={handleClick}
+                    key={`list-item-${index}`}
+                    className="pl-7 hover:text-primary text-muted-text"
+                  >
                     <Link href={link} className="flex items-center w-full gap-1 truncate">
                       <ListItemIcon>
                         <PiDotOutlineFill />
@@ -73,6 +84,7 @@ const CollapsibleLists = ({ lists, activeIndex, setActiveIndex }: CollapsibleLis
             <Button
               variant={"ghost"}
               key={`list-${index}`}
+              onClick={handleClick}
               className="hover:bg-transparent hover:text-primary w-full justify-start truncate gap-2 px-3 text-muted-text"
             >
               {icon && <ListItemIcon className="[&>svg]:size-3.5">{icon}</ListItemIcon>}
@@ -87,6 +99,7 @@ const CollapsibleLists = ({ lists, activeIndex, setActiveIndex }: CollapsibleLis
             variant={"ghost"}
             href={link}
             key={`list-${index}`}
+            onClick={handleClick}
             className="hover:bg-transparent hover:text-primary w-full justify-start truncate gap-2 px-3 text-muted-text"
           >
             {icon && <ListItemIcon className="[&>svg]:size-3.5">{icon}</ListItemIcon>}
