@@ -299,10 +299,12 @@ export const SidebarData: SidebarDataType[] = [
       {
         icon: <FaArrowTrendUp />,
         title: "Current Stocks",
+        link: "/reports/current-stock-balance/inventory",
       },
       {
         icon: <FaClockRotateLeft />,
         title: "Stocks History",
+        link: "/stock-history/list",
       },
     ],
   },
@@ -445,3 +447,31 @@ export const SidebarData: SidebarDataType[] = [
     ],
   },
 ];
+
+export const isExistingUrl = (url: string) => {
+  return (
+    SidebarData.some((data) => data.lists.some((list) => list.link === url)) ||
+    SidebarData.some((data) => data.lists.some((list) => list.list?.some((item) => item.link === url)))
+  );
+};
+
+export const getSidebarActiveTitle = (url: string): string | undefined => {
+  for (const data of SidebarData) {
+    if (data.lists[0]?.link === url) {
+      return data.lists[0].title;
+    }
+    for (const list of data.lists) {
+      if (list.link === url) {
+        return list.title;
+      }
+      if (list.list) {
+        for (const item of list.list) {
+          if (item.link === url) {
+            return item.name;
+          }
+        }
+      }
+    }
+  }
+  return undefined;
+};

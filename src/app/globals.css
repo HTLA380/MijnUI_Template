@@ -5,7 +5,7 @@
 @layer base {
   :root {
     /* general */
-    --main: 248 250 252; /* slate-50 */
+    --main: 241 245 249; /* slate-100 */
     --main-text: 0 0 0; /* black */
 
     --main-border: 212 212 212; /* neutral-300 */
@@ -14,7 +14,7 @@
     --surface-text: 0 0 0; /* black */
 
     --muted: 229 229 229; /* neutral-200 */
-    --muted-text: 64 64 64; /* neutral-700 */
+    --muted-text: 115 115 115; /* neutral-500 */
 
     --primary: 249 115 22; /* orange-500 */
     --primary-text: 255 255 255; /* white */

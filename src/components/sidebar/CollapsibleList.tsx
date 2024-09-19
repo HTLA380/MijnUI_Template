@@ -5,6 +5,7 @@ import * as React from "react";
 import Link from "next/link";
 import { PiDotOutlineFill } from "react-icons/pi";
 
+import { SidebarListsType } from "../../_constants/SIDEBAR_DATA";
 import { Button } from "../_mijn-ui/Button";
 import {
   ListItem,
@@ -14,7 +15,6 @@ import {
   ListSubMenuContent,
   ListSubMenuTrigger,
 } from "../_mijn-ui/List";
-import { SidebarListsType } from "./_data";
 
 type CollapsibleListProps = {
   lists: SidebarListsType[];
@@ -46,7 +46,7 @@ const CollapsibleLists = ({ lists, activeIndex, setActiveIndex }: CollapsibleLis
                 setAnimateOnMount(true);
               }}
             >
-              <ListSubMenuTrigger className="data-[state=open]:bg-transparent data-[state=open]:text-primary hover:bg-transparent hover:text-primary data-[state=open]:hover:bg-transparent text-disabled-text data-[state=open]:hover:text-primary truncate">
+              <ListSubMenuTrigger className="data-[state=open]:bg-transparent data-[state=open]:text-primary hover:bg-transparent hover:text-primary data-[state=open]:hover:bg-transparent text-muted-text data-[state=open]:hover:text-primary truncate">
                 {icon && <ListItemIcon className="[&>svg]:size-3.5">{icon}</ListItemIcon>}
 
                 <ListItemContent>{title}</ListItemContent>
@@ -54,7 +54,7 @@ const CollapsibleLists = ({ lists, activeIndex, setActiveIndex }: CollapsibleLis
 
               <ListSubMenuContent animateOnMount={animateOnMount} className="w-full">
                 {list?.map(({ name, link }, index) => (
-                  <ListItem key={`list-item-${index}`} className="pl-7 hover:text-primary text-disabled-text">
+                  <ListItem key={`list-item-${index}`} className="pl-7 hover:text-primary text-muted-text">
                     <Link href={link} className="flex items-center w-full gap-1 truncate">
                       <ListItemIcon>
                         <PiDotOutlineFill />
@@ -73,7 +73,7 @@ const CollapsibleLists = ({ lists, activeIndex, setActiveIndex }: CollapsibleLis
             <Button
               variant={"ghost"}
               key={`list-${index}`}
-              className="hover:bg-transparent hover:text-primary w-full justify-start truncate gap-2 px-3 text-disabled-text"
+              className="hover:bg-transparent hover:text-primary w-full justify-start truncate gap-2 px-3 text-muted-text"
             >
               {icon && <ListItemIcon className="[&>svg]:size-3.5">{icon}</ListItemIcon>}
               {title}
@@ -87,7 +87,7 @@ const CollapsibleLists = ({ lists, activeIndex, setActiveIndex }: CollapsibleLis
             variant={"ghost"}
             href={link}
             key={`list-${index}`}
-            className="hover:bg-transparent hover:text-primary w-full justify-start truncate gap-2 px-3 text-disabled-text"
+            className="hover:bg-transparent hover:text-primary w-full justify-start truncate gap-2 px-3 text-muted-text"
           >
             {icon && <ListItemIcon className="[&>svg]:size-3.5">{icon}</ListItemIcon>}
             {title}

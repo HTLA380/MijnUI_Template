@@ -7,11 +7,12 @@ import Link from "next/link";
 import { BsGrid3X3GapFill } from "react-icons/bs";
 import { LuArrowRight } from "react-icons/lu";
 
+import { SidebarData } from "@/_constants/SIDEBAR_DATA";
+
 import { Button } from "../_mijn-ui/Button";
 import { cn } from "../_mijn-ui/utils";
 import ClickAwayListener from "../_mijn-ui/utils/wrappers/ClickAwayListener";
 import { SIDEBAR_CONTENT_WIDTH, SIDEBAR_WIDTH } from "../layout/Layout";
-import { SidebarData } from "./_data";
 import CollapsibleLists from "./CollapsibleList";
 
 /* -------------------------------------------------------------------------- */
@@ -72,7 +73,7 @@ const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
                 }}
                 className={cn(
                   "text-base",
-                  index === currentMenuIndex ? "bg-accent text-primary hover:text-primary" : "text-disabled-text"
+                  index === currentMenuIndex ? "bg-accent text-primary hover:text-primary" : "text-muted-text"
                 )}
                 title={data.title}
               >
@@ -90,13 +91,13 @@ const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
               ? {
                   width: `${SIDEBAR_CONTENT_WIDTH}px`,
                   opacity: 1,
-                  transition: "width 300ms ease-out, opacity 900ms ease-out",
+                  transition: "width 300ms ease-out, opacity 700ms ease-out",
                 }
               : {
                   width: "0px",
                   overflow: "hidden",
                   opacity: 0,
-                  transition: "width 300ms ease-out, opacity 900ms ease-out",
+                  transition: "width 300ms ease-out, opacity 700ms ease-out",
                 }
           }
         >
