@@ -5,7 +5,7 @@ import { notFound, usePathname } from "next/navigation";
 
 import { isExistingUrl } from "@/_constants/SIDEBAR_DATA";
 
-export default function NotFound() {
+export default function UnderConstruction() {
   // Get the current pathname
   const pathname = usePathname();
 

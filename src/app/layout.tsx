@@ -3,8 +3,6 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
-import Layout from "@/components/layout/Layout";
-
 export const metadata: Metadata = {
   title: "MijnUI Template",
   description: "Template for MijnUI component library",
@@ -19,9 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <Layout>{children}</Layout>
-      </body>
+      <body className={inter.className}>{children}</body>
     </html>
   );
 }

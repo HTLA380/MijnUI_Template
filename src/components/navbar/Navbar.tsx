@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
 import { TbSlashes } from "react-icons/tb";
 
 import { getSidebarActiveTitle, isExistingUrl } from "@/_constants/SIDEBAR_DATA";
-import { generatePaths } from "@/app/utils";
+import { generatePaths } from "@/utils";
 
 import { Breadcrumbs, BreadcrumbsItem, BreadcrumbsLink, BreadcrumbsSeparator } from "../_mijn-ui/Breadcrumbs";
 import { cn } from "../_mijn-ui/utils";
