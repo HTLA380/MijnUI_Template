@@ -8,7 +8,7 @@
     --main: 241 245 249; /* slate-100 */
     --main-text: 0 0 0; /* black */
 
-    --main-border: 212 212 212; /* neutral-300 */
+    --main-border: 229 229 229; /* neutral-200 */
 
     --surface: 255 255 255; /* white */
     --surface-text: 0 0 0; /* black */
@@ -73,13 +73,13 @@
     --success-text: 255 255 255; /* white */
 
     --disabled: 38 38 38; /* neutral-800 */
-    --disabled-text: 115 115 115; /* text-500 */
+    --disabled-text: 115 115 115; /* neutral-500 */
 
     --ring: 38 38 38;
 
-    --main-border: 115 115 115; /* text-500 */
+    --main-border: 64 64 64; /* neutral-700 */
 
-    --input-border: 245 245 245; /* neutral-100 */
+    --input-border: 245 245 245; /* neutral-700 */
     --kanban: 38 38 38; /* neutral-800 */
   }
 }

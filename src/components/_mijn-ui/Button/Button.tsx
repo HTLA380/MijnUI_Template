@@ -1,7 +1,7 @@
 import { cva, VariantProps } from "class-variance-authority";
 
-import { polymorphicForwardRef } from "../types/polymorphic";
-import { cn } from "../utils";
+import { polymorphicForwardRef } from "@/types/polymorphic";
+import { cn } from "@/utils";
 
 export const buttonStyles = cva(
   ["inline-flex items-center justify-center gap-1 rounded-md text-sm disabled:bg-disabled disabled:text-disabled-text"],

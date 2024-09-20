@@ -1,5 +1,8 @@
 import * as React from "react";
 
+import { useControlledState } from "@/hooks/use-controlled-state";
+import { polymorphicForwardRef } from "@/types/polymorphic";
+import { cn } from "@/utils";
 import {
   autoUpdate,
   flip,
@@ -21,9 +24,6 @@ import {
 } from "@floating-ui/react";
 
 import { buttonStyles } from "../Button";
-import { useControlledState } from "../hooks/use-controlled-state";
-import { polymorphicForwardRef } from "../types/polymorphic";
-import { cn } from "../utils";
 
 /* -------------------------------------------------------------------------- */
 

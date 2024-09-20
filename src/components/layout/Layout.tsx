@@ -2,8 +2,8 @@
 
 import * as React from "react";
 
-import { useMediaQuery } from "../_mijn-ui/hooks/use-media-query";
-import { useScrollLockEffect } from "../_mijn-ui/hooks/use-scroll-lock";
+import { useMediaQuery } from "../../hooks/use-media-query";
+import { useScrollLockEffect } from "../../hooks/use-scroll-lock";
 import Navbar from "../navbar/Navbar";
 import Sidebar from "../sidebar/Sidebar";
 
@@ -32,9 +32,10 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 
       <Sidebar isOpen={isSidebarActive} setIsOpen={setIsSidebarActive} />
 
+      <Navbar setIsSidebarActive={setIsSidebarActive} style={mainContainerStyles} />
+
       <div style={!isMobile ? mainContainerStyles : undefined}>
-        <Navbar setIsSidebarActive={setIsSidebarActive} />
-        <main>{children}</main>
+        <main className="relative">{children}</main>
         {/* <Footer /> */}
       </div>
     </div>

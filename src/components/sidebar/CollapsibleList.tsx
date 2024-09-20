@@ -6,8 +6,8 @@ import Link from "next/link";
 import { PiDotOutlineFill } from "react-icons/pi";
 
 import { SidebarListsType } from "../../_constants/SIDEBAR_DATA";
+import { useMediaQuery } from "../../hooks/use-media-query";
 import { Button } from "../_mijn-ui/Button";
-import { useMediaQuery } from "../_mijn-ui/hooks/use-media-query";
 import {
   ListItem,
   ListItemContent,

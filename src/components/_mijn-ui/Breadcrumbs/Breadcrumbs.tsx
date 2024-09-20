@@ -2,8 +2,8 @@ import * as React from "react";
 
 import { LuChevronRight } from "react-icons/lu";
 
-import { polymorphicForwardRef } from "../types/polymorphic";
-import { cn } from "../utils";
+import { polymorphicForwardRef } from "@/types/polymorphic";
+import { cn } from "@/utils";
 
 const Breadcrumbs = React.forwardRef<HTMLElement, React.ComponentProps<"nav">>(({ className, ...props }, ref) => (
   <nav

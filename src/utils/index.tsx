@@ -1,3 +1,12 @@
+import clsx, { ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+export const cn = (...classes: ClassValue[]) => twMerge(clsx(classes));
+
+export const generateId = () => {
+  return Math.floor(Math.random() * Date.now()).toString();
+};
+
 // This function takes a path as input and generates an array of objects representing the path's parts
 export const generatePaths = (path: string) => {
   if (!path) {

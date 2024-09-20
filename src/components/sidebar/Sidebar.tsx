@@ -6,10 +6,10 @@ import { LuArrowRight } from "react-icons/lu";
 
 import { SidebarData } from "@/_constants/SIDEBAR_DATA";
 
+import { useMediaQuery } from "../../hooks/use-media-query";
+import { cn } from "../../utils";
+import ClickAwayListener from "../../utils/wrappers/ClickAwayListener";
 import { Button } from "../_mijn-ui/Button";
-import { useMediaQuery } from "../_mijn-ui/hooks/use-media-query";
-import { cn } from "../_mijn-ui/utils";
-import ClickAwayListener from "../_mijn-ui/utils/wrappers/ClickAwayListener";
 import { SIDEBAR_CONTENT_WIDTH, SIDEBAR_WIDTH } from "../layout/Layout";
 import CollapsibleLists from "./CollapsibleList";
 
@@ -30,6 +30,13 @@ const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
     }));
   };
 
+  const handleSidebarIconClick = (index: number) => {
+    setCurrentMenuIndex(index);
+    setIsOpen(true);
+  };
+
+  const sidebarContainerStyle = isMobile ? { left: isOpen ? 0 : -SIDEBAR_WIDTH } : undefined;
+  const sidebarPanelStyle = { width: isMobile ? `${SIDEBAR_WIDTH * 0.8}px` : `${SIDEBAR_WIDTH}px` };
   const sidebarContentStyle = isOpen
     ? {
         width: isMobile ? `${SIDEBAR_CONTENT_WIDTH * 0.9}px` : `${SIDEBAR_CONTENT_WIDTH}px`,
@@ -43,24 +50,17 @@ const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
         transition: "width 300ms ease-out, opacity 700ms ease-out",
       };
 
-  const sidebarPanelStyle = { width: isMobile ? `${SIDEBAR_WIDTH * 0.8}px` : `${SIDEBAR_WIDTH}px` };
+  const currentSidebarData = SidebarData[currentMenuIndex];
+  const currentActiveIndex = activeIndices[currentMenuIndex] ?? -1;
 
   return (
     <ClickAwayListener onClickAway={() => setIsOpen(false)}>
       <aside
-        className="flex fixed inset-y-0 z-30 left-0 bg-surface transition-[left] duration-300 ease-in-out shadow-md"
-        style={isMobile ? { left: isOpen ? 0 : -SIDEBAR_WIDTH } : undefined}
+        className="flex fixed inset-y-0 z-50 left-0 bg-surface transition-[left] duration-300 ease-in-out shadow-md"
+        style={sidebarContainerStyle}
       >
         <div className="pt-8 flex flex-col items-center gap-8" style={sidebarPanelStyle}>
-          <Button
-            href={"/"}
-            variant={"ghost"}
-            size={"icon"}
-            renderAs={Link}
-            className="hover:bg-transparent size-12 p-1.5"
-          >
-            <Image src="/assets/images/pico.png" alt="Pico" width={50} height={50} className="w-full" />
-          </Button>
+          <Logo imgURL="/assets/images/pico.png" alt="PICO SBS" />
 
           <div className="flex flex-col gap-2">
             {SidebarData.map((data, index) => {
@@ -68,40 +68,31 @@ const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
 
               if (isAppsData) {
                 return (
-                  <Button
+                  <SidebarIcon
                     key={data.title}
                     variant={"outline"}
-                    size={"icon"}
-                    onClick={() => {
-                      setCurrentMenuIndex(index);
-                      setIsOpen(true);
-                    }}
+                    index={index}
+                    title={data.title}
+                    icon={data.icon}
+                    onClick={handleSidebarIconClick}
+                    currentMenuIndex={currentMenuIndex}
                     className={cn(
                       "p-1.5 border-2 border-primary text-primary hover:bg-accent hover:text-primary [&>svg]:size-6",
                       index === currentMenuIndex && "bg-accent"
                     )}
-                    title={data.title}
-                  >
-                    {data.icon}
-                  </Button>
+                  />
                 );
               }
+
               return (
-                <Button
+                <SidebarIcon
                   key={data.title}
-                  variant={"ghost"}
-                  size={"icon"}
-                  onClick={() => {
-                    setCurrentMenuIndex(index);
-                    setIsOpen(true);
-                  }}
-                  className={`text-base ${
-                    index === currentMenuIndex ? "bg-accent text-primary hover:text-primary" : "text-muted-text"
-                  }`}
+                  index={index}
                   title={data.title}
-                >
-                  {data.icon}
-                </Button>
+                  icon={data.icon}
+                  onClick={handleSidebarIconClick}
+                  currentMenuIndex={currentMenuIndex}
+                />
               );
             })}
           </div>
@@ -112,30 +103,98 @@ const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
           style={sidebarContentStyle}
         >
           <h3 className="text-muted-text uppercase truncate text-xs font-semibold px-6">
-            {SidebarData[currentMenuIndex].contentTitle}
+            {currentSidebarData.contentTitle}
           </h3>
 
           <div className="px-6">
             <CollapsibleLists
               key={currentMenuIndex}
-              lists={SidebarData[currentMenuIndex].lists}
-              activeIndex={activeIndices[currentMenuIndex] ?? -1}
+              lists={currentSidebarData.lists}
+              activeIndex={currentActiveIndex ?? -1}
               setActiveIndex={handleSetActiveIndex}
               onClick={setIsOpen}
             />
           </div>
         </div>
 
-        <Button
-          size={"icon"}
-          className="size-7 p-0 rounded-default absolute bottom-20 right-0 translate-x-3.5 hidden md:flex"
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          <LuArrowRight className={`transition-all duration-300 ${isOpen ? "rotate-180" : "rotate-0"}`} />
-        </Button>
+        <SidebarToggler isOpen={isOpen} setIsOpen={setIsOpen} />
       </aside>
     </ClickAwayListener>
   );
 };
+
+/* -------------------------------------------------------------------------- */
+
+type SidebarTogglerProps = {
+  isOpen: boolean;
+  setIsOpen: (isOpen: boolean) => void;
+};
+
+const SidebarToggler = ({ isOpen, setIsOpen }: SidebarTogglerProps) => (
+  <Button
+    size={"icon"}
+    className="size-7 p-0 rounded-default absolute bottom-20 right-0 translate-x-3.5 hidden md:flex"
+    onClick={() => setIsOpen(!isOpen)}
+  >
+    <LuArrowRight className={`transition-all duration-300 ${isOpen ? "rotate-180" : "rotate-0"}`} />
+  </Button>
+);
+
+/* -------------------------------------------------------------------------- */
+
+type LogoProps = {
+  imgURL: string;
+  alt: string;
+  className?: string;
+};
+
+const Logo = ({ imgURL, alt, className }: LogoProps) => (
+  <Button
+    href={"/"}
+    variant={"ghost"}
+    size={"icon"}
+    renderAs={Link}
+    className={cn("hover:bg-transparent size-12 p-1.5", className)}
+  >
+    <Image src={imgURL} alt={alt} width={50} height={50} className="w-full" />
+  </Button>
+);
+
+/* -------------------------------------------------------------------------- */
+
+type SidebarIconProps = {
+  variant?: "outline" | "ghost";
+  title: string;
+  icon: React.ReactNode;
+  index: number;
+  currentMenuIndex: number;
+  onClick?: (index: number) => void;
+  className?: string;
+};
+
+const SidebarIcon = ({
+  title,
+  icon,
+  index,
+  currentMenuIndex,
+  onClick,
+  variant = "ghost",
+  className,
+}: SidebarIconProps) => (
+  <Button
+    key={title}
+    variant={variant}
+    size={"icon"}
+    onClick={() => onClick?.(index)}
+    className={cn(
+      "text-base",
+      index === currentMenuIndex ? "bg-accent text-primary hover:text-primary" : "text-muted-text",
+      className
+    )}
+    title={title}
+  >
+    {icon}
+  </Button>
+);
 
 export default Sidebar;
