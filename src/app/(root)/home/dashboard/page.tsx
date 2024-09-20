@@ -9,10 +9,10 @@ const Home = () => {
         <h3 className="text-3xl font-extrabold">This page is currently under construction.</h3>
         <p>Here are the current available pages:</p>
         <div className="flex items-center gap-2 text-sm">
-          <Link className="text-blue-500 hover:text-blue-700 underline" href={"/contacts/customers/"}>
+          <Link className="text-secondary-text hover:brightness-75 underline" href={"/contacts/customers/"}>
             Customer List
           </Link>
-          <Link className="text-blue-500 hover:text-blue-700 underline" href={"/contacts/customers/create"}>
+          <Link className="text-secondary-text hover:brightness-75 underline" href={"/contacts/customers/create"}>
             Add Customer
           </Link>
         </div>

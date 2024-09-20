@@ -5,6 +5,8 @@ import * as React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { FaCashRegister } from "react-icons/fa";
+import { FaVolumeLow, FaVolumeXmark } from "react-icons/fa6";
 import { LuMenu } from "react-icons/lu";
 
 import { getSidebarActiveTitle, isExistingUrl } from "@/_constants/SIDEBAR_DATA";
@@ -14,6 +16,7 @@ import { Breadcrumbs, BreadcrumbsItem, BreadcrumbsLink, BreadcrumbsSeparator } f
 import { Button } from "../_mijn-ui/Button";
 import { Select, SelectContent, SelectOption, SelectTrigger } from "../_mijn-ui/Select";
 import { cn } from "../_mijn-ui/utils";
+import ThemeToggler from "../theme-toggler/ThemeToggler";
 
 type NavbarProps = {
   setIsSidebarActive: (isOpen: boolean) => void;
@@ -56,11 +59,40 @@ const Navbar = ({ setIsSidebarActive }: NavbarProps) => {
           <DynamicBreadcrumbs paths={paths} />
         </div>
 
-        <div>
+        <div className="flex items-center gap-2">
           <LanguageSelector LanguageOptions={LanguageOptions} />
+
+          {/* currently this link is going to direct to the current page */}
+          <Button
+            renderAs={Link}
+            href={"/"}
+            size={"icon"}
+            className="hover:text-secondary-text text-muted-text text-xs"
+            variant={"surface"}
+          >
+            <FaCashRegister />
+          </Button>
+
+          <VolumeToggler />
+          <ThemeToggler />
         </div>
       </nav>
     </header>
+  );
+};
+
+const VolumeToggler = () => {
+  const [isActivated, setIsActivated] = React.useState(false);
+
+  return (
+    <Button
+      onClick={() => setIsActivated((prev) => !prev)}
+      size={"icon"}
+      className={cn(isActivated ? "text-primary" : "text-muted-text")}
+      variant={"surface"}
+    >
+      {isActivated ? <FaVolumeLow /> : <FaVolumeXmark />}
+    </Button>
   );
 };
 
@@ -113,7 +145,7 @@ const LanguageSelector = ({ LanguageOptions }: LanguageSelectorProps) => {
 
   return (
     <Select placement="bottom-end" defaultSelectedIndex={1} onSelect={(index) => setSelectedIndex(index)}>
-      <SelectTrigger className="bg-surface shadow-sm text-xs hover:bg-surface hover:text-blue-500 border-none w-24 gap-2 p-0">
+      <SelectTrigger className="bg-surface shadow-sm text-xs hover:bg-surface hover:text-secondary-text border-none w-24 gap-2 p-0">
         <span className="capitalize">{LanguageOptions[selectedIndex].name}</span>
 
         {selectedIndex !== null && (
@@ -131,7 +163,7 @@ const LanguageSelector = ({ LanguageOptions }: LanguageSelectorProps) => {
           <SelectOption
             key={option.name}
             value={option.name}
-            className="flex items-center gap-3 data-[active]:text-blue-500 data-[active]:bg-transparent data-[selected]:bg-accent data-[active]:data-[selected]:bg-accent data-[selected]:text-blue-500 truncate text-xs"
+            className="flex items-center gap-3 data-[active]:text-secondary-text data-[active]:bg-transparent data-[selected]:bg-accent data-[active]:data-[selected]:bg-accent data-[selected]:text-secondary-text truncate text-xs"
           >
             <Image src={option.src} width={80} height={80} alt={option.alt} className="size-4 rounded-md" />
 
