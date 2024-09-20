@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 
 import { AiFillProduct } from "react-icons/ai";
-import { BsBarChartLineFill } from "react-icons/bs";
+import { BsBarChartLineFill, BsGrid3X3GapFill } from "react-icons/bs";
 import {
   FaAddressBook,
   FaBalanceScale,
@@ -48,6 +48,21 @@ export type SidebarDataType = {
 };
 
 export const SidebarData: SidebarDataType[] = [
+  {
+    title: "Apps",
+    icon: <BsGrid3X3GapFill />,
+    contentTitle: "APPS",
+    lists: [
+      {
+        icon: <FaPeopleCarry />,
+        title: "Dashboard",
+        link: "/home/dashboard",
+      },
+    ],
+  },
+
+  /* -------------------------------------------------------------------------- */
+
   {
     title: "Contacts",
     icon: <FaAddressBook />,

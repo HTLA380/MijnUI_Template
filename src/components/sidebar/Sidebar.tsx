@@ -2,13 +2,13 @@ import React, { useState } from "react";
 
 import Image from "next/image";
 import Link from "next/link";
-import { BsGrid3X3GapFill } from "react-icons/bs";
 import { LuArrowRight } from "react-icons/lu";
 
 import { SidebarData } from "@/_constants/SIDEBAR_DATA";
 
 import { Button } from "../_mijn-ui/Button";
 import { useMediaQuery } from "../_mijn-ui/hooks/use-media-query";
+import { cn } from "../_mijn-ui/utils";
 import ClickAwayListener from "../_mijn-ui/utils/wrappers/ClickAwayListener";
 import { SIDEBAR_CONTENT_WIDTH, SIDEBAR_WIDTH } from "../layout/Layout";
 import CollapsibleLists from "./CollapsibleList";
@@ -63,34 +63,47 @@ const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
           </Button>
 
           <div className="flex flex-col gap-2">
-            <Button
-              variant={"outline"}
-              size={"icon"}
-              className="p-1.5 border-2 border-primary text-primary hover:bg-accent hover:text-primary"
-              title="Apps"
-              renderAs={Link}
-              href={"/apps"}
-            >
-              <BsGrid3X3GapFill className="size-full" />
-            </Button>
+            {SidebarData.map((data, index) => {
+              const isAppsData = data.title === "Apps";
 
-            {SidebarData.map((data, index) => (
-              <Button
-                key={data.title}
-                variant={"ghost"}
-                size={"icon"}
-                onClick={() => {
-                  setCurrentMenuIndex(index);
-                  setIsOpen(true);
-                }}
-                className={`text-base ${
-                  index === currentMenuIndex ? "bg-accent text-primary hover:text-primary" : "text-muted-text"
-                }`}
-                title={data.title}
-              >
-                {data.icon}
-              </Button>
-            ))}
+              if (isAppsData) {
+                return (
+                  <Button
+                    key={data.title}
+                    variant={"outline"}
+                    size={"icon"}
+                    onClick={() => {
+                      setCurrentMenuIndex(index);
+                      setIsOpen(true);
+                    }}
+                    className={cn(
+                      "p-1.5 border-2 border-primary text-primary hover:bg-accent hover:text-primary [&>svg]:size-6",
+                      index === currentMenuIndex && "bg-accent"
+                    )}
+                    title={data.title}
+                  >
+                    {data.icon}
+                  </Button>
+                );
+              }
+              return (
+                <Button
+                  key={data.title}
+                  variant={"ghost"}
+                  size={"icon"}
+                  onClick={() => {
+                    setCurrentMenuIndex(index);
+                    setIsOpen(true);
+                  }}
+                  className={`text-base ${
+                    index === currentMenuIndex ? "bg-accent text-primary hover:text-primary" : "text-muted-text"
+                  }`}
+                  title={data.title}
+                >
+                  {data.icon}
+                </Button>
+              );
+            })}
           </div>
         </div>
 

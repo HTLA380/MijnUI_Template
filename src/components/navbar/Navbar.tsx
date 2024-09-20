@@ -6,7 +6,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { LuMenu } from "react-icons/lu";
-import { TbSlashes } from "react-icons/tb";
 
 import { getSidebarActiveTitle, isExistingUrl } from "@/_constants/SIDEBAR_DATA";
 import { generatePaths } from "@/utils";
@@ -43,7 +42,6 @@ const Navbar = ({ setIsSidebarActive }: NavbarProps) => {
 
   const paths = React.useMemo(() => generatePaths(pathname), [pathname]);
   const title = React.useMemo(() => getSidebarActiveTitle(pathname), [pathname]);
-  const isDashboardPage = pathname === "/home/dashboard";
 
   return (
     <header className="w-full flex items-center justify-between">
@@ -55,55 +53,7 @@ const Navbar = ({ setIsSidebarActive }: NavbarProps) => {
         <div>
           <h3 className="text-lg font-semibold">{title || "Pico Demo Business"}</h3>
 
-          {isDashboardPage ? (
-            <Breadcrumbs>
-              <BreadcrumbsItem>
-                <BreadcrumbsLink className="capitalize hover:no-underline hover:text-muted-text">Home</BreadcrumbsLink>
-              </BreadcrumbsItem>
-              <BreadcrumbsSeparator />
-              <BreadcrumbsItem>
-                <BreadcrumbsLink renderAs={Link} href="/home/dashboard" className="capitalize text-main-text">
-                  Dashboard
-                </BreadcrumbsLink>
-              </BreadcrumbsItem>
-            </Breadcrumbs>
-          ) : (
-            <Breadcrumbs>
-              <BreadcrumbsItem>
-                <BreadcrumbsLink renderAs={Link} href="/" className="capitalize">
-                  Dashboard
-                </BreadcrumbsLink>
-              </BreadcrumbsItem>
-
-              <span className="h-4 w-4 -ml-1 mr-1">
-                <TbSlashes className="w-full h-full" />
-              </span>
-
-              {paths.map((path, index) => {
-                const isLastItem = index === paths.length - 1;
-                const isPathExist = isExistingUrl(path.link);
-
-                return (
-                  <React.Fragment key={path.name}>
-                    <BreadcrumbsItem>
-                      <BreadcrumbsLink
-                        renderAs={isPathExist ? Link : "p"}
-                        href={path.link}
-                        className={cn(
-                          "capitalize",
-                          !isPathExist && "hover:no-underline hover:text-muted-text",
-                          isPathExist && isLastItem && "text-main-text"
-                        )}
-                      >
-                        {path.name}
-                      </BreadcrumbsLink>
-                    </BreadcrumbsItem>
-                    {!isLastItem && <BreadcrumbsSeparator />}
-                  </React.Fragment>
-                );
-              })}
-            </Breadcrumbs>
-          )}
+          <DynamicBreadcrumbs paths={paths} />
         </div>
 
         <div>
@@ -111,6 +61,40 @@ const Navbar = ({ setIsSidebarActive }: NavbarProps) => {
         </div>
       </nav>
     </header>
+  );
+};
+
+type DynamicBreadcrumbsProps = {
+  paths: { name: string; link: string }[];
+};
+
+const DynamicBreadcrumbs = ({ paths }: DynamicBreadcrumbsProps) => {
+  return (
+    <Breadcrumbs>
+      {paths.map((path, index) => {
+        const isLastItem = index === paths.length - 1;
+        const isPathExist = isExistingUrl(path.link);
+
+        return (
+          <React.Fragment key={path.name}>
+            <BreadcrumbsItem>
+              <BreadcrumbsLink
+                renderAs={isPathExist ? Link : "p"}
+                href={path.link}
+                className={cn(
+                  "capitalize",
+                  !isPathExist && "hover:no-underline hover:text-muted-text",
+                  isPathExist && isLastItem && "text-main-text"
+                )}
+              >
+                {path.name}
+              </BreadcrumbsLink>
+            </BreadcrumbsItem>
+            {!isLastItem && <BreadcrumbsSeparator />}
+          </React.Fragment>
+        );
+      })}
+    </Breadcrumbs>
   );
 };
 
@@ -129,7 +113,7 @@ const LanguageSelector = ({ LanguageOptions }: LanguageSelectorProps) => {
 
   return (
     <Select placement="bottom-end" defaultSelectedIndex={1} onSelect={(index) => setSelectedIndex(index)}>
-      <SelectTrigger className="bg-surface shadow-sm hover:bg-surface hover:text-blue-500 border-none w-24 gap-2 p-0">
+      <SelectTrigger className="bg-surface shadow-sm text-xs hover:bg-surface hover:text-blue-500 border-none w-24 gap-2 p-0">
         <span className="capitalize">{LanguageOptions[selectedIndex].name}</span>
 
         {selectedIndex !== null && (
@@ -147,7 +131,7 @@ const LanguageSelector = ({ LanguageOptions }: LanguageSelectorProps) => {
           <SelectOption
             key={option.name}
             value={option.name}
-            className="flex items-center gap-3 data-[active]:text-blue-500 data-[active]:bg-transparent data-[selected]:bg-accent data-[active]:data-[selected]:bg-accent data-[selected]:text-blue-500 truncate"
+            className="flex items-center gap-3 data-[active]:text-blue-500 data-[active]:bg-transparent data-[selected]:bg-accent data-[active]:data-[selected]:bg-accent data-[selected]:text-blue-500 truncate text-xs"
           >
             <Image src={option.src} width={80} height={80} alt={option.alt} className="size-4 rounded-md" />
 
