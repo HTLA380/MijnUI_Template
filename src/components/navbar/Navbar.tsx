@@ -8,11 +8,13 @@ import { FaCashRegister } from "react-icons/fa";
 import { LuMenu } from "react-icons/lu";
 
 import { getSidebarActiveTitle } from "@/_constants/SIDEBAR_DATA";
+import { useMediaQuery } from "@/hooks/use-media-query";
 import { generatePaths } from "@/utils";
 
 import { useDetectScroll } from "../../hooks/useDetectScroll";
 import { cn } from "../../utils";
 import { Button } from "../_mijn-ui/Button";
+import Logo from "../logo/Logo";
 import ThemeToggler from "../theme-toggler/ThemeToggler";
 import DynamicBreadcrumbs from "./DynamicBreadcrumbs";
 import LanguageSelector from "./LanguageSelector";
@@ -42,14 +44,14 @@ const LanguageOptions = [
   },
 ];
 
-const NAVBAR_HEIGHT = 84;
-
 const Navbar = ({ style, setIsSidebarActive }: NavbarProps) => {
   const pathname = usePathname();
   const [selectedLanguageIndex, setSelectedLanguageIndex] = React.useState(1);
-
+  const isMobile = useMediaQuery("(max-width: 768px)");
   const paths = React.useMemo(() => generatePaths(pathname), [pathname]);
   const title = React.useMemo(() => getSidebarActiveTitle(pathname), [pathname]);
+
+  const NAVBAR_HEIGHT = isMobile ? 64 : 84;
 
   const isActive = useDetectScroll(NAVBAR_HEIGHT);
 
@@ -58,29 +60,41 @@ const Navbar = ({ style, setIsSidebarActive }: NavbarProps) => {
       className={cn("fixed inset-x-0 top-0 w-full flex items-center justify-between z-30", isActive && "backdrop-blur")}
       style={{ ...style, minHeight: `${NAVBAR_HEIGHT}px` }}
     >
-      <nav className="flex items-center w-full justify-between">
-        <Button className="md:hidden" onClick={() => setIsSidebarActive(true)} variant={"ghost"} size={"icon"}>
-          <LuMenu size={20} />
-        </Button>
+      <nav className="flex px-5 items-center w-full justify-between">
+        {isMobile ? (
+          <div className="flex gap-2 items-center">
+            <Button onClick={() => setIsSidebarActive(true)} variant={"ghost"} size={"icon"}>
+              <LuMenu size={20} />
+            </Button>
 
-        <div>
-          <h3 className="text-lg font-semibold">{title || "Pico Demo Business"}</h3>
-          <DynamicBreadcrumbs paths={paths} />
-        </div>
+            <Logo
+              imgURL="/assets/images/pico.png"
+              alt="PICO SBS"
+              className="size-8 p-0 mt-1 flex items-center justify-center"
+            />
+          </div>
+        ) : (
+          <div>
+            <h3 className="text-lg font-semibold">{title || "Pico Demo Business"}</h3>
+            <DynamicBreadcrumbs paths={paths} />
+          </div>
+        )}
 
         <div className="flex items-center gap-2">
-          <LanguageSelector
-            selectedIndex={selectedLanguageIndex}
-            onSelect={setSelectedLanguageIndex}
-            LanguageOptions={LanguageOptions}
-          />
+          {!isMobile && (
+            <LanguageSelector
+              selectedIndex={selectedLanguageIndex}
+              onSelect={setSelectedLanguageIndex}
+              LanguageOptions={LanguageOptions}
+            />
+          )}
 
           {/* currently this link is going to direct to the current page */}
           <Button
             renderAs={Link}
             href={"/"}
             size={"icon"}
-            className="hover:text-secondary-text text-muted-text text-xs"
+            className="hover:text-secondary-text text-muted-text text-xs size-9 sm:size-10"
             variant={"surface"}
           >
             <FaCashRegister />
@@ -88,7 +102,11 @@ const Navbar = ({ style, setIsSidebarActive }: NavbarProps) => {
 
           <VolumeToggler />
           <ThemeToggler />
-          <Profile />
+          <Profile
+            selectedIndex={selectedLanguageIndex}
+            onSelect={setSelectedLanguageIndex}
+            LanguageOptions={LanguageOptions}
+          />
         </div>
       </nav>
     </header>

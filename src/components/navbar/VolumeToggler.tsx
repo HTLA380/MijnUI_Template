@@ -12,7 +12,7 @@ const VolumeToggler = () => {
     <Button
       onClick={() => setIsActivated((prev) => !prev)}
       size={"icon"}
-      className={cn(isActivated ? "text-primary" : "text-muted-text")}
+      className={cn("size-9 sm:size-10", isActivated ? "text-primary" : "text-muted-text")}
       variant={"surface"}
     >
       {isActivated ? <FaVolumeLow /> : <FaVolumeXmark />}

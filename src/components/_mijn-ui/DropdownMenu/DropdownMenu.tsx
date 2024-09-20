@@ -109,7 +109,7 @@ const DropdownMenuInner = ({ open, onToggle, placement, children }: DropdownMenu
     nodeId,
     open: isOpen,
     onOpenChange: setIsOpen,
-    placement: isNested ? "right-start" : placement,
+    placement: placement,
     middleware: [offset({ mainAxis: isNested ? 0 : 4, alignmentAxis: isNested ? -4 : 0 }), flip(), shift()],
     whileElementsMounted: autoUpdate,
   });
@@ -174,7 +174,7 @@ const DropdownMenuInner = ({ open, onToggle, placement, children }: DropdownMenu
       tree.events.off("click", handleTreeClick);
       tree.events.off("menuopen", onSubMenuOpen);
     };
-  }, [tree, nodeId, parentId]);
+  }, [tree, nodeId, parentId, setIsOpen]);
 
   React.useEffect(() => {
     if (isOpen && tree) {

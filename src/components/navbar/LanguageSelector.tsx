@@ -16,7 +16,7 @@ const LanguageSelector = ({ LanguageOptions, selectedIndex, onSelect }: Language
   // TODO: add actual language change logic
 
   return (
-    <Select placement="bottom-end" defaultSelectedIndex={1} onSelect={(index) => onSelect(index)}>
+    <Select placement="bottom-end" defaultSelectedIndex={1} onSelect={onSelect}>
       <SelectTrigger className="bg-surface shadow-sm text-xs hover:bg-surface hover:text-secondary-text border-none w-24 gap-2 p-0">
         <span className="capitalize">{LanguageOptions[selectedIndex].name}</span>
 

@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 
-import Image from "next/image";
-import Link from "next/link";
 import { LuArrowRight } from "react-icons/lu";
 
 import { SidebarData } from "@/_constants/SIDEBAR_DATA";
@@ -11,6 +9,7 @@ import { cn } from "../../utils";
 import ClickAwayListener from "../../utils/wrappers/ClickAwayListener";
 import { Button } from "../_mijn-ui/Button";
 import { SIDEBAR_CONTENT_WIDTH, SIDEBAR_WIDTH } from "../layout/Layout";
+import Logo from "../logo/Logo";
 import CollapsibleLists from "./CollapsibleList";
 
 type SidebarProps = {
@@ -56,7 +55,7 @@ const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
   return (
     <ClickAwayListener onClickAway={() => setIsOpen(false)}>
       <aside
-        className="flex fixed inset-y-0 z-50 left-0 bg-surface transition-[left] duration-300 ease-in-out shadow-md"
+        className="flex fixed inset-y-0 z-[99] left-0 bg-surface transition-[left] duration-300 ease-in-out shadow-md"
         style={sidebarContainerStyle}
       >
         <div className="pt-8 flex flex-col items-center gap-8" style={sidebarPanelStyle}>
@@ -137,26 +136,6 @@ const SidebarToggler = ({ isOpen, setIsOpen }: SidebarTogglerProps) => (
     onClick={() => setIsOpen(!isOpen)}
   >
     <LuArrowRight className={`transition-all duration-300 ${isOpen ? "rotate-180" : "rotate-0"}`} />
-  </Button>
-);
-
-/* -------------------------------------------------------------------------- */
-
-type LogoProps = {
-  imgURL: string;
-  alt: string;
-  className?: string;
-};
-
-const Logo = ({ imgURL, alt, className }: LogoProps) => (
-  <Button
-    href={"/"}
-    variant={"ghost"}
-    size={"icon"}
-    renderAs={Link}
-    className={cn("hover:bg-transparent size-12 p-1.5", className)}
-  >
-    <Image src={imgURL} alt={alt} width={50} height={50} className="w-full" />
   </Button>
 );
 

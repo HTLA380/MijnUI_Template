@@ -22,7 +22,7 @@ const ThemeToggler = ({ className }: { className?: string }) => {
       <Button
         variant={"surface"}
         onClick={() => setTheme("light")}
-        className={`transition duration-200 text-muted-text hover:text-secondary-text ${className}`}
+        className={`transition duration-200 text-muted-text hover:text-secondary-text size-9 sm:size-10 ${className}`}
       >
         <FiSun />
       </Button>
@@ -33,7 +33,7 @@ const ThemeToggler = ({ className }: { className?: string }) => {
       <Button
         variant={"surface"}
         onClick={() => setTheme("dark")}
-        className={`transition duration-200 text-muted-text hover:text-secondary-text ${className}`}
+        className={`transition duration-200 text-muted-text hover:text-secondary-text size-9 sm:size-10 ${className}`}
       >
         <FiMoon />
       </Button>
