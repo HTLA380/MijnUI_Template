@@ -8,16 +8,17 @@ import { useMediaQuery } from "../../hooks/use-media-query";
 import { cn } from "../../utils";
 import ClickAwayListener from "../../utils/wrappers/ClickAwayListener";
 import { Button } from "../_mijn-ui/Button";
-import { SIDEBAR_CONTENT_WIDTH, SIDEBAR_WIDTH } from "../layout/Layout";
 import Logo from "../logo/Logo";
 import CollapsibleLists from "./CollapsibleList";
 
 type SidebarProps = {
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
+  SIDEBAR_WIDTH: number;
+  SIDEBAR_CONTENT_WIDTH: number;
 };
 
-const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
+const Sidebar = ({ isOpen, setIsOpen, SIDEBAR_CONTENT_WIDTH, SIDEBAR_WIDTH }: SidebarProps) => {
   const [currentMenuIndex, setCurrentMenuIndex] = useState(0);
   const [activeIndices, setActiveIndices] = useState<{ [key: number]: number }>({});
   const isMobile = useMediaQuery("(max-width: 768px)");
@@ -35,10 +36,10 @@ const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
   };
 
   const sidebarContainerStyle = isMobile ? { left: isOpen ? 0 : -SIDEBAR_WIDTH } : undefined;
-  const sidebarPanelStyle = { width: isMobile ? `${SIDEBAR_WIDTH * 0.8}px` : `${SIDEBAR_WIDTH}px` };
+  const sidebarPanelStyle = { width: `${SIDEBAR_WIDTH}px` };
   const sidebarContentStyle = isOpen
     ? {
-        width: isMobile ? `${SIDEBAR_CONTENT_WIDTH * 0.9}px` : `${SIDEBAR_CONTENT_WIDTH}px`,
+        width: `${SIDEBAR_CONTENT_WIDTH}px`,
         opacity: 1,
         transition: "width 300ms ease-out, opacity 700ms ease-out",
       }
@@ -98,14 +99,14 @@ const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
         </div>
 
         <div
-          className={`relative h-full gap-4 border-l border-l-main-border pt-8 flex flex-col`}
+          className={`relative h-full overflow-y-auto gap-4 border-l border-l-main-border py-8 flex flex-col`}
           style={sidebarContentStyle}
         >
           <h3 className="text-muted-text uppercase truncate text-xs font-semibold px-6">
             {currentSidebarData.contentTitle}
           </h3>
 
-          <div className="px-6">
+          <div className="px-3 md:px-6">
             <CollapsibleLists
               key={currentMenuIndex}
               lists={currentSidebarData.lists}

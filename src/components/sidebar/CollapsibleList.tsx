@@ -64,7 +64,7 @@ const CollapsibleLists = ({ lists, activeIndex, setActiveIndex, onClick }: Colla
                   <ListItem
                     onClick={handleClick}
                     key={`list-item-${index}`}
-                    className="pl-7 hover:text-primary text-muted-text"
+                    className="pl-4 sm:pl-7 hover:text-primary text-muted-text"
                   >
                     <Link href={link} className="flex items-center w-full gap-1 truncate">
                       <ListItemIcon>

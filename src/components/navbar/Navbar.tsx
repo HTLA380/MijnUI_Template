@@ -3,20 +3,17 @@
 import * as React from "react";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { FaCashRegister } from "react-icons/fa";
 import { LuMenu } from "react-icons/lu";
 
-import { getSidebarActiveTitle } from "@/_constants/SIDEBAR_DATA";
 import { useMediaQuery } from "@/hooks/use-media-query";
-import { generatePaths } from "@/utils";
 
 import { useDetectScroll } from "../../hooks/useDetectScroll";
 import { cn } from "../../utils";
 import { Button } from "../_mijn-ui/Button";
 import Logo from "../logo/Logo";
+import PageInfo from "../page-info/PageInfo";
 import ThemeToggler from "../theme-toggler/ThemeToggler";
-import DynamicBreadcrumbs from "./DynamicBreadcrumbs";
 import LanguageSelector from "./LanguageSelector";
 import Profile from "./Profile";
 import VolumeToggler from "./VolumeToggler";
@@ -24,6 +21,7 @@ import VolumeToggler from "./VolumeToggler";
 type NavbarProps = {
   style?: React.CSSProperties;
   setIsSidebarActive: (isOpen: boolean) => void;
+  NAVBAR_HEIGHT: number;
 };
 
 const LanguageOptions = [
@@ -44,14 +42,10 @@ const LanguageOptions = [
   },
 ];
 
-const Navbar = ({ style, setIsSidebarActive }: NavbarProps) => {
-  const pathname = usePathname();
+const Navbar = ({ style, setIsSidebarActive, NAVBAR_HEIGHT }: NavbarProps) => {
   const [selectedLanguageIndex, setSelectedLanguageIndex] = React.useState(1);
-  const isMobile = useMediaQuery("(max-width: 768px)");
-  const paths = React.useMemo(() => generatePaths(pathname), [pathname]);
-  const title = React.useMemo(() => getSidebarActiveTitle(pathname), [pathname]);
 
-  const NAVBAR_HEIGHT = isMobile ? 64 : 84;
+  const isMobile = useMediaQuery("(max-width: 768px)");
 
   const isActive = useDetectScroll(NAVBAR_HEIGHT);
 
@@ -74,10 +68,7 @@ const Navbar = ({ style, setIsSidebarActive }: NavbarProps) => {
             />
           </div>
         ) : (
-          <div>
-            <h3 className="text-lg font-semibold">{title || "Pico Demo Business"}</h3>
-            <DynamicBreadcrumbs paths={paths} />
-          </div>
+          <PageInfo />
         )}
 
         <div className="flex items-center gap-2">
