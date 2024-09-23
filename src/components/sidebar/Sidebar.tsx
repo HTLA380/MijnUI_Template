@@ -1,26 +1,26 @@
 import React, { useState } from "react";
 
 import { LuArrowRight } from "react-icons/lu";
+import { SidebarData } from "~/_constants/SIDEBAR_DATA";
 
-import { SidebarData } from "@/_constants/SIDEBAR_DATA";
+import { Button } from "@/mijn-ui/components/Button";
+import { useMediaQuery } from "@/mijn-ui/hooks/use-media-query";
+import { cn } from "@/mijn-ui/utils";
+import ClickAwayListener from "@/mijn-ui/utils/wrappers/ClickAwayListener";
 
-import { useMediaQuery } from "../../hooks/use-media-query";
-import { cn } from "../../utils";
-import ClickAwayListener from "../../utils/wrappers/ClickAwayListener";
-import { Button } from "../_mijn-ui/Button";
 import Logo from "../logo/Logo";
 import CollapsibleLists from "./CollapsibleList";
 
 type SidebarProps = {
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
-  SIDEBAR_WIDTH: number;
-  SIDEBAR_CONTENT_WIDTH: number;
 };
 
-const Sidebar = ({ isOpen, setIsOpen, SIDEBAR_CONTENT_WIDTH, SIDEBAR_WIDTH }: SidebarProps) => {
+const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
   const [currentMenuIndex, setCurrentMenuIndex] = useState(0);
-  const [activeIndices, setActiveIndices] = useState<{ [key: number]: number }>({});
+  const [activeIndices, setActiveIndices] = useState<{ [key: number]: number }>(
+    {},
+  );
   const isMobile = useMediaQuery("(max-width: 768px)");
 
   const handleSetActiveIndex = (index: number) => {
@@ -35,31 +35,20 @@ const Sidebar = ({ isOpen, setIsOpen, SIDEBAR_CONTENT_WIDTH, SIDEBAR_WIDTH }: Si
     setIsOpen(true);
   };
 
-  const sidebarContainerStyle = isMobile ? { left: isOpen ? 0 : -SIDEBAR_WIDTH } : undefined;
-  const sidebarPanelStyle = { width: `${SIDEBAR_WIDTH}px` };
-  const sidebarContentStyle = isOpen
-    ? {
-        width: `${SIDEBAR_CONTENT_WIDTH}px`,
-        opacity: 1,
-        transition: "width 300ms ease-out, opacity 700ms ease-out",
-      }
-    : {
-        width: "0px",
-        overflow: "hidden",
-        opacity: 0,
-        transition: "width 300ms ease-out, opacity 700ms ease-out",
-      };
-
   const currentSidebarData = SidebarData[currentMenuIndex];
   const currentActiveIndex = activeIndices[currentMenuIndex] ?? -1;
 
   return (
     <ClickAwayListener onClickAway={() => setIsOpen(false)}>
       <aside
-        className="flex fixed inset-y-0 z-[99] left-0 bg-surface transition-[left] duration-300 ease-in-out shadow-md"
-        style={sidebarContainerStyle}
+        data-state={isOpen ? "open" : "closed"}
+        className={cn(
+          "group fixed inset-y-0 left-0 z-[99] flex bg-surface shadow-md transition-[left] duration-300 ease-in-out",
+          isMobile &&
+            "data-[state=closed]:-left-[var(--sidebar-content-width)]",
+        )}
       >
-        <div className="pt-8 flex flex-col items-center gap-8" style={sidebarPanelStyle}>
+        <div className="flex w-[var(--sidebar-width)] flex-col items-center gap-8 pt-8">
           <Logo imgURL="/assets/images/pico.png" alt="PICO SBS" />
 
           <div className="flex flex-col gap-2">
@@ -77,8 +66,8 @@ const Sidebar = ({ isOpen, setIsOpen, SIDEBAR_CONTENT_WIDTH, SIDEBAR_WIDTH }: Si
                     onClick={handleSidebarIconClick}
                     currentMenuIndex={currentMenuIndex}
                     className={cn(
-                      "p-1.5 border-2 border-primary text-primary hover:bg-accent hover:text-primary [&>svg]:size-6",
-                      index === currentMenuIndex && "bg-accent"
+                      "border-2 border-primary p-1.5 text-primary hover:bg-accent hover:text-primary [&>svg]:size-6",
+                      index === currentMenuIndex && "bg-accent",
                     )}
                   />
                 );
@@ -99,10 +88,11 @@ const Sidebar = ({ isOpen, setIsOpen, SIDEBAR_CONTENT_WIDTH, SIDEBAR_WIDTH }: Si
         </div>
 
         <div
-          className={`relative h-full overflow-y-auto gap-4 border-l border-l-main-border py-8 flex flex-col`}
-          style={sidebarContentStyle}
+          className={cn(
+            "group-data-[state=open]:opacity-1 relative flex h-full flex-col gap-4 overflow-y-auto border-l border-l-main-border py-8 transition-[width_300ms,opacity_700ms] duration-300 ease-out group-data-[state=closed]:w-0 group-data-[state=open]:w-[var(--sidebar-content-width)] group-data-[state=closed]:overflow-hidden group-data-[state=closed]:opacity-0",
+          )}
         >
-          <h3 className="text-muted-text uppercase truncate text-xs font-semibold px-6">
+          <h3 className="truncate px-6 text-xs font-semibold uppercase text-muted-text">
             {currentSidebarData.contentTitle}
           </h3>
 
@@ -133,10 +123,12 @@ type SidebarTogglerProps = {
 const SidebarToggler = ({ isOpen, setIsOpen }: SidebarTogglerProps) => (
   <Button
     size={"icon"}
-    className="size-7 p-0 rounded-default absolute bottom-20 right-0 translate-x-3.5 hidden md:flex"
+    className="absolute bottom-20 right-0 hidden size-7 translate-x-3.5 rounded-default p-0 md:flex"
     onClick={() => setIsOpen(!isOpen)}
   >
-    <LuArrowRight className={`transition-all duration-300 ${isOpen ? "rotate-180" : "rotate-0"}`} />
+    <LuArrowRight
+      className={`transition-all duration-300 ${isOpen ? "rotate-180" : "rotate-0"}`}
+    />
   </Button>
 );
 
@@ -168,8 +160,10 @@ const SidebarIcon = ({
     onClick={() => onClick?.(index)}
     className={cn(
       "text-base",
-      index === currentMenuIndex ? "bg-accent text-primary hover:text-primary" : "text-muted-text",
-      className
+      index === currentMenuIndex
+        ? "bg-accent text-primary hover:text-primary"
+        : "text-muted-text",
+      className,
     )}
     title={title}
   >

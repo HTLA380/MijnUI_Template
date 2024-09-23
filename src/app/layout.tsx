@@ -2,8 +2,8 @@ import "./globals.css";
 
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-
-import ThemeProvider from "@/components/providers/ThemeProvider";
+import QueryProvider from "~/components/providers/QueryProvider";
+import ThemeProvider from "~/components/providers/ThemeProvider";
 
 export const metadata: Metadata = {
   title: "MijnUI Template",
@@ -20,7 +20,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body suppressHydrationWarning className={inter.className}>
-        <ThemeProvider>{children}</ThemeProvider>
+        <QueryProvider>
+          <ThemeProvider>{children}</ThemeProvider>
+        </QueryProvider>
       </body>
     </html>
   );

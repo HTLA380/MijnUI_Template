@@ -1,9 +1,9 @@
 import React from "react";
 
-import Loader from "@/components/loader/Loader";
+import PageLoader from "~/components/loader/PageLoader";
 
 const loading = () => {
-  return <Loader />;
+  return <PageLoader />;
 };
 
 export default loading;

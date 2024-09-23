@@ -85,6 +85,34 @@
 }
 
 body {
-  @apply bg-main text-main-text;
-  font-family: sans-serif;
+  @apply bg-main text-main-text font-normal;
+}
+
+* {
+  @apply font-normal;
+}
+
+.custom_scroll_bar {
+  overflow-x: auto;
+  overflow-y: auto;
+}
+
+.custom_scroll_bar::-webkit-scrollbar {
+  height: 0.5rem;
+  width: 0.5rem;
+}
+
+.custom_scroll_bar::-webkit-scrollbar-thumb {
+  border-radius: 0.25rem;
+  @apply bg-muted;
+}
+
+.custom_scroll_bar::-webkit-scrollbar-track {
+  border-radius: 0.25rem;
+  @apply bg-transparent;
+  margin: 0.5rem 0.5rem;
+}
+
+.custom_scroll_bar::-webkit-scrollbar-corner {
+  @apply bg-transparent;
 }

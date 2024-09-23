@@ -1,12 +1,15 @@
 import dynamic from "next/dynamic";
+import PageLoader from "~/components/loader/PageLoader";
 
-import Loader from "@/components/loader/Loader";
-
-const DynamicLayout = dynamic(() => import("@/components/layout/Layout"), {
+const DynamicLayout = dynamic(() => import("~/components/layout/Layout"), {
   ssr: false,
-  loading: () => <Loader />,
+  loading: () => <PageLoader />,
 });
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return <DynamicLayout>{children}</DynamicLayout>;
 }

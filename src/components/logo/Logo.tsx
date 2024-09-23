@@ -1,9 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { cn } from "@/utils";
-
-import { Button } from "../_mijn-ui/Button";
+import { Button } from "@/mijn-ui/components/Button";
+import { cn } from "@/mijn-ui/utils";
 
 type LogoProps = {
   imgURL: string;
@@ -17,7 +16,7 @@ const Logo = ({ imgURL, alt, className }: LogoProps) => (
     variant={"ghost"}
     size={"icon"}
     renderAs={Link}
-    className={cn("hover:bg-transparent size-12 p-1.5", className)}
+    className={cn("size-12 p-1.5 hover:bg-transparent", className)}
   >
     <Image src={imgURL} alt={alt} width={50} height={50} className="w-full" />
   </Button>

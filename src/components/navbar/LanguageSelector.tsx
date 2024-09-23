@@ -1,6 +1,11 @@
 import Image from "next/image";
 
-import { Select, SelectContent, SelectOption, SelectTrigger } from "../_mijn-ui/Select";
+import {
+  Select,
+  SelectContent,
+  SelectOption,
+  SelectTrigger,
+} from "@/mijn-ui/components/Select";
 
 type LanguageSelectorProps = {
   LanguageOptions: {
@@ -12,13 +17,19 @@ type LanguageSelectorProps = {
   onSelect: (index: number) => void;
 };
 
-const LanguageSelector = ({ LanguageOptions, selectedIndex, onSelect }: LanguageSelectorProps) => {
+const LanguageSelector = ({
+  LanguageOptions,
+  selectedIndex,
+  onSelect,
+}: LanguageSelectorProps) => {
   // TODO: add actual language change logic
 
   return (
     <Select placement="bottom-end" defaultSelectedIndex={1} onSelect={onSelect}>
-      <SelectTrigger className="bg-surface shadow-sm text-xs hover:bg-surface hover:text-secondary-text border-none w-24 gap-2 p-0">
-        <span className="capitalize">{LanguageOptions[selectedIndex].name}</span>
+      <SelectTrigger className="w-24 gap-2 border-none bg-surface p-0 text-xs shadow-sm hover:bg-surface hover:text-secondary-text">
+        <span className="capitalize">
+          {LanguageOptions[selectedIndex].name}
+        </span>
 
         {selectedIndex !== null && (
           <Image
@@ -30,14 +41,20 @@ const LanguageSelector = ({ LanguageOptions, selectedIndex, onSelect }: Language
           />
         )}
       </SelectTrigger>
-      <SelectContent className="w-36 border-none gap-1 p-3">
+      <SelectContent className="w-36 gap-1 border-none p-3">
         {LanguageOptions.map((option) => (
           <SelectOption
             key={option.name}
             value={option.name}
-            className="flex items-center gap-3 data-[active]:text-secondary-text data-[active]:bg-transparent data-[selected]:bg-accent data-[active]:data-[selected]:bg-accent data-[selected]:text-secondary-text truncate text-xs"
+            className="flex items-center gap-3 truncate text-xs data-[active]:bg-transparent data-[active]:data-[selected]:bg-accent data-[selected]:bg-accent data-[active]:text-secondary-text data-[selected]:text-secondary-text"
           >
-            <Image src={option.src} width={80} height={80} alt={option.alt} className="size-4 rounded-md" />
+            <Image
+              src={option.src}
+              width={80}
+              height={80}
+              alt={option.alt}
+              className="size-4 rounded-md"
+            />
 
             {option.name}
           </SelectOption>
