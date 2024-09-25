@@ -62,6 +62,19 @@ module.exports = {
         ring: "rgb(var(--ring) / <alpha-value>)",
       },
 
+      width: {
+        default: "2.15rem",
+      },
+      height: {
+        default: "2.15rem",
+      },
+      size: {
+        default: "2.15rem",
+      },
+      fontSize: {
+        default: "0.8rem",
+      },
+
       borderRadius: {
         default: "0.25rem",
       },

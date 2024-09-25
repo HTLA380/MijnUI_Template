@@ -7,7 +7,7 @@ import { FiMoon, FiSun } from "react-icons/fi";
 
 import { Button } from "@/mijn-ui/components/Button";
 
-// =========================================================
+/* -------------------------------------------------------------------------- */
 
 const ThemeToggler = ({ className }: { className?: string }) => {
   const [mounted, setMounted] = useState(false);

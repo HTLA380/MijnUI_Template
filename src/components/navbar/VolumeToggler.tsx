@@ -5,6 +5,8 @@ import { FaVolumeLow, FaVolumeXmark } from "react-icons/fa6";
 import { Button } from "@/mijn-ui/components/Button";
 import { cn } from "@/mijn-ui/utils";
 
+/* -------------------------------------------------------------------------- */
+
 const VolumeToggler = () => {
   const [isActivated, setIsActivated] = React.useState(false);
 
@@ -16,6 +18,7 @@ const VolumeToggler = () => {
         "size-9 sm:size-10",
         isActivated ? "text-primary" : "text-muted-text",
       )}
+      title="Volume"
       variant={"surface"}
     >
       {isActivated ? <FaVolumeLow /> : <FaVolumeXmark />}

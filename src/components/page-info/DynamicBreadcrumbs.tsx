@@ -11,6 +11,8 @@ import {
 } from "@/mijn-ui/components/Breadcrumbs";
 import { cn } from "@/mijn-ui/utils";
 
+/* -------------------------------------------------------------------------- */
+
 type DynamicBreadcrumbsProps = {
   paths: { name: string; link: string }[];
 };

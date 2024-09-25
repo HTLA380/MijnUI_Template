@@ -1,5 +1,7 @@
 import { TableCell, TableRow } from "@/mijn-ui/components/Table/Table";
 
+/* -------------------------------------------------------------------------- */
+
 const CustomerRowSkeleton = () => {
   return (
     <TableRow className="relative h-14 border-none after:absolute after:inset-x-0 after:bottom-0 after:h-px after:bg-main-border">

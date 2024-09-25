@@ -24,12 +24,16 @@ const TableItemsPerPageSelector = ({
       defaultSelectedLabel={defaultLabel}
       defaultSelectedIndex={defaultIndex}
     >
-      <SelectTrigger className="w-20 justify-start">
+      <SelectTrigger className="h-8 w-16 justify-start text-xs md:h-9 md:w-20 md:text-sm">
         {({ selectedLabel }) => <div>{selectedLabel}</div>}
       </SelectTrigger>
       <SelectContent className="w-20">
         {options.map((item, index) => (
-          <SelectOption key={index} value={item.toString()}>
+          <SelectOption
+            className="py-2 text-xs md:text-sm"
+            key={index}
+            value={item.toString()}
+          >
             {item}
           </SelectOption>
         ))}

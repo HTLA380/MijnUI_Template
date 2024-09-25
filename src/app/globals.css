@@ -85,7 +85,7 @@
 }
 
 body {
-  @apply bg-main text-main-text font-normal;
+  @apply bg-main font-normal text-main-text;
 }
 
 * {
@@ -100,6 +100,13 @@ body {
 .custom_scroll_bar::-webkit-scrollbar {
   height: 0.5rem;
   width: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .custom_scroll_bar::-webkit-scrollbar {
+    height: 0.3rem;
+    width: 0.3rem;
+  }
 }
 
 .custom_scroll_bar::-webkit-scrollbar-thumb {

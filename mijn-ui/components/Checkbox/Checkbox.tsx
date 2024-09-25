@@ -7,7 +7,7 @@ import { cn } from "@/utils";
 
 export const checkboxStyles = cva(
   [
-    "before:content[''] w-5 h-5 peer relative cursor-pointer disabled:cursor-default appearance-none rounded-[4px] disabled:checked:bg-disabled disabled:border-disabled border border-main-text transition-all",
+    "before:content[''] w-5 h-5 peer relative cursor-pointer disabled:cursor-default appearance-none rounded-default disabled:checked:bg-disabled disabled:border-disabled border border-main-text transition-all",
   ],
   {
     variants: {

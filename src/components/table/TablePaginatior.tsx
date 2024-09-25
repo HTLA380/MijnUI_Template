@@ -31,15 +31,15 @@ const TablePaginator = ({
       onChangePage={onChangePage}
     >
       <PaginationContent>
-        <PaginationPreviousButton>
+        <PaginationPreviousButton className="size-8 p-0 text-sm md:h-9 md:w-auto md:px-2 md:py-3">
           <LuChevronLeft className="h-4 w-4" />
-          <span className="hidden sm:block">Previous</span>
+          <span className="hidden md:block">Previous</span>
         </PaginationPreviousButton>
         <PaginationPreviousEllipsis />
-        <PaginationList />
+        <PaginationList className="[&>li>button]:size-9 [&>li>button]:text-xs [&>li>button]:md:size-10 [&>li>button]:md:text-sm" />
         <PaginationNextEllipsis />
-        <PaginationNextButton>
-          <span className="hidden sm:block">Next</span>
+        <PaginationNextButton className="size-9 p-0 text-sm md:h-9 md:w-auto md:px-2 md:py-3">
+          <span className="hidden md:block">Next</span>
           <LuChevronRight className="h-4 w-4" />
         </PaginationNextButton>
       </PaginationContent>

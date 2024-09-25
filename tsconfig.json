@@ -17,9 +17,10 @@
         "name": "next"
       }
     ],
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["./mijn-ui/*"],
       "@/mijn-ui/*": ["./mijn-ui/*"],
+      "@/*": ["./mijn-ui/*"],
       "~/*": ["./src/*"]
     }
   },

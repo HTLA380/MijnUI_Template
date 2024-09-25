@@ -153,7 +153,7 @@ const PaginationPreviousButton = React.forwardRef<
           variant: "ghost",
           size: "md",
         }),
-        "gap-1 pl-2.5 font-medium",
+        "gap-1 font-medium",
         className,
       )}
       {...props}

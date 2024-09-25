@@ -1,10 +1,12 @@
 import axios from "axios";
 
-import { keepPreviousData, useQuery } from "@tanstack/react-query";
+import { keepPreviousData, useMutation, useQuery } from "@tanstack/react-query";
 
 import { APIType } from "../types";
 
 const BASE_URL = "https://dummyjson.com/users";
+
+/* -------------------------------------------------------------------------- */
 
 export const useFetchUsers = (
   itemsPerPage: number,
@@ -30,5 +32,21 @@ export const useFetchUsers = (
     },
     refetchOnWindowFocus: false,
     placeholderData: keepPreviousData,
+  });
+};
+
+export const useDeleteUsers = ({
+  onSuccess,
+  id = 1,
+}: {
+  onSuccess: () => void;
+  id?: number;
+}) => {
+  return useMutation({
+    mutationKey: ["delete-users"],
+    mutationFn: async () => {
+      await axios.delete(`${BASE_URL}/${id}`);
+    },
+    onSuccess,
   });
 };

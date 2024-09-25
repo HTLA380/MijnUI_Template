@@ -2,36 +2,39 @@
 
 import * as React from "react";
 
+import PageInfo from "~/components/page-info/PageInfo";
+
 import { useMediaQuery } from "@/mijn-ui/hooks/use-media-query";
 import { useScrollLockEffect } from "@/mijn-ui/hooks/use-scroll-lock";
 
 import Navbar from "../navbar/Navbar";
-import PageInfo from "../page-info/PageInfo";
 import Sidebar from "../sidebar/Sidebar";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
-  const isMobile = useMediaQuery("(max-width: 768px)");
-
   const {
-    SPACING_X,
+    isSidebarActive,
+    setIsSidebarActive,
     NAVBAR_HEIGHT,
     SIDEBAR_WIDTH,
     SIDEBAR_CONTENT_WIDTH,
-    isSidebarActive,
-    setIsSidebarActive,
+    PAGE_INFO_HEIGHT,
+    SPACING_X,
   } = GetLayoutInfo();
 
-  useScrollLockEffect(isMobile && isSidebarActive);
+  const isDesktop = useMediaQuery("(min-width: 1024px)");
 
-  const mainContainerStyles = isMobile
-    ? { paddingLeft: SPACING_X, paddingRight: SPACING_X }
-    : {
+  // Lock scroll when sidebar is active
+  useScrollLockEffect(!isDesktop && isSidebarActive);
+
+  const mainContainerStyles = isDesktop
+    ? {
         paddingLeft: isSidebarActive
           ? `${SIDEBAR_WIDTH + SIDEBAR_CONTENT_WIDTH + SPACING_X}px`
           : SIDEBAR_WIDTH + SPACING_X,
         paddingRight: SPACING_X,
         transition: "padding-left 0.3s ease-out",
-      };
+      }
+    : undefined;
 
   return (
     <div
@@ -41,6 +44,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           "--sidebar-width": `${SIDEBAR_WIDTH}px`,
           "--sidebar-content-width": `${SIDEBAR_CONTENT_WIDTH}px`,
           "--spacing-x": `${SPACING_X}px`,
+          "--page-info-height": `${PAGE_INFO_HEIGHT}px`,
         } as React.CSSProperties
       }
     >
@@ -56,8 +60,8 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       />
 
       <div style={{ ...mainContainerStyles }}>
-        <main className="relative px-3 md:px-5">
-          {isMobile && <PageInfo />}
+        <main className="relative pt-[var(--navbar-height)] md:px-5">
+          {!isDesktop && <PageInfo className="hidden md:block" />}
           {children}
         </main>
         {/* <Footer /> */}
@@ -68,11 +72,12 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 
 export const GetLayoutInfo = () => {
   const [isSidebarActive, setIsSidebarActive] = React.useState(false);
-  const isMobile = useMediaQuery("(max-width: 768px)");
+  const isDesktop = useMediaQuery("(min-width: 1024px)");
 
-  const SIDEBAR_CONTENT_WIDTH = isMobile ? 244 : 288;
-  const SIDEBAR_WIDTH = isMobile ? 60 : 70;
-  const NAVBAR_HEIGHT = isMobile ? 64 : 84;
+  const SIDEBAR_CONTENT_WIDTH = isDesktop ? 288 : 244;
+  const SIDEBAR_WIDTH = isDesktop ? 70 : 60;
+  const NAVBAR_HEIGHT = isDesktop ? 84 : 64;
+  const PAGE_INFO_HEIGHT = 45;
   const SPACING_X = 20;
 
   return {
@@ -81,6 +86,7 @@ export const GetLayoutInfo = () => {
     SIDEBAR_CONTENT_WIDTH,
     SIDEBAR_WIDTH,
     NAVBAR_HEIGHT,
+    PAGE_INFO_HEIGHT,
     SPACING_X,
   };
 };

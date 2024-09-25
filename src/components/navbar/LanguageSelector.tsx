@@ -26,7 +26,10 @@ const LanguageSelector = ({
 
   return (
     <Select placement="bottom-end" defaultSelectedIndex={1} onSelect={onSelect}>
-      <SelectTrigger className="w-24 gap-2 border-none bg-surface p-0 text-xs shadow-sm hover:bg-surface hover:text-secondary-text">
+      <SelectTrigger
+        title="select language"
+        className="w-24 gap-2 border-none bg-surface p-0 text-xs shadow-sm hover:bg-surface hover:text-secondary-text"
+      >
         <span className="capitalize">
           {LanguageOptions[selectedIndex].name}
         </span>

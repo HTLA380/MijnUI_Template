@@ -21,7 +21,7 @@ export const buttonStyles = cva(
       size: {
         sm: "h-9 px-3",
         md: "h-10 px-3 py-2",
-        lg: "h-11 px-8",
+        lg: "h-11 px-4",
         icon: "h-10 w-10",
       },
     },

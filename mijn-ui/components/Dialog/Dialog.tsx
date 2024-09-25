@@ -1,3 +1,5 @@
+"use client";
+
 import * as React from "react";
 
 import { polymorphicForwardRef } from "@/types/polymorphic";
@@ -130,7 +132,7 @@ const DialogContent = React.forwardRef<
           <div
             ref={ref}
             className={cn(
-              "w-full max-w-md rounded-xl bg-surface p-6 shadow-lg",
+              "m-4 w-full max-w-md rounded-xl bg-surface p-6 shadow-lg",
               className,
             )}
             style={{ ...transitionStyles, ...style, zIndex: 9999999 }}

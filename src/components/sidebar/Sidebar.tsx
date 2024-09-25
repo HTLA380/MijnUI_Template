@@ -21,7 +21,7 @@ const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
   const [activeIndices, setActiveIndices] = useState<{ [key: number]: number }>(
     {},
   );
-  const isMobile = useMediaQuery("(max-width: 768px)");
+  const isDesktop = useMediaQuery("(min-width: 1024px)");
 
   const handleSetActiveIndex = (index: number) => {
     setActiveIndices((prev) => ({
@@ -44,7 +44,7 @@ const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
         data-state={isOpen ? "open" : "closed"}
         className={cn(
           "group fixed inset-y-0 left-0 z-[99] flex bg-surface shadow-md transition-[left] duration-300 ease-in-out",
-          isMobile &&
+          !isDesktop &&
             "data-[state=closed]:-left-[var(--sidebar-content-width)]",
         )}
       >
