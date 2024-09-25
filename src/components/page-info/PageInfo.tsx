@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 
 import { usePathname } from "next/navigation";
 import { getSidebarActiveTitle } from "~/_constants/SIDEBAR_DATA";
@@ -24,6 +24,10 @@ const PageInfo = ({ fallbackTitle, className }: PageInfoProps) => {
     () => getSidebarActiveTitle(pathname),
     [pathname],
   );
+
+  useEffect(() => {
+    document.title = title || fallbackTitle || "Pico Demo Business";
+  }, [title, fallbackTitle]);
 
   return (
     <div className={cn("h-[var(--page-info-height)]", className)}>
