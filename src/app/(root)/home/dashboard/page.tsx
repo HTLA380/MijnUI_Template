@@ -2,12 +2,9 @@ import React from "react";
 
 import Link from "next/link";
 
-import { Button } from "@/mijn-ui/components/Button";
-
 const Home = () => {
   return (
     <main className="mt-40 flex w-full items-center justify-center">
-      <Button>Hello Testing</Button>
       <div className="flex flex-col items-center justify-center gap-3 text-center">
         <h3 className="text-xl font-extrabold md:text-3xl">
           This page is currently under construction.
