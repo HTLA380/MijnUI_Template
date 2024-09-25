@@ -48,8 +48,8 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         } as React.CSSProperties
       }
     >
-      {isSidebarActive && (
-        <div className="fixed inset-0 z-50 bg-black/75 md:hidden"></div>
+      {isSidebarActive && !isDesktop && (
+        <div className="fixed inset-0 z-50 bg-black/75"></div>
       )}
 
       <Sidebar isOpen={isSidebarActive} setIsOpen={setIsSidebarActive} />
