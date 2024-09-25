@@ -25,7 +25,7 @@ export const avatarStyles = cva(
   },
 );
 
-type AvatarProps = React.ComponentProps<"img"> &
+export type AvatarProps = React.ComponentProps<"img"> &
   VariantProps<typeof avatarStyles> & {
     name?: string;
     src: string;

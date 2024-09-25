@@ -2,7 +2,7 @@ import React from "react";
 
 import Image from "next/image";
 
-import { Avatar } from "@/mijn-ui/components/Avatar";
+import { Avatar, AvatarProps } from "@/mijn-ui/components/Avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,6 +10,7 @@ import {
   DropdownMenuTrigger,
 } from "@/mijn-ui/components/DropdownMenu";
 import { useMediaQuery } from "@/mijn-ui/hooks/use-media-query";
+import { useResponsiveVariant } from "@/mijn-ui/hooks/use-responsive-variant";
 
 /* -------------------------------------------------------------------------- */
 
@@ -30,17 +31,22 @@ const Profile = ({
 }: ProfileProps) => {
   const isSmallScreen = useMediaQuery("(max-width: 420px)");
   const isMobile = useMediaQuery("(max-width: 768px)");
+  const avatarSize = useResponsiveVariant<AvatarProps["size"]>({
+    initial: "sm",
+    md: "md",
+  });
 
   const renderUserInfo = (
     <div className="flex items-center gap-4">
       <Avatar
+        size={avatarSize}
         className="cursor-pointer hover:brightness-75"
         src=""
         name="PICO"
         alt="pico"
       />
       <div>
-        <p className="text-sm font-semibold">PICO SBS</p>
+        <p className="text-default font-semibold md:text-sm">PICO SBS</p>
         <p className="text-xs text-muted-text">operator</p>
       </div>
     </div>
@@ -49,7 +55,7 @@ const Profile = ({
   const renderLanguageSelector = (
     <div className="p-2 md:p-4">
       <DropdownMenu placement={isSmallScreen ? "bottom" : "left-start"}>
-        <DropdownMenuTrigger className="w-full justify-between gap-2 border-none bg-surface hover:text-secondary-text data-[focus-inside]:bg-accent data-[focus-inside]:text-secondary-text">
+        <DropdownMenuTrigger className="h-8 w-full justify-between gap-2 border-none bg-surface text-xs hover:text-secondary-text data-[focus-inside]:bg-accent data-[focus-inside]:text-secondary-text md:h-9 md:text-sm">
           <span className="capitalize">
             {LanguageOptions[selectedIndex].name}
           </span>
@@ -92,6 +98,7 @@ const Profile = ({
     <DropdownMenu placement="bottom-end">
       <DropdownMenuTrigger style={{ all: "unset" }}>
         <Avatar
+          size={avatarSize}
           className="x size-9 cursor-pointer hover:brightness-75 sm:size-10"
           src=""
           name="PICO"
@@ -99,12 +106,12 @@ const Profile = ({
         />
       </DropdownMenuTrigger>
 
-      <DropdownMenuContent className="w-64 gap-0 border-none">
+      <DropdownMenuContent className="w-52 gap-0 border-none md:w-64">
         <div className="space-y-1.5 p-2 md:space-y-3 md:p-4">
           {renderUserInfo}
 
           <DropdownMenuItem
-            className="hover:text-secondary-text"
+            className="text-xs hover:text-secondary-text md:text-sm"
             label="profile"
           >
             My Profile
@@ -122,7 +129,7 @@ const Profile = ({
 
         <div className="p-2 md:p-4">
           <DropdownMenuItem
-            className="hover:text-secondary-text"
+            className="text-xs hover:text-secondary-text md:text-sm"
             label="signout"
           >
             Sign Out
