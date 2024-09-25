@@ -148,8 +148,9 @@ const CustomerRow = ({
             Edit
           </DropdownMenuItem>
           <DropdownMenuItem
-            className="h-auto p-0 text-xs md:text-sm"
+            className="h-auto p-0 text-xs disabled:brightness-50 md:text-sm"
             label="delete"
+            disabled={selectedUsersId.length === 0}
           >
             <DialogTrigger
               onClick={(e) => {

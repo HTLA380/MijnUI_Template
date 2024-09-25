@@ -37,9 +37,11 @@ export const useFetchUsers = (
 
 export const useDeleteUsers = ({
   onSuccess,
+  onError,
   id = 1,
 }: {
   onSuccess: () => void;
+  onError: () => void;
   id?: number;
 }) => {
   return useMutation({
@@ -48,5 +50,6 @@ export const useDeleteUsers = ({
       await axios.delete(`${BASE_URL}/${id}`);
     },
     onSuccess,
+    onError,
   });
 };

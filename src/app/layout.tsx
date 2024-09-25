@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import QueryProvider from "~/components/providers/QueryProvider";
 import ThemeProvider from "~/components/providers/ThemeProvider";
+import { Toaster } from "~/components/toaster/Toaster";
 
 export const metadata: Metadata = {
   title: "MijnUI Template",
@@ -21,7 +22,10 @@ export default function RootLayout({
     <html lang="en">
       <body suppressHydrationWarning className={inter.className}>
         <QueryProvider>
-          <ThemeProvider>{children}</ThemeProvider>
+          <ThemeProvider>
+            <Toaster />
+            {children}
+          </ThemeProvider>
         </QueryProvider>
       </body>
     </html>

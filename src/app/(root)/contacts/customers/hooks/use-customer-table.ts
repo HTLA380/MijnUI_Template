@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 
+import { toast } from "sonner";
+
 import useDebounce from "@/mijn-ui/hooks/use-debounce";
 
 import { useDeleteUsers, useFetchUsers } from "./use-fetch-customers";
@@ -37,6 +39,12 @@ export const useCustomerTable = () => {
     onSuccess: () => {
       setIsDeleteDialogOpen(false);
       resetSelectedUsers();
+      toast.success("Users deleted successfully...");
+    },
+    onError: () => {
+      setIsDeleteDialogOpen(false);
+      resetSelectedUsers();
+      toast.error("Failed to delete users...");
     },
   });
 
