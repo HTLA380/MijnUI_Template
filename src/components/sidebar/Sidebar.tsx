@@ -29,7 +29,7 @@ const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
 
   // State for current menu index
   const [currentMenuIndex, setCurrentMenuIndex] = useState<number>(
-    activeSidebarInfo?.index || -1,
+    activeSidebarInfo?.index || 0,
   );
 
   // State for active indices of collapsible lists
