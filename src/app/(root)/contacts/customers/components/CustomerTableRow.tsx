@@ -3,7 +3,7 @@ import * as React from "react";
 import Image from "next/image";
 import { FaEdit, FaEye, FaTrash } from "react-icons/fa";
 import { LuMoreVertical } from "react-icons/lu";
-import { CUSTOMER_CONTACT_TYPE } from "~/_constants/CUSTOMER";
+import { CUSTOMER_PREFERRED_CONTACT } from "~/_constants/CUSTOMER";
 import {
   getRandomContactId,
   getRandomDateTime,
@@ -53,7 +53,8 @@ const CustomerRow = ({
           height={40}
           draggable="false"
           className="size-10 rounded-full bg-muted"
-          src={`/assets/images/avatar/avatar-${randomImageIndex}.png`}
+          // use the index 1 when the randomImageIndex is 0 since the image starts from 1
+          src={`/assets/images/avatar/avatar-${randomImageIndex === 0 ? 1 : randomImageIndex}.png`}
           alt={user.firstName}
         />
         <div>
@@ -111,7 +112,11 @@ const CustomerRow = ({
   const renderContactType = (
     <TableCell className={cn(commonClasses, "md:min-w-32")}>
       <p className="truncate md:w-32">
-        {CUSTOMER_CONTACT_TYPE[getRandomItem(CUSTOMER_CONTACT_TYPE.length)]}
+        {
+          CUSTOMER_PREFERRED_CONTACT[
+            getRandomItem(CUSTOMER_PREFERRED_CONTACT.length)
+          ]
+        }
       </p>
     </TableCell>
   );

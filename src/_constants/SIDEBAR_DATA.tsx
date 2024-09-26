@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 
 import { AiFillProduct } from "react-icons/ai";
-import { BsBarChartLineFill, BsGrid3X3GapFill } from "react-icons/bs";
+import { BsBarChartLineFill } from "react-icons/bs";
 import {
   FaAddressBook,
   FaBalanceScale,
@@ -48,21 +48,6 @@ export type SidebarDataType = {
 };
 
 export const SidebarData: SidebarDataType[] = [
-  {
-    title: "Apps",
-    icon: <BsGrid3X3GapFill />,
-    contentTitle: "APPS",
-    lists: [
-      {
-        icon: <FaPeopleCarry />,
-        title: "Dashboard",
-        link: "/home/dashboard",
-      },
-    ],
-  },
-
-  /* -------------------------------------------------------------------------- */
-
   {
     title: "Contacts",
     icon: <FaAddressBook />,
@@ -463,26 +448,44 @@ export const SidebarData: SidebarDataType[] = [
   },
 ];
 
+/* -------------------------------------------------------------------------- */
+
 export const isExistingUrl = (url: string) => {
   return (
     SidebarData.some((data) => data.lists.some((list) => list.link === url)) ||
-    SidebarData.some((data) => data.lists.some((list) => list.list?.some((item) => item.link === url)))
+    SidebarData.some((data) =>
+      data.lists.some((list) => list.list?.some((item) => item.link === url)),
+    )
   );
 };
 
-export const getSidebarActiveTitle = (url: string): string | undefined => {
+/* -------------------------------------------------------------------------- */
+
+export const getSidebarActiveInfo = (url: string) => {
   for (const data of SidebarData) {
     if (data.lists[0]?.link === url) {
-      return data.lists[0].title;
+      return {
+        title: data.lists[0].title,
+        index: SidebarData.indexOf(data),
+        collapsibleIndex: -1,
+      };
     }
     for (const list of data.lists) {
       if (list.link === url) {
-        return list.title;
+        return {
+          title: list.title,
+          index: SidebarData.indexOf(data),
+          collapsibleIndex: -1,
+        };
       }
       if (list.list) {
         for (const item of list.list) {
           if (item.link === url) {
-            return item.name;
+            return {
+              title: item.name,
+              index: SidebarData.indexOf(data),
+              collapsibleIndex: data.lists.indexOf(list),
+            };
           }
         }
       }

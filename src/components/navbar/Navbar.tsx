@@ -2,9 +2,9 @@
 
 import * as React from "react";
 
-import Link from "next/link";
 import { FaCashRegister } from "react-icons/fa";
 import { LuMenu } from "react-icons/lu";
+import { CURRENT_USER, LANGUAGE_OPTIONS } from "~/_constants/NAVBAR_DATA";
 
 import { Button } from "@/mijn-ui/components/Button";
 import { useMediaQuery } from "@/mijn-ui/hooks/use-media-query";
@@ -28,6 +28,7 @@ const Navbar = ({ style, setIsSidebarActive }: NavbarProps) => {
   const [selectedLanguageIndex, setSelectedLanguageIndex] = React.useState(1);
 
   const isDesktop = useMediaQuery("(min-width: 1024px)");
+  const isMobile = useMediaQuery("(max-width: 768px)");
 
   const renderSidebarToggleMenu = (
     <div className="flex items-center gap-2">
@@ -58,18 +59,15 @@ const Navbar = ({ style, setIsSidebarActive }: NavbarProps) => {
         {isDesktop ? <PageInfo /> : renderSidebarToggleMenu}
 
         <div className="flex items-center gap-2">
-          {isDesktop && (
+          {!isMobile && (
             <LanguageSelector
               selectedIndex={selectedLanguageIndex}
               onSelect={setSelectedLanguageIndex}
-              LanguageOptions={LanguageOptions}
+              LanguageOptions={LANGUAGE_OPTIONS}
             />
           )}
 
-          {/* currently this link is going to direct to the current page since we don't have a page to handle this */}
           <Button
-            renderAs={Link}
-            href={"/"}
             size={"icon"}
             className="size-9 text-xs text-muted-text hover:text-secondary-text sm:size-10"
             variant={"surface"}
@@ -80,9 +78,10 @@ const Navbar = ({ style, setIsSidebarActive }: NavbarProps) => {
           <VolumeToggler />
           <ThemeToggler />
           <Profile
+            user={CURRENT_USER}
             selectedIndex={selectedLanguageIndex}
             onSelect={setSelectedLanguageIndex}
-            LanguageOptions={LanguageOptions}
+            LanguageOptions={LANGUAGE_OPTIONS}
           />
         </div>
       </nav>
@@ -91,23 +90,5 @@ const Navbar = ({ style, setIsSidebarActive }: NavbarProps) => {
 };
 
 /* -------------------------------------------------------------------------- */
-
-const LanguageOptions = [
-  {
-    name: "မြန်မာ",
-    alt: "myanmar flag",
-    src: "/assets/images/countries/myanmar.svg",
-  },
-  {
-    name: "English",
-    alt: "united-state flag",
-    src: "/assets/images/countries/united-states.svg",
-  },
-  {
-    name: "ภาษาไทย",
-    alt: "thailand flag",
-    src: "/assets/images/countries/thailand.svg",
-  },
-];
 
 export default Navbar;

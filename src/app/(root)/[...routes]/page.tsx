@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { notFound, usePathname } from "next/navigation";
+import { getExistingApps } from "~/_constants/PAGES";
 import { isExistingUrl } from "~/_constants/SIDEBAR_DATA";
 
 export default function UnderConstruction() {
@@ -9,7 +10,7 @@ export default function UnderConstruction() {
   const pathname = usePathname();
 
   // If the pathname doesn't match any link, show a 404 page
-  if (!isExistingUrl(pathname)) {
+  if (!isExistingUrl(pathname) && !getExistingApps().includes(pathname)) {
     notFound();
   }
 

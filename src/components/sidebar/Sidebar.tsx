@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { BsGrid3X3GapFill } from "react-icons/bs";
 import { LuArrowRight } from "react-icons/lu";
-import { SidebarData } from "~/_constants/SIDEBAR_DATA";
+import { getSidebarActiveInfo, SidebarData } from "~/_constants/SIDEBAR_DATA";
 
 import { Button } from "@/mijn-ui/components/Button";
 import { useMediaQuery } from "@/mijn-ui/hooks/use-media-query";
@@ -11,16 +14,31 @@ import ClickAwayListener from "@/mijn-ui/utils/wrappers/ClickAwayListener";
 import Logo from "../logo/Logo";
 import CollapsibleLists from "./CollapsibleList";
 
+/* -------------------------------------------------------------------------- */
+
 type SidebarProps = {
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
 };
 
 const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
-  const [currentMenuIndex, setCurrentMenuIndex] = useState(0);
-  const [activeIndices, setActiveIndices] = useState<{ [key: number]: number }>(
-    {},
+  const path = usePathname();
+
+  // Get active menu and collapsible indices
+  const activeSidebarInfo = getSidebarActiveInfo(path);
+
+  // State for current menu index
+  const [currentMenuIndex, setCurrentMenuIndex] = useState<number>(
+    activeSidebarInfo?.index || -1,
   );
+
+  // State for active indices of collapsible lists
+  const [activeIndices, setActiveIndices] = useState<{ [key: number]: number }>(
+    {
+      [currentMenuIndex]: activeSidebarInfo?.collapsibleIndex || -1,
+    },
+  );
+
   const isDesktop = useMediaQuery("(min-width: 1024px)");
 
   const handleSetActiveIndex = (index: number) => {
@@ -52,38 +70,29 @@ const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
           <Logo imgURL="/assets/images/pico.png" alt="PICO SBS" />
 
           <div className="flex flex-col gap-2">
-            {SidebarData.map((data, index) => {
-              const isAppsData = data.title === "Apps";
+            <Button
+              renderAs={Link}
+              variant={"outline"}
+              size={"icon"}
+              className={cn(
+                "border-primary bg-accent text-primary hover:text-primary",
+              )}
+              title={"App"}
+              href={"/admin/app-panel"}
+            >
+              <BsGrid3X3GapFill size={20} />
+            </Button>
 
-              if (isAppsData) {
-                return (
-                  <SidebarIcon
-                    key={data.title}
-                    variant={"outline"}
-                    index={index}
-                    title={data.title}
-                    icon={data.icon}
-                    onClick={handleSidebarIconClick}
-                    currentMenuIndex={currentMenuIndex}
-                    className={cn(
-                      "border-2 border-primary p-1.5 text-primary hover:bg-accent hover:text-primary [&>svg]:size-6",
-                      index === currentMenuIndex && "bg-accent",
-                    )}
-                  />
-                );
-              }
-
-              return (
-                <SidebarIcon
-                  key={data.title}
-                  index={index}
-                  title={data.title}
-                  icon={data.icon}
-                  onClick={handleSidebarIconClick}
-                  currentMenuIndex={currentMenuIndex}
-                />
-              );
-            })}
+            {SidebarData.map((data, index) => (
+              <SidebarIcon
+                key={data.title}
+                index={index}
+                title={data.title}
+                icon={data.icon}
+                onClick={handleSidebarIconClick}
+                currentMenuIndex={currentMenuIndex}
+              />
+            ))}
           </div>
         </div>
 
@@ -93,13 +102,13 @@ const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
           )}
         >
           <h3 className="truncate px-6 text-xs font-semibold uppercase text-muted-text">
-            {currentSidebarData.contentTitle}
+            {currentSidebarData?.contentTitle}
           </h3>
 
           <div className="px-3 md:px-6">
             <CollapsibleLists
               key={currentMenuIndex}
-              lists={currentSidebarData.lists}
+              lists={currentSidebarData?.lists}
               activeIndex={currentActiveIndex ?? -1}
               setActiveIndex={handleSetActiveIndex}
               onClick={setIsOpen}

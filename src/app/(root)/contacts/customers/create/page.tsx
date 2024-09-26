@@ -4,7 +4,10 @@ import React from "react";
 
 import { useRouter } from "nextjs-toploader/app";
 import { toast } from "sonner";
-import { CUSTOMER_CONTACT_TYPE, CUSTOMER_STATUS } from "~/_constants/CUSTOMER";
+import {
+  CUSTOMER_PREFERRED_CONTACT,
+  CUSTOMER_STATUS,
+} from "~/_constants/CUSTOMER";
 import { useCreateCustomer } from "~/app/(root)/contacts/customers/hooks/use-customers";
 import DatePicker from "~/components/date-picker/DatePicker";
 import Spinner from "~/components/loader/Spinner";
@@ -115,7 +118,7 @@ const CreateUser = () => {
               defaultSelectedIndex={0}
               defaultSelectedLabel="Email"
               selectionTitle="Preferred Contact"
-              selectionItems={CUSTOMER_CONTACT_TYPE}
+              selectionItems={CUSTOMER_PREFERRED_CONTACT}
             />
           </div>
 

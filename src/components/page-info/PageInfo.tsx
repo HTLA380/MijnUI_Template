@@ -3,7 +3,7 @@
 import React, { useEffect } from "react";
 
 import { usePathname } from "next/navigation";
-import { getSidebarActiveTitle } from "~/_constants/SIDEBAR_DATA";
+import { getSidebarActiveInfo } from "~/_constants/SIDEBAR_DATA";
 import { generatePaths } from "~/utils";
 
 import { cn } from "@/mijn-ui/utils";
@@ -20,19 +20,20 @@ type PageInfoProps = {
 const PageInfo = ({ fallbackTitle, className }: PageInfoProps) => {
   const pathname = usePathname();
   const paths = React.useMemo(() => generatePaths(pathname), [pathname]);
-  const title = React.useMemo(
-    () => getSidebarActiveTitle(pathname),
+  const activeSidebarInfo = React.useMemo(
+    () => getSidebarActiveInfo(pathname),
     [pathname],
   );
 
   useEffect(() => {
-    document.title = title || fallbackTitle || "Pico Demo Business";
-  }, [title, fallbackTitle]);
+    document.title =
+      activeSidebarInfo?.title || fallbackTitle || "Pico Demo Business";
+  }, [activeSidebarInfo?.title, fallbackTitle]);
 
   return (
     <div className={cn("h-[var(--page-info-height)]", className)}>
       <h3 className="text-base font-semibold md:text-lg">
-        {title || fallbackTitle || "Pico Demo Business"}
+        {activeSidebarInfo?.title || fallbackTitle || "Pico Demo Business"}
       </h3>
       <DynamicBreadcrumbs paths={paths} />
     </div>

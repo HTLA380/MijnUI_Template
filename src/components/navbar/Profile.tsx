@@ -1,6 +1,7 @@
 import React from "react";
 
 import Image from "next/image";
+import { CURRENT_USER_TYPE } from "~/_constants/NAVBAR_DATA";
 
 import { Avatar, AvatarProps } from "@/mijn-ui/components/Avatar";
 import {
@@ -20,11 +21,13 @@ type ProfileProps = {
     alt: string;
     src: string;
   }[];
+  user: CURRENT_USER_TYPE;
   selectedIndex: number;
   onSelect: (index: number) => void;
 };
 
 const Profile = ({
+  user,
   LanguageOptions,
   selectedIndex,
   onSelect,
@@ -41,13 +44,13 @@ const Profile = ({
       <Avatar
         size={avatarSize}
         className="cursor-pointer hover:brightness-75"
-        src=""
-        name="PICO"
-        alt="pico"
+        src={user.avatar}
+        name={user.name}
+        alt={user.alt}
       />
       <div>
-        <p className="text-default font-semibold md:text-sm">PICO SBS</p>
-        <p className="text-xs text-muted-text">operator</p>
+        <p className="text-default font-semibold md:text-sm">{user.name}</p>
+        <p className="text-xs text-muted-text">{user.role}</p>
       </div>
     </div>
   );
@@ -100,9 +103,9 @@ const Profile = ({
         <Avatar
           size={avatarSize}
           className="x size-9 cursor-pointer hover:brightness-75 sm:size-10"
-          src=""
-          name="PICO"
-          alt="pico"
+          src={user.avatar}
+          name={user.name}
+          alt={user.alt}
         />
       </DropdownMenuTrigger>
 
