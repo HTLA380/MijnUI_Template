@@ -3,6 +3,7 @@
 import * as React from "react";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { PiDotOutlineFill } from "react-icons/pi";
 
 import { Button } from "@/mijn-ui/components/Button";
@@ -15,6 +16,7 @@ import {
   ListSubMenuTrigger,
 } from "@/mijn-ui/components/List";
 import { useMediaQuery } from "@/mijn-ui/hooks/use-media-query";
+import { cn } from "@/mijn-ui/utils";
 
 import { SidebarListsType } from "../../_constants/SIDEBAR_DATA";
 
@@ -33,7 +35,7 @@ const CollapsibleLists = ({
 }: CollapsibleListProps) => {
   const [animateOnMount, setAnimateOnMount] = React.useState(false);
   const isMobile = useMediaQuery("(max-width: 768px)");
-
+  const currentPath = usePathname();
   const handleToggle = (index: number) => {
     setActiveIndex(index === activeIndex ? -1 : index);
   };
@@ -81,7 +83,10 @@ const CollapsibleLists = ({
                   >
                     <Link
                       href={link}
-                      className="flex w-full items-center gap-1 truncate"
+                      className={cn(
+                        "flex w-full items-center gap-1 truncate",
+                        link === currentPath && "text-primary",
+                      )}
                     >
                       <ListItemIcon>
                         <PiDotOutlineFill />
@@ -118,7 +123,10 @@ const CollapsibleLists = ({
             href={link}
             key={`list-${index}`}
             onClick={handleClick}
-            className="w-full justify-start gap-2 truncate px-3 text-muted-text hover:bg-transparent hover:text-primary"
+            className={cn(
+              "w-full justify-start gap-2 truncate px-3 text-muted-text hover:bg-transparent hover:text-primary",
+              link === currentPath && "text-primary",
+            )}
           >
             {icon && (
               <ListItemIcon className="[&>svg]:size-3.5">{icon}</ListItemIcon>

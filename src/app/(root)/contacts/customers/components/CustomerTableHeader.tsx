@@ -78,13 +78,13 @@ const CustomerTableHeaderItems: TableHeaderItem[] = [
     displayOnMobile: true,
   },
   {
-    name: "Company",
-    className: "w-full min-w-44",
+    name: "Contact Type",
+    className: "min-w-32",
     displayOnMobile: true,
   },
   {
-    name: "Date/Time",
-    className: "min-w-32",
+    name: "Company",
+    className: "w-full min-w-44",
     displayOnMobile: true,
   },
   {
@@ -93,14 +93,14 @@ const CustomerTableHeaderItems: TableHeaderItem[] = [
     displayOnMobile: false,
   },
   {
-    name: "Total",
-    className: "min-w-24",
-    displayOnMobile: true,
-  },
-  {
-    name: "Transaction",
+    name: "Contact Id",
     className: "min-w-44",
     displayOnMobile: false,
+  },
+  {
+    name: "Date Added",
+    className: "min-w-32",
+    displayOnMobile: true,
   },
   {
     name: "Status",
@@ -109,7 +109,7 @@ const CustomerTableHeaderItems: TableHeaderItem[] = [
   },
   {
     name: "",
-    className: "w-14",
+    className: "",
     displayOnMobile: true,
   },
 ];

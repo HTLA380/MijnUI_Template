@@ -3,6 +3,12 @@ import * as React from "react";
 import Image from "next/image";
 import { FaEdit, FaEye, FaTrash } from "react-icons/fa";
 import { LuMoreVertical } from "react-icons/lu";
+import { CUSTOMER_CONTACT_TYPE } from "~/_constants/CUSTOMER";
+import {
+  getRandomContactId,
+  getRandomDateTime,
+  getRandomItem,
+} from "~/utils/generate";
 
 import { Checkbox } from "@/mijn-ui/components/Checkbox";
 import { DialogTrigger } from "@/mijn-ui/components/Dialog";
@@ -25,15 +31,17 @@ type CustomerRowProps = {
   selectedUsersId: number[];
 };
 
+const IMAGES_COUNT = 25;
+
 const CustomerRow = ({
   user,
   handleCheck,
   selectedUsersId,
 }: CustomerRowProps) => {
-  const randomStatus = React.useMemo(() => getRandomStatus(), []);
-  const randomTotalAmount = React.useMemo(() => getRandomTotalAmount(), []);
+  const randomImageIndex = React.useMemo(() => getRandomItem(IMAGES_COUNT), []);
+  const randomContactId = React.useMemo(() => getRandomContactId(), []);
   const randomDateAndTime = React.useMemo(() => getRandomDateTime(), []);
-  const randomImageIndex = React.useMemo(() => getRandomImageIndex(), []);
+  const randomStatus = React.useMemo(() => getRandomStatus(), []);
 
   const commonClasses = "w-full px-3 py-2 text-xs md:px-4 md:py-3 md:text-sm";
 
@@ -79,7 +87,7 @@ const CustomerRow = ({
 
   const renderCompany = (
     <TableCell className={cn(commonClasses, "md:min-w-44")}>
-      <p className="line-clamp-2 truncate md:w-44">{user.company.name}</p>
+      <p className="line-clamp-2 truncate md:min-w-44">{user.company.name}</p>
     </TableCell>
   );
 
@@ -100,15 +108,17 @@ const CustomerRow = ({
     </TableCell>
   );
 
-  const renderTotalAmount = (
-    <TableCell className={cn(commonClasses, "md:min-w-24")}>
-      <p className="truncate md:w-24">{randomTotalAmount}$</p>
+  const renderContactType = (
+    <TableCell className={cn(commonClasses, "md:min-w-32")}>
+      <p className="truncate md:w-32">
+        {CUSTOMER_CONTACT_TYPE[getRandomItem(CUSTOMER_CONTACT_TYPE.length)]}
+      </p>
     </TableCell>
   );
 
-  const renderTransition = (
+  const renderContactId = (
     <TableCell className={cn(commonClasses, "hidden min-w-44 sm:table-cell")}>
-      <p className="truncate md:w-44">{user.crypto.wallet}</p>
+      <p className="truncate md:w-44">{randomContactId}</p>
     </TableCell>
   );
 
@@ -177,11 +187,11 @@ const CustomerRow = ({
       {renderCheckbox}
       {renderCustomer}
       {renderPhoneNumber}
+      {renderContactType}
       {renderCompany}
-      {renderDate}
       {renderAddress}
-      {renderTotalAmount}
-      {renderTransition}
+      {renderDate}
+      {renderContactId}
       {renderStatus}
       {renderMoreActions}
     </TableRow>
@@ -197,7 +207,7 @@ const getRandomStatus = () => {
     {
       backgroundColor: "bg-green-500",
       ringColor: "ring-green-500/30",
-      name: "Paid",
+      name: "Active",
     },
     {
       backgroundColor: "bg-yellow-500",
@@ -207,60 +217,15 @@ const getRandomStatus = () => {
     {
       backgroundColor: "bg-red-500",
       ringColor: "ring-red-500/30",
-      name: "Returned",
+      name: "Inactive",
+    },
+    {
+      backgroundColor: "bg-neutral-500",
+      ringColor: "ring-neutral-500/30",
+      name: "New",
     },
   ];
 
   const randomIndex = Math.floor(Math.random() * status.length);
   return status[randomIndex];
 };
-/* -------------------------------------------------------------------------- */
-
-const getRandomImageIndex = (): number => {
-  return Math.floor(Math.random() * 25) + 1;
-};
-
-/* -------------------------------------------------------------------------- */
-
-const getRandomTotalAmount = (): number => {
-  return parseFloat((Math.random() * 901 + 100).toFixed(2));
-};
-
-/* -------------------------------------------------------------------------- */
-
-function getRandomDateTime() {
-  const today = new Date();
-  const lastMonth = new Date(
-    today.getFullYear(),
-    today.getMonth() - 1,
-    today.getDate(),
-  );
-  const randomDate = new Date(
-    lastMonth.getTime() +
-      Math.random() * (today.getTime() - lastMonth.getTime()),
-  );
-
-  const months = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-  ];
-  const date = `${months[randomDate.getMonth()]} ${randomDate.getDate()}, ${randomDate.getFullYear()}`;
-
-  let hours = randomDate.getHours();
-  const minutes = randomDate.getMinutes().toString().padStart(2, "0");
-  const ampm = hours >= 12 ? "PM" : "AM";
-  hours = hours % 12 || 12; // Convert to 12-hour format
-  const time = `${hours}:${minutes} ${ampm}`;
-
-  return { date, time };
-}

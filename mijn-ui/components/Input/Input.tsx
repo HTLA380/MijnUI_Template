@@ -9,7 +9,7 @@ type InputProps = {
   className?: string;
   disabled?: boolean;
   id?: string;
-};
+} & React.ComponentProps<"input">;
 
 const Input = polymorphicForwardRef<"input", InputProps>(
   (
@@ -20,6 +20,7 @@ const Input = polymorphicForwardRef<"input", InputProps>(
       className,
       disabled,
       id,
+      readOnly,
       ...props
     },
     ref,
@@ -30,7 +31,10 @@ const Input = polymorphicForwardRef<"input", InputProps>(
       <div
         className={cn(
           "relative flex w-full items-center gap-1 rounded-md border border-main-border bg-surface p-2.5 text-sm focus-within:border-input-border focus-within:ring-1 focus-within:ring-input-border",
-          { "cursor-not-allowed placeholder:text-muted-text": disabled },
+          {
+            "cursor-not-allowed placeholder:text-muted-text": disabled,
+            "cursor-default bg-accent": readOnly,
+          },
           className,
         )}
       >
@@ -49,6 +53,7 @@ const Input = polymorphicForwardRef<"input", InputProps>(
             "h-full w-full border-none bg-transparent outline-none",
             {
               "cursor-not-allowed": disabled,
+              "cursor-default": readOnly,
             },
           )}
           disabled={disabled}

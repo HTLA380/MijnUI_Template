@@ -38,6 +38,8 @@ import { buttonStyles } from "../Button";
 /* -------------------------------------------------------------------------- */
 
 type DropdownMenuContextValue = {
+  modal?: boolean;
+
   context: ReturnType<typeof useFloating>["context"];
 
   isOpen: boolean;
@@ -81,6 +83,7 @@ interface DropdownMenuProps {
   placement?: Placement;
   offset?: OffsetOptions;
   children?: React.ReactNode;
+  modal?: boolean;
 }
 
 export const DropdownMenu = ({ ...props }: DropdownMenuProps) => {
@@ -103,6 +106,7 @@ const DropdownMenuInner = ({
   placement = "bottom",
   children,
   offset: offsetValue,
+  modal = false,
 }: DropdownMenuProps) => {
   const [isOpen, setIsOpen] = useControlledState(open, false, onToggle);
 
@@ -204,6 +208,8 @@ const DropdownMenuInner = ({
     <FloatingNode id={nodeId}>
       <DropdownMenuContext.Provider
         value={{
+          modal,
+
           context,
           isOpen,
           setIsOpen,
@@ -296,6 +302,7 @@ export const DropdownMenuContent = React.forwardRef<
   React.ComponentProps<"div">
 >(({ className, children, style, ...props }, forwardedRef) => {
   const {
+    modal,
     refs,
     isNested,
     context,
@@ -339,7 +346,7 @@ export const DropdownMenuContent = React.forwardRef<
           >
             <FloatingFocusManager
               context={context}
-              modal={false}
+              modal={modal}
               initialFocus={isNested ? -1 : 0}
               returnFocus={!isNested}
             >

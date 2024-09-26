@@ -4,7 +4,7 @@ import { toast } from "sonner";
 
 import useDebounce from "@/mijn-ui/hooks/use-debounce";
 
-import { useDeleteUsers, useFetchUsers } from "./use-fetch-customers";
+import { useDeleteUsers, useFetchUsers } from "./use-customers";
 
 const ItemsPerPageArray = [10, 20, 30];
 
@@ -39,12 +39,22 @@ export const useCustomerTable = () => {
     onSuccess: () => {
       setIsDeleteDialogOpen(false);
       resetSelectedUsers();
-      toast.success("Users deleted successfully...");
+      toast.success("Users deleted successfully...", {
+        action: {
+          label: "Got it",
+          onClick: () => {},
+        },
+      });
     },
     onError: () => {
       setIsDeleteDialogOpen(false);
       resetSelectedUsers();
-      toast.error("Failed to delete users...");
+      toast.error("Failed to delete users...", {
+        action: {
+          label: "Got it",
+          onClick: () => {},
+        },
+      });
     },
   });
 

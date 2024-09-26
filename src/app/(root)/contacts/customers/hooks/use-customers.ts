@@ -53,3 +53,21 @@ export const useDeleteUsers = ({
     onError,
   });
 };
+
+export const useCreateCustomer = ({
+  onSuccess,
+  onError,
+}: {
+  onSuccess: () => void;
+  onError: () => void;
+  id?: number;
+}) => {
+  return useMutation({
+    mutationKey: ["create-customers"],
+    mutationFn: async () => {
+      await axios.post(`${BASE_URL}/add`);
+    },
+    onSuccess,
+    onError,
+  });
+};
