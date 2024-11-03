@@ -1,3 +1,4 @@
+import type * as PropTypes from "prop-types";
 // from https://github.com/nasheomirro/react-polymorphed
 
 /* eslint-disable */
@@ -85,8 +86,8 @@ export interface PolymorphicComponent<
   OnlyAs extends React.ElementType = React.ElementType,
 > extends PolymorphicWithoutRef<Default, Props, OnlyAs> {
   displayName?: string;
-  propTypes?: React.WeakValidationMap<any>;
-  contextTypes?: React.ValidationMap<any>;
+  propTypes?: PropTypes.WeakValidationMap<any>;
+  contextTypes?: PropTypes.ValidationMap<any>;
   defaultProps?: Partial<any>;
   id?: string;
 }

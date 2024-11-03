@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: "class",
@@ -8,11 +10,17 @@ module.exports = {
         main: {
           DEFAULT: "rgb(var(--main) / <alpha-value>)",
           text: "rgb(var(--main-text) / <alpha-value>)",
+          border: "hsl(var(--main-border) / <alpha-value>)",
         },
 
         muted: {
           DEFAULT: "rgb(var(--muted) / <alpha-value>)",
           text: "rgb(var(--muted-text) / <alpha-value>)",
+        },
+
+        neutral: {
+          DEFAULT: "hsl(var(--neutral) / <alpha-value>)",
+          text: "hsl(var(--neutral-text) / <alpha-value>)",
         },
 
         surface: {
@@ -35,19 +43,28 @@ module.exports = {
           text: "rgb(var(--accent-text) / <alpha-value>)",
         },
 
-        danger: {
-          DEFAULT: "rgb(var(--danger) / <alpha-value>)",
-          text: "rgb(var(--danger-text) / <alpha-value>)",
+        info: {
+          DEFAULT: "hsl(var(--info) / <alpha-value>)",
+          text: "hsl(var(--info-text) / <alpha-value>)",
+          "filled-text": "hsl(var(--info-filled-text) / <alpha-value>)",
         },
 
         warning: {
-          DEFAULT: "rgb(var(--warning) / <alpha-value>)",
-          text: "rgb(var(--warning-text) / <alpha-value>)",
+          DEFAULT: "hsl(var(--warning) / <alpha-value>)",
+          text: "hsl(var(--warning-text) / <alpha-value>)",
+          "filled-text": "hsl(var(--warning-filled-text) / <alpha-value>)",
+        },
+
+        danger: {
+          DEFAULT: "hsl(var(--danger) / <alpha-value>)",
+          text: "hsl(var(--danger-text) / <alpha-value>)",
+          "filled-text": "hsl(var(--danger-filled-text) / <alpha-value>)",
         },
 
         success: {
-          DEFAULT: "rgb(var(--success) / <alpha-value>)",
-          text: "rgb(var(--success-text) / <alpha-value>)",
+          DEFAULT: "hsl(var(--success) / <alpha-value>)",
+          text: "hsl(var(--success-text) / <alpha-value>)",
+          "filled-text": "hsl(var(--success-filled-text) / <alpha-value>)",
         },
 
         disabled: {
@@ -79,6 +96,18 @@ module.exports = {
         default: "0.25rem",
       },
       keyframes: {
+        "accordion-expand": {
+          from: { height: "0", opacity: "0" },
+          to: { height: "var(--radix-accordion-content-height)", opacity: "1" },
+        },
+        "accordion-collapse": {
+          from: {
+            height: "var(--radix-accordion-content-height)",
+            opacity: "1",
+          },
+          to: { height: "0" },
+          opacity: "0",
+        },
         "fade-in": {
           "0%": {
             opacity: 0,
@@ -124,8 +153,13 @@ module.exports = {
 
         "scale-in": "fade-in 0.2s ease-out, scale-in 0.2s ease-out",
         "scale-out": "fade-out 0.2s ease-out, scale-out 0.2s ease-out",
+
+        "accordion-expand":
+          "accordion-expand 0.2s ease-in-out, fade-in 0.4s ease-in-out",
+        "accordion-collapse":
+          "accordion-collapse 0.2s ease-in-out, fade-out 0.4s ease-in-out",
       },
     },
   },
-  plugins: [],
+  plugins: [require("tailwindcss-animate")],
 };
