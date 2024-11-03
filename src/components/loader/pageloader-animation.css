@@ -1,11 +1,31 @@
 .loader {
   width: 30px;
   height: 30px;
-  color: rgb(var(--primary));
-  background: conic-gradient(from -45deg at top 15px left 50%, #0000, currentColor 1deg 90deg, #0000 91deg),
-    conic-gradient(from 45deg at right 15px top 50%, #0000, currentColor 1deg 90deg, #0000 91deg),
-    conic-gradient(from 135deg at bottom 15px left 50%, #0000, currentColor 1deg 90deg, #0000 91deg),
-    conic-gradient(from -135deg at left 15px top 50%, #0000, currentColor 1deg 90deg, #0000 91deg);
+  color: hsl(var(--primary));
+  background: conic-gradient(
+      from -45deg at top 15px left 50%,
+      #0000,
+      currentColor 1deg 90deg,
+      #0000 91deg
+    ),
+    conic-gradient(
+      from 45deg at right 15px top 50%,
+      #0000,
+      currentColor 1deg 90deg,
+      #0000 91deg
+    ),
+    conic-gradient(
+      from 135deg at bottom 15px left 50%,
+      #0000,
+      currentColor 1deg 90deg,
+      #0000 91deg
+    ),
+    conic-gradient(
+      from -135deg at left 15px top 50%,
+      #0000,
+      currentColor 1deg 90deg,
+      #0000 91deg
+    );
   animation: l4 1.5s infinite cubic-bezier(0.3, 1, 0, 1);
 }
 @keyframes l4 {

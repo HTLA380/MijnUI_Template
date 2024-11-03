@@ -1,12 +1,11 @@
 "use client";
-
 import * as React from "react";
 
 import { FaCashRegister } from "react-icons/fa";
 import { LuMenu } from "react-icons/lu";
 import { CURRENT_USER, LANGUAGE_OPTIONS } from "~/_constants/NAVBAR_DATA";
 
-import { Button } from "@/mijn-ui/components/Button";
+import { Button } from "@mijn-ui/components/button";
 import { useMediaQuery } from "@/mijn-ui/hooks/use-media-query";
 import { cn } from "@/mijn-ui/utils";
 
@@ -34,7 +33,8 @@ const Navbar = ({ style, setIsSidebarActive }: NavbarProps) => {
     <div className="flex items-center gap-2">
       <Button
         onClick={() => setIsSidebarActive(true)}
-        variant={"ghost"}
+        variant="text"
+        color="accent"
         size={"icon"}
       >
         <LuMenu size={20} />
@@ -51,7 +51,7 @@ const Navbar = ({ style, setIsSidebarActive }: NavbarProps) => {
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-30 flex h-[var(--navbar-height)] w-full items-center justify-between backdrop-blur",
+        "preview fixed inset-x-0 top-0 z-30 flex h-[var(--navbar-height)] w-full items-center justify-between backdrop-blur",
       )}
       style={{ ...style }}
     >
@@ -70,7 +70,7 @@ const Navbar = ({ style, setIsSidebarActive }: NavbarProps) => {
           <Button
             size={"icon"}
             className="size-9 text-xs text-muted-text hover:text-secondary-text sm:size-10"
-            variant={"surface"}
+            color="accent"
           >
             <FaCashRegister />
           </Button>

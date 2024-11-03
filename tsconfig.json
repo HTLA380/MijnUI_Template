@@ -20,7 +20,7 @@
     "baseUrl": ".",
     "paths": {
       "@/mijn-ui/*": ["./mijn-ui/*"],
-      "@mijn-ui": ["./mijn"],
+      "@mijn-ui/*": ["./mijn/*"],
       "@/*": ["./mijn-ui/*"],
       "~/*": ["./src/*"]
     },

@@ -4,83 +4,89 @@
 
 @layer base {
   :root {
-    /* general */
-    --main: 241 245 249; /* slate-100 */
-    --main-text: 0 0 0; /* black */
+    --main: 210 14% 95%; /* slate-100 */
+    --main-text: 0 0% 0%; /* black */
+    --main-border: 0 0% 83%; /* neutral-300 */
 
-    --main-border: 229 229 229; /* neutral-200 */
+    --surface: 0 0% 98%; /* neutral-50 */
+    --surface-text: 0 0% 0%; /* black */
 
-    --surface: 255 255 255; /* white */
-    --surface-text: 0 0 0; /* black */
+    --neutral: 0 0% 83%; /* neutral-300 */
+    --neutral-text: 0 0% 25%; /* neutral-700 */
 
-    --muted: 229 229 229; /* neutral-200 */
-    --muted-text: 115 115 115; /* neutral-500 */
+    --accent: 0 0% 90%; /* neutral-200 */
+    --accent-text: 0 0% 0%; /* black */
 
-    --primary: 249 115 22; /* orange-500 */
-    --primary-text: 255 255 255; /* white */
+    --primary: 29 100% 52%; /* orange-500 */
+    --primary-text: 0 0% 100%; /* white */
 
-    --secondary: 254 215 170; /* #FED7AA */
-    --secondary-text: 194 65 12; /* orange-700 */
+    --secondary: 34 100% 82%; /* #FED7AA */
+    --secondary-text: 29 93% 39%; /* orange-700 */
 
-    --accent: 245 245 245; /* neutral-100 */
-    --accent-text: 0 0 0; /* black */
+    --info: 216 76% 52%; /* blue-500 */
+    --info-text: 219 64% 43%; /* blue-800 */
+    --info-filled-text: 0 0% 100%; /* white */
 
-    --danger: 220 38 38; /* red-500 */
-    --danger-text: 255 255 255; /* white */
+    --danger: 0 72% 43%; /* red-500 */
+    --danger-text: 0 82% 31%; /* red-800 */
+    --danger-filled-text: 0 0% 100%; /* white */
 
-    --warning: 234 179 8; /* yellow-500 */
-    --warning-text: 0 0 0; /* black */
+    --warning: 45 92% 47%; /* yellow-500 */
+    --warning-text: 28 73% 26%; /* yellow-900 */
+    --warning-filled-text: 0 0% 0%; /* white */
 
-    --success: 22 163 74; /* green-500 */
-    --success-text: 255 255 255; /* white */
+    --success: 140 76% 38%; /* green-500 */
+    --success-text: 140 49% 20%; /* green-800 */
+    --success-filled-text: 0 0% 100%; /* white */
 
-    --disabled: 212 212 212; /* neutral-300 */
-    --disabled-text: 115 115 115; /* neutral 500 */
+    --radius: 0.375rem;
 
-    --ring: 255 255 255; /* white */
+    --ring: 0 0% 15%; /* neutral-800 */
 
-    --input-border: 0 0 0; /* black */
-    --kanban: 226 232 240; /* slate-300 */
+    --input-border: 0 0% 0%; /* black */
   }
 
   .dark {
-    /* general */
-    --main: 10 10 10; /* neutral-900 */
-    --main-text: 245 245 245; /* neutral-100 */
+    --main: 0 0% 4%; /* neutral-950 */
+    --main-text: 0 0% 96%; /* neutral-100 */
+    --main-border: 0 0% 15%; /* neutral-800 */
 
-    --surface: 19 19 19; /* #131313 */
-    --surface-text: 245 245 245; /* neutral-100 */
+    --surface: 0 0% 7%; /* neutral-925 */
+    --surface-text: 0 0% 96%; /* neutral-100 */
 
-    --muted: 38 38 38; /* neutral-800 */
-    --muted-text: 163 163 163; /* neutral-400 */
+    --neutral: 0 0% 15%; /* neutral-800 */
+    --neutral-text: 0 0% 64%; /* neutral-400 */
 
-    --primary: 249 115 22; /* orange-500 */
-    --primary-text: 255 255 255; /* white */
+    --accent: 0 0% 12%; /* neutral-850 */
+    --accent-text: 0 0% 96%; /* neutral-100 */
 
-    --secondary: 254 215 170; /* #FED7AA */
-    --secondary-text: 234 88 12; /* orange-600 */
+    --primary: 29 100% 52%; /* orange-500 */
+    --primary-text: 0 0% 100%; /* white */
 
-    --accent: 26 26 26; /* #1a1a1a */
-    --accent-text: 245 245 245; /* neutral-100 */
+    --secondary: 34 100% 82%; /* #FED7AA */
+    --secondary-text: 29 93% 39%; /* orange-700 */
 
-    --danger: 220 38 38; /* red-500 */
-    --danger-text: 255 255 255; /* white */
+    --info: 216 76% 52%; /* blue-500 */
+    --info-text: 207 70% 80%; /* blue-200 */
+    --info-filled-text: 0 0% 100%; /* white */
 
-    --warning: 234 179 8; /* yellow-500 */
-    --warning-text: 0 0 0; /* black */
+    --danger: 0 72% 43%; /* red-500 */
+    --danger-text: 0 79% 79%; /* red-200 */
+    --danger-filled-text: 0 0% 100%; /* white */
 
-    --success: 22 163 74; /* green-500 */
-    --success-text: 255 255 255; /* white */
+    --warning: 45 92% 47%; /* yellow-500 */
+    --warning-text: 45 94% 70%; /* yellow-200 */
+    --warning-filled-text: 0 0% 0%; /* white */
 
-    --disabled: 38 38 38; /* neutral-800 */
-    --disabled-text: 115 115 115; /* neutral-500 */
+    --success: 140 76% 38%; /* green-500 */
+    --success-text: 140 71% 82%; /* green-200 */
+    --success-filled-text: 0 0% 100%; /* white */
 
-    --ring: 38 38 38;
+    --radius: 0.375rem;
 
-    --main-border: 64 64 64; /* neutral-700 */
+    --ring: 0 0% 96%; /* neutral-100 */
 
-    --input-border: 245 245 245; /* neutral-700 */
-    --kanban: 38 38 38; /* neutral-800 */
+    --input-border: 0 0% 96%; /* neutral-100 */
   }
 }
 
@@ -111,7 +117,7 @@ body {
 
 .custom_scroll_bar::-webkit-scrollbar-thumb {
   border-radius: 0.25rem;
-  @apply bg-muted;
+  @apply bg-neutral;
 }
 
 .custom_scroll_bar::-webkit-scrollbar-track {
