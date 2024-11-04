@@ -2,7 +2,7 @@ import React from "react";
 
 import { FaVolumeLow, FaVolumeXmark } from "react-icons/fa6";
 
-import { Button } from "@/mijn-ui/components/Button";
+import { Button } from "@mijn-ui/components/button";
 import { cn } from "@/mijn-ui/utils";
 
 /* -------------------------------------------------------------------------- */
@@ -19,7 +19,7 @@ const VolumeToggler = () => {
         isActivated ? "text-primary" : "text-muted-text",
       )}
       title="Volume"
-      variant={"surface"}
+      color={"surface"}
     >
       {isActivated ? <FaVolumeLow /> : <FaVolumeXmark />}
     </Button>

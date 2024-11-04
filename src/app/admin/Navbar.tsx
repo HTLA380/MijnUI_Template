@@ -35,7 +35,7 @@ const Navbar = () => {
 
           <Button
             size={"icon"}
-            className="size-9 text-xs text-muted-text hover:text-secondary-text sm:size-10"
+            className="text-muted-text size-9 text-xs hover:text-secondary-text sm:size-10"
             variant={"surface"}
           >
             <FaCashRegister />
