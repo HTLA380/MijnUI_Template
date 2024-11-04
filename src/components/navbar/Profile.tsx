@@ -1,17 +1,26 @@
 import React from "react";
-
 import Image from "next/image";
 import { CURRENT_USER_TYPE } from "~/_constants/NAVBAR_DATA";
-
-import { Avatar, AvatarProps } from "@/mijn-ui/components/Avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/mijn-ui/components/DropdownMenu";
-import { useMediaQuery } from "@/mijn-ui/hooks/use-media-query";
-import { useResponsiveVariant } from "@/mijn-ui/hooks/use-responsive-variant";
+  DropdownMenuSeparator,
+  DropdownMenuSubTrigger,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuGroup,
+  DropdownMenuPortal,
+} from "@mijn-ui/components/dropdown-menu";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+  AvatarVariantProps,
+} from "@mijn-ui/components/avatar";
+import { useMediaQuery } from "~/hooks/use-media-query";
+import { useResponsiveVariant } from "~/hooks/use-responsive-variant";
 
 /* -------------------------------------------------------------------------- */
 
@@ -22,127 +31,109 @@ type ProfileProps = {
     src: string;
   }[];
   user: CURRENT_USER_TYPE;
-  selectedIndex: number;
-  onSelect: (index: number) => void;
+  selectedLanguage: string;
+  onSelect: (value: string) => void;
 };
 
 const Profile = ({
   user,
   LanguageOptions,
-  selectedIndex,
+  selectedLanguage,
   onSelect,
 }: ProfileProps) => {
-  const isSmallScreen = useMediaQuery("(max-width: 420px)");
   const isMobile = useMediaQuery("(max-width: 768px)");
-  const avatarSize = useResponsiveVariant<AvatarProps["size"]>({
+  const avatarSize = useResponsiveVariant<AvatarVariantProps["size"]>({
     initial: "sm",
     md: "md",
   });
 
+  const renderUserAvatar = (
+    <Avatar size={avatarSize}>
+      <AvatarImage src={user.avatar} alt={user.name} />
+      <AvatarFallback className="size-9 cursor-pointer hover:brightness-75 sm:size-10">
+        {user.name.substring(0, 1)}
+      </AvatarFallback>
+    </Avatar>
+  );
+
   const renderUserInfo = (
     <div className="flex items-center gap-4">
-      <Avatar
-        size={avatarSize}
-        className="cursor-pointer hover:brightness-75"
-        src={user.avatar}
-        name={user.name}
-        alt={user.alt}
-      />
+      {renderUserAvatar}
       <div>
         <p className="text-default font-semibold md:text-sm">{user.name}</p>
-        <p className="text-xs text-muted-text">{user.role}</p>
+        <p className="text-muted-text text-xs">{user.role}</p>
       </div>
     </div>
   );
 
-  const renderLanguageSelector = (
-    <div className="p-2 md:p-4">
-      <DropdownMenu placement={isSmallScreen ? "bottom" : "left-start"}>
-        <DropdownMenuTrigger className="h-8 w-full justify-between gap-2 border-none bg-surface text-xs hover:text-secondary-text data-[focus-inside]:bg-accent data-[focus-inside]:text-secondary-text md:h-9 md:text-sm">
-          <span className="capitalize">
-            {LanguageOptions[selectedIndex].name}
-          </span>
+  const selectedLanguageData =
+    LanguageOptions.find((option) => option.name === selectedLanguage) ||
+    LanguageOptions[0];
 
-          {selectedIndex !== null && (
-            <Image
-              src={LanguageOptions[selectedIndex].src}
-              width={80}
-              height={80}
-              alt={LanguageOptions[selectedIndex].alt}
-              className="size-4 rounded-md"
-            />
-          )}
-        </DropdownMenuTrigger>
-        <DropdownMenuContent className="w-36 gap-1 border-none p-3">
-          {LanguageOptions.map((option, index) => (
+  const renderLanguageSelector = (
+    <DropdownMenuSub>
+      <DropdownMenuSubTrigger className="[&>svg]:hidden">
+        <div className="flex items-center gap-2 text-xs/6">
+          <Image
+            src={selectedLanguageData.src}
+            width={80}
+            height={80}
+            alt={selectedLanguageData.alt}
+            className="size-4 rounded-md"
+          />
+
+          {selectedLanguageData.name}
+        </div>
+      </DropdownMenuSubTrigger>
+      <DropdownMenuPortal>
+        <DropdownMenuSubContent>
+          {LanguageOptions.map((option) => (
             <DropdownMenuItem
               key={option.name}
-              label={option.name}
-              className="flex items-center gap-3 truncate text-xs hover:text-secondary-text"
-              onClick={() => onSelect(index)}
+              onClick={() => onSelect(option.name)}
             >
-              <Image
-                src={option.src}
-                width={80}
-                height={80}
-                alt={option.alt}
-                className="size-4 rounded-md"
-              />
+              <div className="flex items-center gap-2 text-xs/6">
+                <Image
+                  src={option.src}
+                  width={80}
+                  height={80}
+                  alt={option.alt}
+                  className="size-4 rounded-md"
+                />
 
-              {option.name}
+                {option.name}
+              </div>
             </DropdownMenuItem>
           ))}
-        </DropdownMenuContent>
-      </DropdownMenu>
-    </div>
+        </DropdownMenuSubContent>
+      </DropdownMenuPortal>
+    </DropdownMenuSub>
   );
 
   return (
-    <DropdownMenu placement="bottom-end">
-      <DropdownMenuTrigger style={{ all: "unset" }}>
-        <Avatar
-          size={avatarSize}
-          className="x size-9 cursor-pointer hover:brightness-75 sm:size-10"
-          src={user.avatar}
-          name={user.name}
-          alt={user.alt}
-        />
-      </DropdownMenuTrigger>
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>{renderUserAvatar}</DropdownMenuTrigger>
 
-      <DropdownMenuContent className="w-52 gap-0 border-none md:w-64">
-        <div className="space-y-1.5 p-2 md:space-y-3 md:p-4">
+      <DropdownMenuContent className="w-52 gap-0 md:w-64" align="end">
+        <DropdownMenuGroup className="space-y-2 p-2 md:space-y-3 md:p-2">
           {renderUserInfo}
+          <DropdownMenuItem>My Profile</DropdownMenuItem>
 
-          <DropdownMenuItem
-            className="text-xs hover:text-secondary-text md:text-sm"
-            label="profile"
-          >
-            My Profile
-          </DropdownMenuItem>
-        </div>
+          {isMobile && (
+            <>
+              <DropdownMenuSeparator />
+              {renderLanguageSelector}
+            </>
+          )}
+        </DropdownMenuGroup>
+        <DropdownMenuSeparator />
 
-        {isMobile && (
-          <>
-            <Divider />
-            {renderLanguageSelector}
-          </>
-        )}
-
-        <Divider />
-
-        <div className="p-2 md:p-4">
-          <DropdownMenuItem
-            className="text-xs hover:text-secondary-text md:text-sm"
-            label="signout"
-          >
-            Sign Out
-          </DropdownMenuItem>
-        </div>
+        <DropdownMenuGroup className="p-2">
+          <DropdownMenuItem>Sign Out</DropdownMenuItem>
+        </DropdownMenuGroup>
       </DropdownMenuContent>
     </DropdownMenu>
   );
 };
-
-const Divider = () => <div className="h-px w-full bg-main-border"></div>;
 
 export default Profile;

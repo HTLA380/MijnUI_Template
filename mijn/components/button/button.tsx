@@ -7,7 +7,7 @@ import { LuLoader2 } from "react-icons/lu";
 
 const buttonStyles = cva(
   [
-    "inline-flex items-center justify-center gap-1 transition-colors <duration-300></duration-300> ease-in-out active:brightness-90 text-sm disabled:pointer-events-none disabled:brightness-75 disabled:opacity-80",
+    "inline-flex items-center justify-center gap-1 transition-colors duration-300 ease-in-out active:brightness-90 text-sm disabled:pointer-events-none disabled:brightness-75 disabled:opacity-80",
   ],
   {
     variants: {
@@ -17,6 +17,7 @@ const buttonStyles = cva(
         accent: "",
         neutral: "",
         danger: "",
+        surface: "bg-surface text-surface-text hover:bg-surface/90",
       },
       radius: {
         none: "rounded-none",

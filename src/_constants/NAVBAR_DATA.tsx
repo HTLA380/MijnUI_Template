@@ -22,6 +22,10 @@ export const LANGUAGE_OPTIONS: LANGUAGE_OPTIONS_TYPE[] = [
   },
 ];
 
+export const DEFAULT_SELECTED_LANGUAGE = LANGUAGE_OPTIONS[0].name;
+
+/* -------------------------------- USER INFO ------------------------------- */
+
 export type CURRENT_USER_TYPE = {
   name: string;
   avatar: string;

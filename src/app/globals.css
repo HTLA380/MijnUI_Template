@@ -95,7 +95,7 @@ body {
 }
 
 * {
-  @apply font-normal;
+  @apply border-main-border font-normal;
 }
 
 .custom_scroll_bar {

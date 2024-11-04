@@ -1,4 +1,3 @@
-import type * as PropTypes from "prop-types";
 // from https://github.com/nasheomirro/react-polymorphed
 
 /* eslint-disable */

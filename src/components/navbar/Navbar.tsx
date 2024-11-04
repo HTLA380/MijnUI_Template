@@ -3,7 +3,11 @@ import * as React from "react";
 
 import { FaCashRegister } from "react-icons/fa";
 import { LuMenu } from "react-icons/lu";
-import { CURRENT_USER, LANGUAGE_OPTIONS } from "~/_constants/NAVBAR_DATA";
+import {
+  CURRENT_USER,
+  DEFAULT_SELECTED_LANGUAGE,
+  LANGUAGE_OPTIONS,
+} from "~/_constants/NAVBAR_DATA";
 
 import { Button } from "@mijn-ui/components/button";
 import { useMediaQuery } from "@/mijn-ui/hooks/use-media-query";
@@ -24,7 +28,9 @@ type NavbarProps = {
 };
 
 const Navbar = ({ style, setIsSidebarActive }: NavbarProps) => {
-  const [selectedLanguageIndex, setSelectedLanguageIndex] = React.useState(1);
+  const [selectedLanguage, setSelectedLanguage] = React.useState<string>(
+    DEFAULT_SELECTED_LANGUAGE,
+  );
 
   const isDesktop = useMediaQuery("(min-width: 1024px)");
   const isMobile = useMediaQuery("(max-width: 768px)");
@@ -58,19 +64,19 @@ const Navbar = ({ style, setIsSidebarActive }: NavbarProps) => {
       <nav className="flex w-full items-center justify-between px-2 md:px-5">
         {isDesktop ? <PageInfo /> : renderSidebarToggleMenu}
 
-        <div className="flex items-center gap-2">
+        <div className="flex w-fit items-center gap-2">
           {!isMobile && (
             <LanguageSelector
-              selectedIndex={selectedLanguageIndex}
-              onSelect={setSelectedLanguageIndex}
+              selectedLanguage={selectedLanguage}
+              onValueChange={setSelectedLanguage}
               LanguageOptions={LANGUAGE_OPTIONS}
             />
           )}
 
           <Button
             size={"icon"}
-            className="size-9 text-xs text-muted-text hover:text-secondary-text sm:size-10"
-            color="accent"
+            className="size-9 hover:text-primary"
+            color="surface"
           >
             <FaCashRegister />
           </Button>
@@ -79,8 +85,8 @@ const Navbar = ({ style, setIsSidebarActive }: NavbarProps) => {
           <ThemeToggler />
           <Profile
             user={CURRENT_USER}
-            selectedIndex={selectedLanguageIndex}
-            onSelect={setSelectedLanguageIndex}
+            selectedLanguage={selectedLanguage}
+            onSelect={setSelectedLanguage}
             LanguageOptions={LANGUAGE_OPTIONS}
           />
         </div>
