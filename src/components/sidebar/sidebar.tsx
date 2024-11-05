@@ -6,13 +6,13 @@ import { BsGrid3X3GapFill } from "react-icons/bs";
 import { LuArrowRight } from "react-icons/lu";
 import { getSidebarActiveInfo, SidebarData } from "~/_constants/SIDEBAR_DATA";
 
-import { Button } from "@/mijn-ui/components/Button";
-import { useMediaQuery } from "@/mijn-ui/hooks/use-media-query";
-import { cn } from "@/mijn-ui/utils";
-import ClickAwayListener from "@/mijn-ui/utils/wrappers/ClickAwayListener";
+import { Button, buttonStyles } from "@mijn-ui/components/button";
+import { useMediaQuery } from "~/hooks/use-media-query";
+import { cn } from "@mijn-ui/utils";
+import ClickAwayListener from "~/utils/click-away-listener";
 
 import Logo from "../logo/Logo";
-import CollapsibleLists from "./CollapsibleList";
+import CollapsibleLists from "./collapsible-list";
 
 /* -------------------------------------------------------------------------- */
 
@@ -70,18 +70,20 @@ const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
           <Logo imgURL="/assets/images/pico.png" alt="PICO SBS" />
 
           <div className="flex flex-col gap-2">
-            <Button
-              renderAs={Link}
-              variant={"outline"}
-              size={"icon"}
+            <Link
+              href={"/admin/app-panel"}
               className={cn(
-                "border-primary bg-accent text-primary hover:text-primary",
+                buttonStyles({
+                  variant: "outline",
+                  color: "accent",
+                  size: "icon",
+                }),
+                "border-primary bg-accent/80 text-primary hover:text-primary",
               )}
               title={"App"}
-              href={"/admin/app-panel"}
             >
               <BsGrid3X3GapFill size={20} />
-            </Button>
+            </Link>
 
             {SidebarData.map((data, index) => (
               <SidebarIcon
@@ -101,7 +103,7 @@ const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
             "group-data-[state=open]:opacity-1 relative flex h-full flex-col gap-4 overflow-y-auto border-l border-l-main-border py-8 transition-[width_300ms,opacity_700ms] duration-300 ease-out group-data-[state=closed]:w-0 group-data-[state=open]:w-[var(--sidebar-content-width)] group-data-[state=closed]:overflow-hidden group-data-[state=closed]:opacity-0",
           )}
         >
-          <h3 className="truncate px-6 text-xs font-semibold uppercase text-muted-text">
+          <h3 className="text-muted-text truncate px-6 text-xs font-semibold uppercase">
             {currentSidebarData?.contentTitle}
           </h3>
 
@@ -144,7 +146,7 @@ const SidebarToggler = ({ isOpen, setIsOpen }: SidebarTogglerProps) => (
 /* -------------------------------------------------------------------------- */
 
 type SidebarIconProps = {
-  variant?: "outline" | "ghost";
+  variant?: "outline" | "text";
   title: string;
   icon: React.ReactNode;
   index: number;
@@ -159,18 +161,19 @@ const SidebarIcon = ({
   index,
   currentMenuIndex,
   onClick,
-  variant = "ghost",
+  variant = "text",
   className,
 }: SidebarIconProps) => (
   <Button
     key={title}
     variant={variant}
+    color="accent"
     size={"icon"}
     onClick={() => onClick?.(index)}
     className={cn(
       "text-base",
       index === currentMenuIndex
-        ? "bg-accent text-primary hover:text-primary"
+        ? "bg-accent/80 text-primary hover:text-primary"
         : "text-muted-text",
       className,
     )}

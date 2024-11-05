@@ -2,7 +2,7 @@ import axios from "axios";
 
 import { keepPreviousData, useMutation, useQuery } from "@tanstack/react-query";
 
-import { APIType } from "../types";
+import { APIType } from "~/app/(root)/contacts/customers/types";
 
 const BASE_URL = "https://dummyjson.com/users";
 

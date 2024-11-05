@@ -9,7 +9,7 @@ import TablePaginator from "~/components/table/TablePaginatior";
 import { Dialog } from "@/mijn-ui/components/Dialog";
 import { Table } from "@/mijn-ui/components/Table";
 
-import { useCustomerTable } from "../hooks/use-customer-table";
+import { useCustomerTable } from "../../../../../hooks/use-customer-table";
 import CustomerTableActions from "./CustomerTableActions";
 import CustomerTableBody from "./CustomerTableBody";
 import CustomerTableError from "./CustomerTableError";
@@ -42,7 +42,7 @@ const CustomerTable: React.FC = () => {
   } = useCustomerTable();
 
   const DisplaySelectedUsers = () => (
-    <p className="text-xs text-muted-text md:text-sm">
+    <p className="text-muted-text text-xs md:text-sm">
       Users {selectedUsersId.length} selected out of {users?.total}
     </p>
   );

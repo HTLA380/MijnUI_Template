@@ -91,6 +91,21 @@ module.exports = {
           to: { height: "0" },
           opacity: "0",
         },
+        "collapsible-expand": {
+          from: { height: "0", opacity: "0" },
+          to: {
+            height: "var(--radix-collapsible-content-height)",
+            opacity: "1",
+          },
+        },
+        "collapsible-collapse": {
+          from: {
+            height: "var(--radix-collapsible-content-height)",
+            opacity: "1",
+          },
+          to: { height: "0" },
+          opacity: "0",
+        },
       },
 
       animation: {
@@ -98,6 +113,10 @@ module.exports = {
           "accordion-expand 0.2s ease-in-out, fade-in 0.4s ease-in-out",
         "accordion-collapse":
           "accordion-collapse 0.2s ease-in-out, fade-out 0.4s ease-in-out",
+        "collapsible-expand":
+          "collapsible-expand 0.2s ease-in-out, fade-in 0.4s ease-in-out",
+        "collapsible-collapse":
+          "collapsible-collapse 0.2s ease-in-out, fade-out 0.4s ease-in-out",
       },
     },
   },

@@ -4,11 +4,11 @@ import * as React from "react";
 
 import PageInfo from "~/components/page-info/PageInfo";
 
-import { useMediaQuery } from "@/mijn-ui/hooks/use-media-query";
-import { useScrollLockEffect } from "@/mijn-ui/hooks/use-scroll-lock";
+import { useMediaQuery } from "~/hooks/use-media-query";
+import { useScrollLockEffect } from "~/hooks/use-scroll-lock";
 
 import Navbar from "../navbar/Navbar";
-import Sidebar from "../sidebar/Sidebar";
+import Sidebar from "../sidebar/sidebar";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const {

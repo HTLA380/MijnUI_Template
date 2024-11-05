@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { getSidebarActiveInfo } from "~/_constants/SIDEBAR_DATA";
 import { generatePaths } from "~/utils";
 
-import { cn } from "@/mijn-ui/utils";
+import { cn } from "@mijn-ui/utils";
 
 import DynamicBreadcrumbs from "./DynamicBreadcrumbs";
 
