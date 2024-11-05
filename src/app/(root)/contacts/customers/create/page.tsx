@@ -7,16 +7,19 @@ import { toast } from "sonner";
 import {
   CUSTOMER_PREFERRED_CONTACT,
   CUSTOMER_STATUS,
-} from "~/_constants/CUSTOMER";
-import { useCreateCustomer } from "~/app/(root)/contacts/customers/hooks/use-customers";
-import DatePicker from "~/components/date-picker/DatePicker";
-import Spinner from "~/components/loader/Spinner";
-import TimePicker from "~/components/time-picker/TimePicker";
+} from "@/_constants/CUSTOMER";
+import { useCreateCustomer } from "@/app/(root)/contacts/customers/hooks/use-customers";
+import DatePicker from "@/components/pickers/date-picker";
+import Spinner from "@/components/loader/spinner";
+import TimePicker from "@/components/pickers/time-picker";
 
-import { Button } from "@/mijn-ui/components/Button";
-import { Input } from "@/mijn-ui/components/Input";
+import { Button } from "@mijn-ui/components/button";
+import { Input } from "@mijn-ui/components/input";
 
-import SelectionMenu from "./SelectionMenu";
+import { Textarea } from "@mijn-ui/components/textarea/textarea";
+import { Label } from "@mijn-ui/components/label";
+
+import SelectionMenu from "@/components/menu/selection-menu";
 
 /* -------------------------------------------------------------------------- */
 
@@ -25,7 +28,7 @@ import SelectionMenu from "./SelectionMenu";
 // TODO-2: The form should also be able to handle errors and display them to the user.
 
 const CreateUser = () => {
-  const [date, setDate] = React.useState<Date | null>(null);
+  const [date, setDate] = React.useState<Date | undefined>(new Date());
   const router = useRouter();
 
   const { mutate: addCustomer, isPending } = useCreateCustomer({
@@ -84,53 +87,46 @@ const CreateUser = () => {
 
         <div className="flex w-full flex-wrap gap-2">
           <div className="min-w-42 flex flex-col gap-2">
-            <label htmlFor="" className="text-sm">
+            <Label htmlFor="" className="text-xs md:text-sm">
               Select Date
-            </label>
+            </Label>
             <DatePicker date={date} onDatePick={setDate} />
           </div>
 
           <div className="min-w-42 flex flex-col gap-2">
-            <label className="text-sm">Select Time</label>
+            <Label className="text-xs md:text-sm">Select Time</Label>
             <TimePicker date={date} onTimePick={setDate} />
           </div>
         </div>
 
         <div className="flex h-40 flex-col gap-2">
-          <label htmlFor="additional-note">Additional Note</label>
-          <Input
+          <Label className="text-xs md:text-sm" htmlFor="additional-note">
+            Additional Note
+          </Label>
+          <Textarea
             required
             placeholder="Additional Note..."
-            renderAs="textarea"
             name="additional-note"
             id="additional-note"
-            className="h-full flex-1 items-start [&>textarea]:h-full [&>textarea]:resize-none"
+            className="h-full"
           />
         </div>
 
         <div className="flex w-full flex-wrap items-center gap-2">
           <div className="flex flex-col gap-2">
-            <label className="text-sm" htmlFor="">
-              Preferred Contact Type
-            </label>
+            <Label className="text-xs md:text-sm">Preferred Contact Type</Label>
 
             <SelectionMenu
-              defaultSelectedIndex={0}
-              defaultSelectedLabel="Email"
-              selectionTitle="Preferred Contact"
+              defaultValue={CUSTOMER_PREFERRED_CONTACT[0]}
               selectionItems={CUSTOMER_PREFERRED_CONTACT}
             />
           </div>
 
           <div className="flex flex-col gap-2">
-            <label className="text-sm" htmlFor="">
-              Customer Status
-            </label>
+            <Label className="text-xs md:text-sm">Customer Status</Label>
 
             <SelectionMenu
-              defaultSelectedIndex={0}
-              defaultSelectedLabel="Active"
-              selectionTitle="Status"
+              defaultValue={CUSTOMER_STATUS[0]}
               selectionItems={CUSTOMER_STATUS}
             />
           </div>
@@ -141,7 +137,7 @@ const CreateUser = () => {
         <Button
           disabled={isPending}
           type="submit"
-          className="h-default w-20 gap-2 text-default text-primary-text"
+          className="h-default text-default w-20 gap-2 text-primary-text"
         >
           Save
           {isPending && <Spinner className="h-4 w-4" />}
@@ -185,9 +181,9 @@ type InputGroupProps = {
 const InputGroup = (props: InputField) => {
   return (
     <div className="flex min-w-48 flex-1 flex-col justify-center gap-2">
-      <label className="text-sm" htmlFor={props.id}>
+      <Label className="text-xs md:text-sm" htmlFor={props.id}>
         {props.label}
-      </label>
+      </Label>
       <Input
         required
         type={props.type}

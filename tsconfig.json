@@ -19,10 +19,8 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "@/mijn-ui/*": ["./mijn-ui/*"],
-      "@mijn-ui/*": ["./mijn/*"],
-      "@/*": ["./mijn-ui/*"],
-      "~/*": ["./src/*"]
+      "@mijn-ui/*": ["./mijn-ui/*"],
+      "@/*": ["./src/*"]
     },
     "target": "ES2017"
   },

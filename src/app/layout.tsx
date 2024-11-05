@@ -3,9 +3,9 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import NextTopLoader from "nextjs-toploader";
-import QueryProvider from "~/components/providers/QueryProvider";
-import ThemeProvider from "~/components/providers/ThemeProvider";
-import { Toaster } from "~/components/toaster/Toaster";
+import QueryProvider from "@/components/providers/query-provider";
+import ThemeProvider from "@/components/providers/theme-provider";
+import { Toaster } from "@mijn-ui/components/toaster";
 
 export const metadata: Metadata = {
   title: "MijnUI Template",

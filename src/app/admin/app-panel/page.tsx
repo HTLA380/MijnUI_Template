@@ -1,10 +1,11 @@
 import React from "react";
 
 import Link from "next/link";
-import { ALL_APPS } from "~/_constants/PAGES";
-import Greeting from "~/app/admin/app-panel/Greeting";
+import { ALL_APPS } from "@/_constants/PAGES";
+import Greeting from "@/app/admin/app-panel/greeting";
 
-import { Button } from "@/mijn-ui/components/Button";
+import { buttonStyles } from "@mijn-ui/components/button";
+import { cn } from "@mijn-ui/utils";
 
 const AppPanel = () => {
   return (
@@ -18,13 +19,15 @@ const AppPanel = () => {
               key={app.title}
               className="group flex flex-col items-center justify-center gap-3"
             >
-              <Button
-                renderAs={Link}
+              <Link
                 href={app.link}
-                className="aspect-square h-full w-full max-w-20 border border-transparent bg-surface text-accent-text/70 backdrop-blur transition-all duration-300 ease-out hover:bg-surface group-hover:scale-110 group-hover:border-primary/30 group-hover:text-primary group-hover:[box-shadow:_0_0_50px_5px_rgba(255,160,92,0.1)] dark:text-muted-text sm:max-w-28 [&>svg]:size-8"
+                className={cn(
+                  buttonStyles(),
+                  "aspect-square h-full w-full max-w-20 border border-transparent bg-surface text-accent-text/70 backdrop-blur transition-all duration-300 ease-out hover:bg-surface group-hover:scale-110 group-hover:border-primary/30 group-hover:text-primary group-hover:[box-shadow:_0_0_50px_5px_rgba(255,160,92,0.1)] dark:text-neutral-text sm:max-w-28 [&>svg]:size-8",
+                )}
               >
                 {app.icon}
-              </Button>
+              </Link>
               <Link
                 href={app.link}
                 className={"text-xs sm:text-sm md:text-base"}

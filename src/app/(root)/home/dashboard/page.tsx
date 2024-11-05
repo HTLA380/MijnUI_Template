@@ -14,13 +14,13 @@ const Home = () => {
         </p>
         <div className="flex items-center gap-2 text-sm">
           <Link
-            className="text-xs text-secondary-text underline hover:brightness-75 md:text-base"
+            className="text-xs text-primary underline hover:brightness-75 md:text-base"
             href={"/contacts/customers/"}
           >
             Customer List
           </Link>
           <Link
-            className="text-xs text-secondary-text underline hover:brightness-75 md:text-base"
+            className="text-xs text-primary underline hover:brightness-75 md:text-base"
             href={"/contacts/customers/create"}
           >
             Add Customer

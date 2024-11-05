@@ -1,3 +1,5 @@
+// PLACEHOLDER API TYPES.
+
 export type APIType = {
   users: User[];
   total: number;
