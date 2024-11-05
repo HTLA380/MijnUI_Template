@@ -1,7 +1,6 @@
-import { ReactNode } from "react";
-
-import { AiFillProduct } from "react-icons/ai";
-import { BsBarChartLineFill } from "react-icons/bs";
+import { ReactNode } from "react"
+import { AiFillProduct } from "react-icons/ai"
+import { BsBarChartLineFill } from "react-icons/bs"
 import {
   FaAddressBook,
   FaBalanceScale,
@@ -18,7 +17,7 @@ import {
   FaUsers,
   FaWarehouse,
   FaWrench,
-} from "react-icons/fa";
+} from "react-icons/fa"
 import {
   FaArrowTrendUp,
   FaCirclePlus,
@@ -27,25 +26,25 @@ import {
   FaSquareMinus,
   FaSquarePlus,
   FaUserGroup,
-} from "react-icons/fa6";
-import { RxLoop } from "react-icons/rx";
+} from "react-icons/fa6"
+import { RxLoop } from "react-icons/rx"
 
 export type SidebarListsType = {
-  icon?: ReactNode;
-  title: string;
+  icon?: ReactNode
+  title: string
   list?: {
-    name: string;
-    link: string;
-  }[];
-  link?: string;
-};
+    name: string
+    link: string
+  }[]
+  link?: string
+}
 
 export type SidebarDataType = {
-  title: string;
-  icon?: ReactNode;
-  contentTitle: string;
-  lists: SidebarListsType[];
-};
+  title: string
+  icon?: ReactNode
+  contentTitle: string
+  lists: SidebarListsType[]
+}
 
 export const SidebarData: SidebarDataType[] = [
   {
@@ -446,7 +445,7 @@ export const SidebarData: SidebarDataType[] = [
       },
     ],
   },
-];
+]
 
 /* -------------------------------------------------------------------------- */
 
@@ -456,8 +455,8 @@ export const isExistingUrl = (url: string) => {
     SidebarData.some((data) =>
       data.lists.some((list) => list.list?.some((item) => item.link === url)),
     )
-  );
-};
+  )
+}
 
 /* -------------------------------------------------------------------------- */
 
@@ -468,7 +467,7 @@ export const getSidebarActiveInfo = (url: string) => {
         title: data.lists[0].title,
         index: SidebarData.indexOf(data),
         collapsibleIndex: -1,
-      };
+      }
     }
     for (const list of data.lists) {
       if (list.link === url) {
@@ -476,7 +475,7 @@ export const getSidebarActiveInfo = (url: string) => {
           title: list.title,
           index: SidebarData.indexOf(data),
           collapsibleIndex: -1,
-        };
+        }
       }
       if (list.list) {
         for (const item of list.list) {
@@ -485,11 +484,11 @@ export const getSidebarActiveInfo = (url: string) => {
               title: item.name,
               index: SidebarData.indexOf(data),
               collapsibleIndex: data.lists.indexOf(list),
-            };
+            }
           }
         }
       }
     }
   }
-  return undefined;
-};
+  return undefined
+}

@@ -1,9 +1,9 @@
-import * as React from "react";
-import { UnstyledProps } from "@mijn-ui/types";
-import { applyUnstyled } from "@mijn-ui/utils";
-import { Slot, Slottable } from "@radix-ui/react-slot";
-import { type VariantProps, cva } from "class-variance-authority";
-import { LuLoader2 } from "react-icons/lu";
+import * as React from "react"
+import { UnstyledProps } from "@mijn-ui/types"
+import { applyUnstyled } from "@mijn-ui/utils"
+import { Slot, Slottable } from "@radix-ui/react-slot"
+import { type VariantProps, cva } from "class-variance-authority"
+import { LuLoader2 } from "react-icons/lu"
 
 const buttonStyles = cva(
   [
@@ -130,13 +130,13 @@ const buttonStyles = cva(
       size: "md",
     },
   },
-);
+)
 
 export type ButtonProps = React.ComponentPropsWithRef<"button"> &
   VariantProps<typeof buttonStyles> & {
-    asChild?: boolean;
-    loading?: boolean;
-  } & UnstyledProps;
+    asChild?: boolean
+    loading?: boolean
+  } & UnstyledProps
 
 const Button = ({
   unstyled,
@@ -152,7 +152,7 @@ const Button = ({
   ref,
   ...props
 }: ButtonProps) => {
-  const Component = asChild ? Slot : "button";
+  const Component = asChild ? Slot : "button"
 
   return (
     <Component
@@ -175,7 +175,7 @@ const Button = ({
       )}
       <Slottable>{loading ? "Loading..." : children}</Slottable>
     </Component>
-  );
-};
+  )
+}
 
-export { Button, buttonStyles };
+export { Button, buttonStyles }

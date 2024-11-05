@@ -1,25 +1,21 @@
-"use client";
+"use client"
 
-import React from "react";
-
-import { useRouter } from "nextjs-toploader/app";
-import { toast } from "sonner";
+import React from "react"
+import { Button } from "@mijn-ui/components/button"
+import { Input } from "@mijn-ui/components/input"
+import { Label } from "@mijn-ui/components/label"
+import { Textarea } from "@mijn-ui/components/textarea/textarea"
+import Spinner from "@/components/loader/spinner"
+import SelectionMenu from "@/components/menu/selection-menu"
+import DatePicker from "@/components/pickers/date-picker"
+import TimePicker from "@/components/pickers/time-picker"
+import { useCreateCustomer } from "@/app/(root)/contacts/customers/hooks/use-customers"
 import {
   CUSTOMER_PREFERRED_CONTACT,
   CUSTOMER_STATUS,
-} from "@/_constants/CUSTOMER";
-import { useCreateCustomer } from "@/app/(root)/contacts/customers/hooks/use-customers";
-import DatePicker from "@/components/pickers/date-picker";
-import Spinner from "@/components/loader/spinner";
-import TimePicker from "@/components/pickers/time-picker";
-
-import { Button } from "@mijn-ui/components/button";
-import { Input } from "@mijn-ui/components/input";
-
-import { Textarea } from "@mijn-ui/components/textarea/textarea";
-import { Label } from "@mijn-ui/components/label";
-
-import SelectionMenu from "@/components/menu/selection-menu";
+} from "@/_constants/CUSTOMER"
+import { useRouter } from "nextjs-toploader/app"
+import { toast } from "sonner"
 
 /* -------------------------------------------------------------------------- */
 
@@ -28,8 +24,8 @@ import SelectionMenu from "@/components/menu/selection-menu";
 // TODO-2: The form should also be able to handle errors and display them to the user.
 
 const CreateUser = () => {
-  const [date, setDate] = React.useState<Date | undefined>(new Date());
-  const router = useRouter();
+  const [date, setDate] = React.useState<Date | undefined>(new Date())
+  const router = useRouter()
 
   const { mutate: addCustomer, isPending } = useCreateCustomer({
     onSuccess: () => {
@@ -38,8 +34,8 @@ const CreateUser = () => {
           label: "Got it",
           onClick: () => {},
         },
-      });
-      router.push("/contacts/customers");
+      })
+      router.push("/contacts/customers")
     },
     onError: () => {
       toast.error(
@@ -50,14 +46,14 @@ const CreateUser = () => {
             onClick: () => {},
           },
         },
-      );
+      )
     },
-  });
+  })
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    addCustomer();
-  };
+    e.preventDefault()
+    addCustomer()
+  }
 
   return (
     <form
@@ -144,18 +140,18 @@ const CreateUser = () => {
         </Button>
       </div>
     </form>
-  );
-};
+  )
+}
 
 /* -------------------------------------------------------------------------- */
 
 type InputField = {
-  label: string;
-  type: string;
-  placeholder: string;
-  id: string;
-  name: string;
-};
+  label: string
+  type: string
+  placeholder: string
+  id: string
+  name: string
+}
 
 const FieldSetInputGroup = ({ groupName, inputFields }: InputGroupProps) => {
   return (
@@ -168,15 +164,15 @@ const FieldSetInputGroup = ({ groupName, inputFields }: InputGroupProps) => {
         ))}
       </div>
     </fieldset>
-  );
-};
+  )
+}
 
 /* -------------------------------------------------------------------------- */
 
 type InputGroupProps = {
-  groupName: string;
-  inputFields: InputField[];
-};
+  groupName: string
+  inputFields: InputField[]
+}
 
 const InputGroup = (props: InputField) => {
   return (
@@ -192,14 +188,14 @@ const InputGroup = (props: InputField) => {
         name={props.name}
       />
     </div>
-  );
-};
+  )
+}
 
 /* -------------------------------------------------------------------------- */
 
 type LegendWithBorderProps = {
-  title: string;
-};
+  title: string
+}
 
 const LegendWithBorder = ({ title }: LegendWithBorderProps) => {
   return (
@@ -207,8 +203,8 @@ const LegendWithBorder = ({ title }: LegendWithBorderProps) => {
       <legend className="relative min-w-fit text-primary">{title}</legend>
       <div className="h-px w-full bg-main-border" />
     </div>
-  );
-};
+  )
+}
 
 /* -------------------------------------------------------------------------- */
 
@@ -266,6 +262,6 @@ const ContactFormItems = [
       },
     ],
   },
-];
+]
 
-export default CreateUser;
+export default CreateUser

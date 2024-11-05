@@ -1,39 +1,39 @@
-import React from "react";
-import Image from "next/image";
-import { CURRENT_USER_TYPE } from "@/_constants/NAVBAR_DATA";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-  DropdownMenuSeparator,
-  DropdownMenuSubTrigger,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuGroup,
-  DropdownMenuPortal,
-} from "@mijn-ui/components/dropdown-menu";
+import React from "react"
+import Image from "next/image"
 import {
   Avatar,
   AvatarFallback,
   AvatarImage,
   AvatarVariantProps,
-} from "@mijn-ui/components/avatar";
-import { useMediaQuery } from "@/hooks/use-media-query";
-import { useResponsiveVariant } from "@/hooks/use-responsive-variant";
+} from "@mijn-ui/components/avatar"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuPortal,
+  DropdownMenuSeparator,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
+  DropdownMenuTrigger,
+} from "@mijn-ui/components/dropdown-menu"
+import { CURRENT_USER_TYPE } from "@/_constants/NAVBAR_DATA"
+import { useMediaQuery } from "@/hooks/use-media-query"
+import { useResponsiveVariant } from "@/hooks/use-responsive-variant"
 
 /* -------------------------------------------------------------------------- */
 
 type ProfileProps = {
   LanguageOptions: {
-    name: string;
-    alt: string;
-    src: string;
-  }[];
-  user: CURRENT_USER_TYPE;
-  selectedLanguage: string;
-  onSelect: (value: string) => void;
-};
+    name: string
+    alt: string
+    src: string
+  }[]
+  user: CURRENT_USER_TYPE
+  selectedLanguage: string
+  onSelect: (value: string) => void
+}
 
 const Profile = ({
   user,
@@ -41,11 +41,11 @@ const Profile = ({
   selectedLanguage,
   onSelect,
 }: ProfileProps) => {
-  const isMobile = useMediaQuery("(max-width: 768px)");
+  const isMobile = useMediaQuery("(max-width: 768px)")
   const avatarSize = useResponsiveVariant<AvatarVariantProps["size"]>({
     initial: "sm",
     md: "md",
-  });
+  })
 
   const renderUserAvatar = (
     <Avatar size={avatarSize}>
@@ -54,7 +54,7 @@ const Profile = ({
         {user.name.substring(0, 1)}
       </AvatarFallback>
     </Avatar>
-  );
+  )
 
   const renderUserInfo = (
     <div className="flex items-center gap-4">
@@ -64,11 +64,11 @@ const Profile = ({
         <p className="text-xs text-neutral-text">{user.role}</p>
       </div>
     </div>
-  );
+  )
 
   const selectedLanguageData =
     LanguageOptions.find((option) => option.name === selectedLanguage) ||
-    LanguageOptions[0];
+    LanguageOptions[0]
 
   const renderLanguageSelector = (
     <DropdownMenuSub>
@@ -108,7 +108,7 @@ const Profile = ({
         </DropdownMenuSubContent>
       </DropdownMenuPortal>
     </DropdownMenuSub>
-  );
+  )
 
   return (
     <DropdownMenu>
@@ -133,7 +133,7 @@ const Profile = ({
         </DropdownMenuGroup>
       </DropdownMenuContent>
     </DropdownMenu>
-  );
-};
+  )
+}
 
-export default Profile;
+export default Profile

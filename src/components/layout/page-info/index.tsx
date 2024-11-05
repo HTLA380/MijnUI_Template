@@ -1,34 +1,31 @@
-"use client";
+"use client"
 
-import React, { useEffect } from "react";
-
-import { usePathname } from "next/navigation";
-import { getSidebarActiveInfo } from "@/_constants/SIDEBAR_DATA";
-import { generatePaths } from "@/utils/generate";
-
-import { cn } from "@mijn-ui/utils";
-
-import DynamicBreadcrumb from "./dynamic-breadcrumb";
+import React, { useEffect } from "react"
+import { usePathname } from "next/navigation"
+import { cn } from "@mijn-ui/utils"
+import DynamicBreadcrumb from "./dynamic-breadcrumb"
+import { getSidebarActiveInfo } from "@/_constants/SIDEBAR_DATA"
+import { generatePaths } from "@/utils/generate"
 
 /* -------------------------------------------------------------------------- */
 
 type PageInfoProps = {
-  fallbackTitle?: string;
-  className?: string;
-};
+  fallbackTitle?: string
+  className?: string
+}
 
 const PageInfo = ({ fallbackTitle, className }: PageInfoProps) => {
-  const pathname = usePathname();
-  const paths = React.useMemo(() => generatePaths(pathname), [pathname]);
+  const pathname = usePathname()
+  const paths = React.useMemo(() => generatePaths(pathname), [pathname])
   const activeSidebarInfo = React.useMemo(
     () => getSidebarActiveInfo(pathname),
     [pathname],
-  );
+  )
 
   useEffect(() => {
     document.title =
-      activeSidebarInfo?.title || fallbackTitle || "Pico Demo Business";
-  }, [activeSidebarInfo?.title, fallbackTitle]);
+      activeSidebarInfo?.title || fallbackTitle || "Pico Demo Business"
+  }, [activeSidebarInfo?.title, fallbackTitle])
 
   return (
     <div className={cn("h-[var(--page-info-height)]", className)}>
@@ -37,7 +34,7 @@ const PageInfo = ({ fallbackTitle, className }: PageInfoProps) => {
       </h3>
       <DynamicBreadcrumb paths={paths} />
     </div>
-  );
-};
+  )
+}
 
-export default PageInfo;
+export default PageInfo

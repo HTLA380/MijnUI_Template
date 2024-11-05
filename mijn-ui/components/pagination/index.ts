@@ -1,2 +1,2 @@
-export * from "./pagination";
-export * from "./use-pagination-range";
+export * from "./pagination"
+export * from "./use-pagination-range"

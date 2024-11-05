@@ -1,4 +1,4 @@
-import { cn } from "@mijn-ui/utils";
+import { cn } from "@mijn-ui/utils"
 
 const Spinner = ({ className }: { className: string }) => {
   return (
@@ -24,7 +24,7 @@ const Spinner = ({ className }: { className: string }) => {
       </svg>
       <span className="sr-only">Loading...</span>
     </div>
-  );
-};
+  )
+}
 
-export default Spinner;
+export default Spinner

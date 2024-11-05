@@ -1,3 +1,4 @@
+import React from "react"
 import {
   Select,
   SelectContent,
@@ -5,23 +6,22 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@mijn-ui/components/select";
-import { cn } from "@mijn-ui/utils";
-import React from "react";
-import { LuChevronsUpDown } from "react-icons/lu";
+} from "@mijn-ui/components/select"
+import { cn } from "@mijn-ui/utils"
+import { LuChevronsUpDown } from "react-icons/lu"
 
 type SelectionMenuProps = {
-  defaultValue: string | number;
-  onValueChange?: (value: string | number) => void;
-  selectionItems: string[] | number[];
+  defaultValue: string | number
+  onValueChange?: (value: string | number) => void
+  selectionItems: string[] | number[]
   classNames?: {
-    selectTrigger?: string;
-    selectContent?: string;
-    selectGroup?: string;
-    selectItem?: string;
-    selectValue?: string;
-  };
-};
+    selectTrigger?: string
+    selectContent?: string
+    selectGroup?: string
+    selectItem?: string
+    selectValue?: string
+  }
+}
 
 const SelectionMenu = ({
   defaultValue,
@@ -57,7 +57,7 @@ const SelectionMenu = ({
         </SelectGroup>
       </SelectContent>
     </Select>
-  );
-};
+  )
+}
 
-export default SelectionMenu;
+export default SelectionMenu

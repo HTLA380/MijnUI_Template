@@ -1,23 +1,20 @@
-"use client";
+"use client"
 
-import * as React from "react";
-
-import DeleteModalContent from "./delete-modal-content";
-import TablePaginator from "@/components/table/table-paginator";
-
-import { Table } from "@mijn-ui/components/table";
-
-import { useCustomerTable } from "../hooks/use-customer-table";
-import TableActions from "./table-actions";
-import TableBody from "./table-body";
-import TableErrorMessage from "./table-error-message";
-import TableHeader from "./table-header";
-import { AlertDialog } from "@mijn-ui/components/alert-dialog";
-import SelectionMenu from "@/components/menu/selection-menu";
+import * as React from "react"
+import { AlertDialog } from "@mijn-ui/components/alert-dialog"
+import { Table } from "@mijn-ui/components/table"
+import SelectionMenu from "@/components/menu/selection-menu"
+import TablePaginator from "@/components/table/table-paginator"
+import { useCustomerTable } from "../hooks/use-customer-table"
+import DeleteModalContent from "./delete-modal-content"
+import TableActions from "./table-actions"
+import TableBody from "./table-body"
+import TableErrorMessage from "./table-error-message"
+import TableHeader from "./table-header"
 
 /* -------------------------------------------------------------------------- */
 
-const ItemsPerPageArray = ["10", "20", "30"];
+const ItemsPerPageArray = ["10", "20", "30"]
 
 const CustomerTable: React.FC = () => {
   const {
@@ -39,7 +36,7 @@ const CustomerTable: React.FC = () => {
     setIsDeleteDialogOpen,
     handleDelete,
     isDeleteLoading,
-  } = useCustomerTable();
+  } = useCustomerTable()
 
   return (
     <>
@@ -108,9 +105,9 @@ const CustomerTable: React.FC = () => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default CustomerTable;
+export default CustomerTable
 
 /* -------------------------------------------------------------------------- */

@@ -1,21 +1,20 @@
-import { LuInfo } from "react-icons/lu";
-import Spinner from "@/components/loader/spinner";
-
-import { Button } from "@mijn-ui/components/button";
 import {
   AlertDialogCancel,
   AlertDialogContent,
   AlertDialogDescription,
   AlertDialogFooter,
   AlertDialogTitle,
-} from "@mijn-ui/components/alert-dialog";
+} from "@mijn-ui/components/alert-dialog"
+import { Button } from "@mijn-ui/components/button"
+import Spinner from "@/components/loader/spinner"
+import { LuInfo } from "react-icons/lu"
 
 /* -------------------------------------------------------------------------- */
 
 type DeleteModalContentProps = {
-  onDelete: () => void;
-  isLoading: boolean;
-};
+  onDelete: () => void
+  isLoading: boolean
+}
 
 const DeleteModalContent = ({
   onDelete,
@@ -60,7 +59,7 @@ const DeleteModalContent = ({
         remove customers.
       </p>
     </AlertDialogContent>
-  );
-};
+  )
+}
 
-export default DeleteModalContent;
+export default DeleteModalContent

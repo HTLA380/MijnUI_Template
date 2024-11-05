@@ -1,36 +1,35 @@
-"use client";
+"use client"
 
-import React, { useEffect, useState } from "react";
-
-import { formatDate } from "date-fns";
-import { CURRENT_USER } from "@/_constants/NAVBAR_DATA";
+import React, { useEffect, useState } from "react"
+import { CURRENT_USER } from "@/_constants/NAVBAR_DATA"
+import { formatDate } from "date-fns"
 
 const Greeting = () => {
-  const [currentTime, setCurrentTime] = useState(new Date());
-  const [timeOfDay, setTimeOfDay] = useState("");
+  const [currentTime, setCurrentTime] = useState(new Date())
+  const [timeOfDay, setTimeOfDay] = useState("")
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentTime(new Date());
-    }, 60000);
+      setCurrentTime(new Date())
+    }, 60000)
 
     return () => {
-      clearInterval(interval);
-    };
-  }, []);
+      clearInterval(interval)
+    }
+  }, [])
 
   useEffect(() => {
-    const currentHour = currentTime.getHours();
+    const currentHour = currentTime.getHours()
     if (currentHour >= 6 && currentHour < 12) {
-      setTimeOfDay("morning");
+      setTimeOfDay("morning")
     } else if (currentHour >= 12 && currentHour < 18) {
-      setTimeOfDay("afternoon");
+      setTimeOfDay("afternoon")
     } else {
-      setTimeOfDay("evening");
+      setTimeOfDay("evening")
     }
-  }, [currentTime]);
+  }, [currentTime])
 
-  const formattedTime = formatDate(currentTime, "h:mm a");
+  const formattedTime = formatDate(currentTime, "h:mm a")
 
   return (
     <div className="text-center">
@@ -42,7 +41,7 @@ const Greeting = () => {
         <span className="font-inherit text-primary">{CURRENT_USER.name}</span>
       </p>
     </div>
-  );
-};
+  )
+}
 
-export default Greeting;
+export default Greeting

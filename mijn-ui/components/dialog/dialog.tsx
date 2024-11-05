@@ -1,29 +1,29 @@
-"use client";
+"use client"
 
-import * as React from "react";
-import { buttonStyles } from "@mijn-ui/components/button";
+import * as React from "react"
+import { buttonStyles } from "@mijn-ui/components/button"
 import {
   UnstyledProvider,
   useUnstyled,
-} from "@mijn-ui/context/unstyled-provider";
-import { UnstyledProps } from "@mijn-ui/types";
-import { applyUnstyled } from "@mijn-ui/utils";
-import * as DialogPrimitive from "@radix-ui/react-dialog";
+} from "@mijn-ui/context/unstyled-provider"
+import { UnstyledProps } from "@mijn-ui/types"
+import { applyUnstyled } from "@mijn-ui/utils"
+import * as DialogPrimitive from "@radix-ui/react-dialog"
 
-const DialogPortal = DialogPrimitive.Portal;
+const DialogPortal = DialogPrimitive.Portal
 
 /* -------------------------------------------------------------------------- */
 /*                                   Dialog                                   */
 /* -------------------------------------------------------------------------- */
 
 type DialogProps = React.ComponentPropsWithRef<typeof DialogPrimitive.Root> &
-  UnstyledProps;
+  UnstyledProps
 
 const Dialog = ({ unstyled = false, ...props }: DialogProps) => (
   <UnstyledProvider unstyled={unstyled}>
     <DialogPrimitive.Root {...props} />
   </UnstyledProvider>
-);
+)
 
 /* -------------------------------------------------------------------------- */
 /*                                DialogTrigger                               */
@@ -32,7 +32,7 @@ const Dialog = ({ unstyled = false, ...props }: DialogProps) => (
 type DialogTriggerProps = React.ComponentPropsWithRef<
   typeof DialogPrimitive.Trigger
 > &
-  UnstyledProps;
+  UnstyledProps
 
 const DialogTrigger = ({
   unstyled,
@@ -40,8 +40,8 @@ const DialogTrigger = ({
   ref,
   ...props
 }: DialogTriggerProps) => {
-  const { unstyled: contextUnstyled } = useUnstyled();
-  const isUnstyled = unstyled ?? contextUnstyled;
+  const { unstyled: contextUnstyled } = useUnstyled()
+  const isUnstyled = unstyled ?? contextUnstyled
 
   return (
     <DialogPrimitive.Trigger
@@ -53,9 +53,9 @@ const DialogTrigger = ({
       )}
       {...props}
     />
-  );
-};
-DialogTrigger.displayName = DialogPrimitive.Trigger.displayName;
+  )
+}
+DialogTrigger.displayName = DialogPrimitive.Trigger.displayName
 
 /* -------------------------------------------------------------------------- */
 /*                                 DialogClose                                */
@@ -64,7 +64,7 @@ DialogTrigger.displayName = DialogPrimitive.Trigger.displayName;
 type DialogCloseProps = React.ComponentPropsWithRef<
   typeof DialogPrimitive.Close
 > &
-  UnstyledProps;
+  UnstyledProps
 
 const DialogClose = ({
   unstyled,
@@ -72,8 +72,8 @@ const DialogClose = ({
   ref,
   ...props
 }: DialogCloseProps) => {
-  const { unstyled: contextUnstyled } = useUnstyled();
-  const isUnstyled = unstyled ?? contextUnstyled;
+  const { unstyled: contextUnstyled } = useUnstyled()
+  const isUnstyled = unstyled ?? contextUnstyled
 
   return (
     <DialogPrimitive.Close
@@ -85,9 +85,9 @@ const DialogClose = ({
       )}
       {...props}
     />
-  );
-};
-DialogClose.displayName = DialogPrimitive.Close.displayName;
+  )
+}
+DialogClose.displayName = DialogPrimitive.Close.displayName
 
 /* -------------------------------------------------------------------------- */
 /*                                DialogOverlay                               */
@@ -96,7 +96,7 @@ DialogClose.displayName = DialogPrimitive.Close.displayName;
 type DialogOverlayProps = React.ComponentPropsWithRef<
   typeof DialogPrimitive.Overlay
 > &
-  UnstyledProps;
+  UnstyledProps
 
 const DialogOverlay = ({
   unstyled,
@@ -104,8 +104,8 @@ const DialogOverlay = ({
   ref,
   ...props
 }: DialogOverlayProps) => {
-  const { unstyled: contextUnstyled } = useUnstyled();
-  const isUnstyled = unstyled ?? contextUnstyled;
+  const { unstyled: contextUnstyled } = useUnstyled()
+  const isUnstyled = unstyled ?? contextUnstyled
 
   return (
     <DialogPrimitive.Overlay
@@ -117,9 +117,9 @@ const DialogOverlay = ({
       )}
       {...props}
     />
-  );
-};
-DialogOverlay.displayName = DialogPrimitive.Overlay.displayName;
+  )
+}
+DialogOverlay.displayName = DialogPrimitive.Overlay.displayName
 
 /* -------------------------------------------------------------------------- */
 /*                                DialogContent                               */
@@ -128,7 +128,7 @@ DialogOverlay.displayName = DialogPrimitive.Overlay.displayName;
 type DialogContentProps = React.ComponentPropsWithRef<
   typeof DialogPrimitive.Content
 > &
-  UnstyledProps;
+  UnstyledProps
 
 const DialogContent = ({
   unstyled,
@@ -137,8 +137,8 @@ const DialogContent = ({
   ref,
   ...props
 }: DialogContentProps) => {
-  const { unstyled: contextUnstyled } = useUnstyled();
-  const isUnstyled = unstyled ?? contextUnstyled;
+  const { unstyled: contextUnstyled } = useUnstyled()
+  const isUnstyled = unstyled ?? contextUnstyled
 
   return (
     <DialogPortal>
@@ -162,8 +162,8 @@ const DialogContent = ({
         </DialogPrimitive.Content>
       </div>
     </DialogPortal>
-  );
-};
+  )
+}
 
 /* -------------------------------------------------------------------------- */
 /*                                DialogHeader                                */
@@ -174,8 +174,8 @@ const DialogHeader = ({
   className,
   ...props
 }: React.HTMLAttributes<HTMLDivElement> & UnstyledProps) => {
-  const { unstyled: contextUnstyled } = useUnstyled();
-  const isUnstyled = unstyled ?? contextUnstyled;
+  const { unstyled: contextUnstyled } = useUnstyled()
+  const isUnstyled = unstyled ?? contextUnstyled
 
   return (
     <div
@@ -186,9 +186,9 @@ const DialogHeader = ({
       )}
       {...props}
     />
-  );
-};
-DialogHeader.displayName = "DialogHeader";
+  )
+}
+DialogHeader.displayName = "DialogHeader"
 
 /* -------------------------------------------------------------------------- */
 /*                                DialogFooter                                */
@@ -199,8 +199,8 @@ const DialogFooter = ({
   className,
   ...props
 }: React.HTMLAttributes<HTMLDivElement> & UnstyledProps) => {
-  const { unstyled: contextUnstyled } = useUnstyled();
-  const isUnstyled = unstyled ?? contextUnstyled;
+  const { unstyled: contextUnstyled } = useUnstyled()
+  const isUnstyled = unstyled ?? contextUnstyled
 
   return (
     <div
@@ -211,9 +211,9 @@ const DialogFooter = ({
       )}
       {...props}
     />
-  );
-};
-DialogFooter.displayName = "DialogFooter";
+  )
+}
+DialogFooter.displayName = "DialogFooter"
 
 /* -------------------------------------------------------------------------- */
 /*                                 DialogTitle                                */
@@ -222,7 +222,7 @@ DialogFooter.displayName = "DialogFooter";
 type DialogTitleProps = React.ComponentPropsWithRef<
   typeof DialogPrimitive.Title
 > &
-  UnstyledProps;
+  UnstyledProps
 
 const DialogTitle = ({
   unstyled,
@@ -230,8 +230,8 @@ const DialogTitle = ({
   ref,
   ...props
 }: DialogTitleProps) => {
-  const { unstyled: contextUnstyled } = useUnstyled();
-  const isUnstyled = unstyled ?? contextUnstyled;
+  const { unstyled: contextUnstyled } = useUnstyled()
+  const isUnstyled = unstyled ?? contextUnstyled
 
   return (
     <DialogPrimitive.Title
@@ -243,8 +243,8 @@ const DialogTitle = ({
       )}
       {...props}
     />
-  );
-};
+  )
+}
 
 /* -------------------------------------------------------------------------- */
 /*                              DialogDescription                             */
@@ -253,7 +253,7 @@ const DialogTitle = ({
 type DialogDescriptionProps = React.ComponentPropsWithRef<
   typeof DialogPrimitive.Description
 > &
-  UnstyledProps;
+  UnstyledProps
 
 const DialogDescription = ({
   unstyled,
@@ -261,8 +261,8 @@ const DialogDescription = ({
   ref,
   ...props
 }: DialogDescriptionProps) => {
-  const { unstyled: contextUnstyled } = useUnstyled();
-  const isUnstyled = unstyled ?? contextUnstyled;
+  const { unstyled: contextUnstyled } = useUnstyled()
+  const isUnstyled = unstyled ?? contextUnstyled
 
   return (
     <DialogPrimitive.Description
@@ -274,8 +274,8 @@ const DialogDescription = ({
       )}
       {...props}
     />
-  );
-};
+  )
+}
 
 export {
   Dialog,
@@ -288,4 +288,4 @@ export {
   DialogPortal,
   DialogTitle,
   DialogTrigger,
-};
+}

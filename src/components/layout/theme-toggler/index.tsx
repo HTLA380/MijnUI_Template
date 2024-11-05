@@ -1,21 +1,19 @@
-"use client";
+"use client"
 
-import React, { useEffect, useState } from "react";
-
-import { useTheme } from "next-themes";
-import { FiMoon, FiSun } from "react-icons/fi";
-
-import { Button } from "@mijn-ui/components/button";
+import React, { useEffect, useState } from "react"
+import { Button } from "@mijn-ui/components/button"
+import { useTheme } from "next-themes"
+import { FiMoon, FiSun } from "react-icons/fi"
 
 /* -------------------------------------------------------------------------- */
 
 const ThemeToggler = ({ className }: { className?: string }) => {
-  const [mounted, setMounted] = useState(false);
-  const { setTheme, resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false)
+  const { setTheme, resolvedTheme } = useTheme()
 
-  useEffect(() => setMounted(true), []);
+  useEffect(() => setMounted(true), [])
 
-  if (!mounted) return;
+  if (!mounted) return
 
   if (resolvedTheme === "dark") {
     return (
@@ -26,7 +24,7 @@ const ThemeToggler = ({ className }: { className?: string }) => {
       >
         <FiSun />
       </Button>
-    );
+    )
   }
   if (resolvedTheme === "light") {
     return (
@@ -37,8 +35,8 @@ const ThemeToggler = ({ className }: { className?: string }) => {
       >
         <FiMoon />
       </Button>
-    );
+    )
   }
-};
+}
 
-export default ThemeToggler;
+export default ThemeToggler

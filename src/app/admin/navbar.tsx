@@ -1,21 +1,19 @@
-"use client";
+"use client"
 
-import React from "react";
-
-import { FaCashRegister } from "react-icons/fa";
-import { CURRENT_USER, LANGUAGE_OPTIONS } from "@/_constants/NAVBAR_DATA";
-import LanguageSelector from "@/components/layout/navbar/language-selector";
-import Profile from "@/components/layout/navbar/profile";
-import ThemeToggler from "@/components/layout/theme-toggler";
-
-import { Button } from "@mijn-ui/components/button";
-import { useMediaQuery } from "@/hooks/use-media-query";
+import React from "react"
+import { Button } from "@mijn-ui/components/button"
+import LanguageSelector from "@/components/layout/navbar/language-selector"
+import Profile from "@/components/layout/navbar/profile"
+import ThemeToggler from "@/components/layout/theme-toggler"
+import { CURRENT_USER, LANGUAGE_OPTIONS } from "@/_constants/NAVBAR_DATA"
+import { useMediaQuery } from "@/hooks/use-media-query"
+import { FaCashRegister } from "react-icons/fa"
 
 const Navbar = () => {
   const [selectedLanguage, setSelectedLanguage] = React.useState(
     LANGUAGE_OPTIONS[0].name,
-  );
-  const isMobile = useMediaQuery("(max-width: 768px)");
+  )
+  const isMobile = useMediaQuery("(max-width: 768px)")
 
   return (
     <header className="fixed inset-x-0 top-0 z-30 flex h-20 w-full items-center justify-between backdrop-blur-sm">
@@ -53,7 +51,7 @@ const Navbar = () => {
         </div>
       </nav>
     </header>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar

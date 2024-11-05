@@ -1,14 +1,13 @@
-import React from "react";
-
-import { cn } from "@mijn-ui/utils";
+import React from "react"
+import { cn } from "@mijn-ui/utils"
 
 type TableErrorMessageProps = {
-  isError: boolean;
-  className?: string;
-};
+  isError: boolean
+  className?: string
+}
 
 const TableErrorMessage = ({ isError, className }: TableErrorMessageProps) => {
-  if (!isError) return;
+  if (!isError) return
 
   return (
     <p
@@ -19,7 +18,7 @@ const TableErrorMessage = ({ isError, className }: TableErrorMessageProps) => {
     >
       Something went wrong! please try again...
     </p>
-  );
-};
+  )
+}
 
-export default TableErrorMessage;
+export default TableErrorMessage

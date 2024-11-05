@@ -1,28 +1,26 @@
-import React from "react";
-
-import Link from "next/link";
-import { FaTrash } from "react-icons/fa";
-import { LuPlus, LuSearch } from "react-icons/lu";
-import { PiExport } from "react-icons/pi";
-
-import { AlertDialogTrigger } from "@mijn-ui/components/alert-dialog";
+import React from "react"
+import Link from "next/link"
+import { AlertDialogTrigger } from "@mijn-ui/components/alert-dialog"
+import { buttonStyles } from "@mijn-ui/components/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@mijn-ui/components/dropdown-menu";
-import { Input } from "@mijn-ui/components/input";
-import { cn } from "@mijn-ui/utils";
-import { buttonStyles } from "@mijn-ui/components/button";
+} from "@mijn-ui/components/dropdown-menu"
+import { Input } from "@mijn-ui/components/input"
+import { cn } from "@mijn-ui/utils"
+import { FaTrash } from "react-icons/fa"
+import { LuPlus, LuSearch } from "react-icons/lu"
+import { PiExport } from "react-icons/pi"
 
 /* -------------------------------------------------------------------------- */
 
 type TableActionsProps = {
-  searchInput: string;
-  handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  totalSelectedUsers: number;
-};
+  searchInput: string
+  handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+  totalSelectedUsers: number
+}
 
 const TableActions = ({
   searchInput,
@@ -41,7 +39,7 @@ const TableActions = ({
       placeholder="Search by name..."
       startIcon={<LuSearch />}
     />
-  );
+  )
 
   const renderDeleteDialog = (
     <AlertDialogTrigger
@@ -51,7 +49,7 @@ const TableActions = ({
       Delete ({totalSelectedUsers})
       <FaTrash />
     </AlertDialogTrigger>
-  );
+  )
 
   const renderExportReport = (
     <DropdownMenu>
@@ -77,7 +75,7 @@ const TableActions = ({
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
-  );
+  )
 
   return (
     <div className="flex w-full flex-col flex-wrap items-start justify-center gap-2 rounded-t-2xl bg-surface p-5 pb-2 sm:flex-row sm:items-center sm:justify-between md:flex-nowrap md:p-5 lg:gap-x-4">
@@ -103,7 +101,7 @@ const TableActions = ({
         </Link>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default TableActions;
+export default TableActions

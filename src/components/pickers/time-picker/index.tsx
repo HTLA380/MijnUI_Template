@@ -1,24 +1,22 @@
-import React from "react";
-
-import { formatDate } from "date-fns";
-import { LuChevronsUpDown } from "react-icons/lu";
-import { getTimeInADayArray } from "@/utils/generate";
-
+import React from "react"
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@mijn-ui/components/select";
+} from "@mijn-ui/components/select"
+import { getTimeInADayArray } from "@/utils/generate"
+import { formatDate } from "date-fns"
+import { LuChevronsUpDown } from "react-icons/lu"
 
 type TimePickerProps = {
-  date: Date | undefined;
-  onTimePick: (date: Date | undefined) => void;
-};
+  date: Date | undefined
+  onTimePick: (date: Date | undefined) => void
+}
 
 const TimePicker = ({ date, onTimePick }: TimePickerProps) => {
-  const TIME_IN_A_DAY = getTimeInADayArray();
+  const TIME_IN_A_DAY = getTimeInADayArray()
 
   return (
     <Select defaultValue={TIME_IN_A_DAY[0]}>
@@ -45,7 +43,7 @@ const TimePicker = ({ date, onTimePick }: TimePickerProps) => {
         ))}
       </SelectContent>
     </Select>
-  );
-};
+  )
+}
 
-export default TimePicker;
+export default TimePicker

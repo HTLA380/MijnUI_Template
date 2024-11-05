@@ -1,48 +1,45 @@
-import * as React from "react";
-
-import Image from "next/image";
-import { FaEdit, FaEye, FaTrash } from "react-icons/fa";
-import { LuMoreVertical } from "react-icons/lu";
-import { CUSTOMER_PREFERRED_CONTACT } from "@/_constants/CUSTOMER";
-import {
-  getRandomContactId,
-  getRandomDateTime,
-  getRandomItem,
-} from "@/utils/generate";
-
-import { Checkbox } from "@mijn-ui/components/checkbox";
+import * as React from "react"
+import Image from "next/image"
+import { AlertDialogTrigger } from "@mijn-ui/components/alert-dialog"
+import { Checkbox } from "@mijn-ui/components/checkbox"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@mijn-ui/components/dropdown-menu";
+} from "@mijn-ui/components/dropdown-menu"
 import {
-  TableCell,
   TableRow as MijnUITableRow,
-} from "@mijn-ui/components/table";
-import { cn } from "@mijn-ui/utils";
-
-import { User } from "../types";
-import { AlertDialogTrigger } from "@mijn-ui/components/alert-dialog";
+  TableCell,
+} from "@mijn-ui/components/table"
+import { cn } from "@mijn-ui/utils"
+import { User } from "../types"
+import { CUSTOMER_PREFERRED_CONTACT } from "@/_constants/CUSTOMER"
+import {
+  getRandomContactId,
+  getRandomDateTime,
+  getRandomItem,
+} from "@/utils/generate"
+import { FaEdit, FaEye, FaTrash } from "react-icons/fa"
+import { LuMoreVertical } from "react-icons/lu"
 
 /* -------------------------------------------------------------------------- */
 
 type TableRowProps = {
-  user: User;
-  handleCheck: (id: number) => void;
-  selectedUsersId: number[];
-};
+  user: User
+  handleCheck: (id: number) => void
+  selectedUsersId: number[]
+}
 
-const IMAGES_COUNT = 25;
+const IMAGES_COUNT = 25
 
 const TableRow = ({ user, handleCheck, selectedUsersId }: TableRowProps) => {
-  const randomImageIndex = React.useMemo(() => getRandomItem(IMAGES_COUNT), []);
-  const randomContactId = React.useMemo(() => getRandomContactId(), []);
-  const randomDateAndTime = React.useMemo(() => getRandomDateTime(), []);
-  const randomStatus = React.useMemo(() => getRandomStatus(), []);
+  const randomImageIndex = React.useMemo(() => getRandomItem(IMAGES_COUNT), [])
+  const randomContactId = React.useMemo(() => getRandomContactId(), [])
+  const randomDateAndTime = React.useMemo(() => getRandomDateTime(), [])
+  const randomStatus = React.useMemo(() => getRandomStatus(), [])
 
-  const commonClasses = "w-full px-3 py-2 text-xs md:px-4 md:py-3 md:text-sm";
+  const commonClasses = "w-full px-3 py-2 text-xs md:px-4 md:py-3 md:text-sm"
 
   const renderCustomer = (
     <TableCell className={cn(commonClasses, "min-w-44")}>
@@ -66,7 +63,7 @@ const TableRow = ({ user, handleCheck, selectedUsersId }: TableRowProps) => {
         </div>
       </div>
     </TableCell>
-  );
+  )
 
   const renderCheckbox = (
     <TableCell>
@@ -77,19 +74,19 @@ const TableRow = ({ user, handleCheck, selectedUsersId }: TableRowProps) => {
         onCheckedChange={() => handleCheck(user.id)}
       />
     </TableCell>
-  );
+  )
 
   const renderPhoneNumber = (
     <TableCell className={cn(commonClasses, "md:min-w-44")}>
       <p className="md:w-44">{user.phone}</p>
     </TableCell>
-  );
+  )
 
   const renderCompany = (
     <TableCell className={cn(commonClasses, "md:min-w-44")}>
       <p className="line-clamp-2 truncate md:min-w-44">{user.company.name}</p>
     </TableCell>
-  );
+  )
 
   const renderDate = (
     <TableCell className={cn(commonClasses, "md:min-w-32")}>
@@ -98,7 +95,7 @@ const TableRow = ({ user, handleCheck, selectedUsersId }: TableRowProps) => {
         <p className="text-xs text-neutral-text">{randomDateAndTime.time}</p>
       </div>
     </TableCell>
-  );
+  )
 
   const renderAddress = (
     <TableCell className={cn(commonClasses, "hidden min-w-44 sm:table-cell")}>
@@ -106,7 +103,7 @@ const TableRow = ({ user, handleCheck, selectedUsersId }: TableRowProps) => {
         {user.address.address} {user.address.city}
       </p>
     </TableCell>
-  );
+  )
 
   const renderContactType = (
     <TableCell className={cn(commonClasses, "md:min-w-32")}>
@@ -118,13 +115,13 @@ const TableRow = ({ user, handleCheck, selectedUsersId }: TableRowProps) => {
         }
       </p>
     </TableCell>
-  );
+  )
 
   const renderContactId = (
     <TableCell className={cn(commonClasses, "hidden min-w-44 sm:table-cell")}>
       <p className="truncate md:w-44">{randomContactId}</p>
     </TableCell>
-  );
+  )
 
   const renderStatus = (
     <TableCell className={cn(commonClasses, "md:min-w-24")}>
@@ -139,7 +136,7 @@ const TableRow = ({ user, handleCheck, selectedUsersId }: TableRowProps) => {
         <p>{randomStatus?.name}</p>
       </div>
     </TableCell>
-  );
+  )
 
   const renderMoreActions = (
     <TableCell className="sticky right-0 top-0 w-14 bg-surface/10 px-2 py-1 text-xs backdrop-blur md:px-4 md:py-3 md:text-sm">
@@ -164,7 +161,7 @@ const TableRow = ({ user, handleCheck, selectedUsersId }: TableRowProps) => {
             <AlertDialogTrigger
               unstyled
               onClick={(e) => {
-                e.stopPropagation();
+                e.stopPropagation()
               }}
               disabled={selectedUsersId.length === 0}
               className="flex h-auto w-full items-center justify-start gap-2 border-none py-2 text-xs text-neutral-text md:text-sm"
@@ -175,7 +172,7 @@ const TableRow = ({ user, handleCheck, selectedUsersId }: TableRowProps) => {
         </DropdownMenuContent>
       </DropdownMenu>
     </TableCell>
-  );
+  )
 
   return (
     <MijnUITableRow
@@ -195,10 +192,10 @@ const TableRow = ({ user, handleCheck, selectedUsersId }: TableRowProps) => {
       {renderStatus}
       {renderMoreActions}
     </MijnUITableRow>
-  );
-};
+  )
+}
 
-export default TableRow;
+export default TableRow
 
 /* -------------------------------------------------------------------------- */
 
@@ -224,8 +221,8 @@ const getRandomStatus = () => {
       ringColor: "ring-neutral-500/30",
       name: "New",
     },
-  ];
+  ]
 
-  const randomIndex = Math.floor(Math.random() * status.length);
-  return status[randomIndex];
-};
+  const randomIndex = Math.floor(Math.random() * status.length)
+  return status[randomIndex]
+}

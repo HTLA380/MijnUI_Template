@@ -1,23 +1,22 @@
-import * as React from "react";
-
-import { cn } from "@mijn-ui/utils";
+import * as React from "react"
+import { cn } from "@mijn-ui/utils"
 
 const Table = React.forwardRef<HTMLTableElement, React.ComponentProps<"table">>(
   ({ className, ...props }, ref) => (
     <table ref={ref} className={cn("relative text-sm", className)} {...props} />
   ),
-);
+)
 
-Table.displayName = "Table";
+Table.displayName = "Table"
 
 const TableHeader = React.forwardRef<
   HTMLTableSectionElement,
   React.ComponentProps<"thead">
 >(({ className, ...props }, ref) => (
   <thead ref={ref} className={cn("h-11", className)} {...props} />
-));
+))
 
-TableHeader.displayName = "TableHeader";
+TableHeader.displayName = "TableHeader"
 
 const TableBody = React.forwardRef<
   HTMLTableSectionElement,
@@ -28,8 +27,8 @@ const TableBody = React.forwardRef<
     className={cn("divide-border divide-y [&>tr:hover]:bg-accent", className)}
     {...props}
   />
-));
-TableBody.displayName = "TableBody";
+))
+TableBody.displayName = "TableBody"
 
 const TableFooter = React.forwardRef<
   HTMLTableSectionElement,
@@ -40,8 +39,8 @@ const TableFooter = React.forwardRef<
     className={cn("border-t border-t-main-border font-medium", className)}
     {...props}
   />
-));
-TableFooter.displayName = "TableFooter";
+))
+TableFooter.displayName = "TableFooter"
 
 const TableRow = React.forwardRef<
   HTMLTableRowElement,
@@ -52,8 +51,8 @@ const TableRow = React.forwardRef<
     className={cn("border-b border-main-border text-left", className)}
     {...props}
   />
-));
-TableRow.displayName = "TableRow";
+))
+TableRow.displayName = "TableRow"
 
 const TableHeaderCell = React.forwardRef<
   HTMLTableCellElement,
@@ -64,9 +63,9 @@ const TableHeaderCell = React.forwardRef<
     className={cn("px-4 py-3 font-semibold", className)}
     {...props}
   />
-));
+))
 
-TableHeaderCell.displayName = "TableHeaderCell";
+TableHeaderCell.displayName = "TableHeaderCell"
 
 const TableCell = React.forwardRef<
   HTMLTableCellElement,
@@ -77,8 +76,8 @@ const TableCell = React.forwardRef<
     className={cn("px-4 py-2 align-middle", className)}
     {...props}
   />
-));
-TableCell.displayName = "TableCell";
+))
+TableCell.displayName = "TableCell"
 
 const TableCaption = React.forwardRef<
   HTMLTableCaptionElement,
@@ -89,8 +88,8 @@ const TableCaption = React.forwardRef<
     className={cn("mt-4 text-sm text-neutral-text", className)}
     {...props}
   />
-));
-TableCaption.displayName = "TableCaption";
+))
+TableCaption.displayName = "TableCaption"
 
 export {
   Table,
@@ -101,4 +100,4 @@ export {
   TableHeader,
   TableHeaderCell,
   TableRow,
-};
+}

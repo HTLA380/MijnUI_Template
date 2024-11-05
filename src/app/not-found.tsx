@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "next/link"
 
 export default function NotFound() {
   return (
@@ -9,12 +9,15 @@ export default function NotFound() {
         <div>
           <p>
             Go back to{" "}
-            <Link href={"/"} className="text-blue-500 hover:underline hover:text-blue-700">
+            <Link
+              href={"/"}
+              className="text-blue-500 hover:underline hover:text-blue-700"
+            >
               Home
             </Link>
           </p>
         </div>
       </div>
     </div>
-  );
+  )
 }

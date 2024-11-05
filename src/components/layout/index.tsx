@@ -1,14 +1,11 @@
-"use client";
+"use client"
 
-import * as React from "react";
-
-import PageInfo from "./page-info";
-
-import { useMediaQuery } from "@/hooks/use-media-query";
-import { useScrollLockEffect } from "@/hooks/use-scroll-lock";
-
-import Navbar from "./navbar";
-import Sidebar from "./sidebar";
+import * as React from "react"
+import Navbar from "./navbar"
+import PageInfo from "./page-info"
+import Sidebar from "./sidebar"
+import { useMediaQuery } from "@/hooks/use-media-query"
+import { useScrollLockEffect } from "@/hooks/use-scroll-lock"
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const {
@@ -19,12 +16,12 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     SIDEBAR_CONTENT_WIDTH,
     PAGE_INFO_HEIGHT,
     SPACING_X,
-  } = GetLayoutInfo();
+  } = GetLayoutInfo()
 
-  const isDesktop = useMediaQuery("(min-width: 1024px)");
+  const isDesktop = useMediaQuery("(min-width: 1024px)")
 
   // Lock scroll when sidebar is active
-  useScrollLockEffect(!isDesktop && isSidebarActive);
+  useScrollLockEffect(!isDesktop && isSidebarActive)
 
   const mainContainerStyles = isDesktop
     ? {
@@ -34,7 +31,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         paddingRight: SPACING_X,
         transition: "padding-left 0.3s ease-out",
       }
-    : undefined;
+    : undefined
 
   return (
     <div
@@ -67,18 +64,18 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         {/* <Footer /> */}
       </div>
     </div>
-  );
-};
+  )
+}
 
 export const GetLayoutInfo = () => {
-  const [isSidebarActive, setIsSidebarActive] = React.useState(false);
-  const isDesktop = useMediaQuery("(min-width: 1024px)");
+  const [isSidebarActive, setIsSidebarActive] = React.useState(false)
+  const isDesktop = useMediaQuery("(min-width: 1024px)")
 
-  const SIDEBAR_CONTENT_WIDTH = isDesktop ? 288 : 244;
-  const SIDEBAR_WIDTH = isDesktop ? 70 : 60;
-  const NAVBAR_HEIGHT = isDesktop ? 84 : 64;
-  const PAGE_INFO_HEIGHT = 45;
-  const SPACING_X = 20;
+  const SIDEBAR_CONTENT_WIDTH = isDesktop ? 288 : 244
+  const SIDEBAR_WIDTH = isDesktop ? 70 : 60
+  const NAVBAR_HEIGHT = isDesktop ? 84 : 64
+  const PAGE_INFO_HEIGHT = 45
+  const SPACING_X = 20
 
   return {
     isSidebarActive,
@@ -88,7 +85,7 @@ export const GetLayoutInfo = () => {
     NAVBAR_HEIGHT,
     PAGE_INFO_HEIGHT,
     SPACING_X,
-  };
-};
+  }
+}
 
-export default Layout;
+export default Layout

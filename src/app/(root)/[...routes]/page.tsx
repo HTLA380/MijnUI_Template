@@ -1,17 +1,17 @@
-"use client";
+"use client"
 
-import Link from "next/link";
-import { notFound, usePathname } from "next/navigation";
-import { getExistingApps } from "@/_constants/PAGES";
-import { isExistingUrl } from "@/_constants/SIDEBAR_DATA";
+import Link from "next/link"
+import { notFound, usePathname } from "next/navigation"
+import { getExistingApps } from "@/_constants/PAGES"
+import { isExistingUrl } from "@/_constants/SIDEBAR_DATA"
 
 export default function UnderConstruction() {
   // Get the current pathname
-  const pathname = usePathname();
+  const pathname = usePathname()
 
   // If the pathname doesn't match any link, show a 404 page
   if (!isExistingUrl(pathname) && !getExistingApps().includes(pathname)) {
-    notFound();
+    notFound()
   }
 
   return (
@@ -39,5 +39,5 @@ export default function UnderConstruction() {
         </div>
       </div>
     </main>
-  );
+  )
 }

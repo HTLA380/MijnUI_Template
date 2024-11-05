@@ -1,22 +1,20 @@
-import React from "react";
-
-import { LuChevronsUpDown } from "react-icons/lu";
-
-import { Checkbox } from "@mijn-ui/components/checkbox";
+import React from "react"
+import { Checkbox } from "@mijn-ui/components/checkbox"
 import {
   TableHeader as MijnUITableHeader,
   TableHeaderCell,
   TableRow,
-} from "@mijn-ui/components/table";
-import { cn } from "@mijn-ui/utils";
+} from "@mijn-ui/components/table"
+import { cn } from "@mijn-ui/utils"
+import { LuChevronsUpDown } from "react-icons/lu"
 
 /* -------------------------------------------------------------------------- */
 
 type TableHeaderProps = {
-  isAllUserSelected: boolean;
-  handleSelectAll: () => void;
-  handleSort: () => void;
-};
+  isAllUserSelected: boolean
+  handleSelectAll: () => void
+  handleSort: () => void
+}
 
 const TableHeader = ({
   isAllUserSelected,
@@ -53,17 +51,17 @@ const TableHeader = ({
         ))}
       </TableRow>
     </MijnUITableHeader>
-  );
-};
+  )
+}
 
 /* -------------------------------------------------------------------------- */
 
 type TableHeaderItem = {
-  name: string;
-  className?: string;
-  sortable?: boolean;
-  displayOnMobile: boolean;
-};
+  name: string
+  className?: string
+  sortable?: boolean
+  displayOnMobile: boolean
+}
 
 const CustomerTableHeaderItems: TableHeaderItem[] = [
   {
@@ -112,6 +110,6 @@ const CustomerTableHeaderItems: TableHeaderItem[] = [
     className: "",
     displayOnMobile: true,
   },
-];
+]
 
-export default TableHeader;
+export default TableHeader

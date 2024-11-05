@@ -1,39 +1,37 @@
-"use client";
-import * as React from "react";
+"use client"
 
-import { FaCashRegister } from "react-icons/fa";
-import { LuMenu } from "react-icons/lu";
+import * as React from "react"
+import { Button } from "@mijn-ui/components/button"
+import { cn } from "@mijn-ui/utils"
+import Logo from "../../common/logo"
+import PageInfo from "../page-info"
+import ThemeToggler from "../theme-toggler"
+import LanguageSelector from "./language-selector"
+import Profile from "./profile"
+import VolumeToggler from "./volume-toggler"
 import {
   CURRENT_USER,
   DEFAULT_SELECTED_LANGUAGE,
   LANGUAGE_OPTIONS,
-} from "@/_constants/NAVBAR_DATA";
-
-import { Button } from "@mijn-ui/components/button";
-import { useMediaQuery } from "@/hooks/use-media-query";
-import { cn } from "@mijn-ui/utils";
-
-import Logo from "../../common/logo";
-import PageInfo from "../page-info";
-import ThemeToggler from "../theme-toggler";
-import LanguageSelector from "./language-selector";
-import Profile from "./profile";
-import VolumeToggler from "./volume-toggler";
+} from "@/_constants/NAVBAR_DATA"
+import { useMediaQuery } from "@/hooks/use-media-query"
+import { FaCashRegister } from "react-icons/fa"
+import { LuMenu } from "react-icons/lu"
 
 /* -------------------------------------------------------------------------- */
 
 type NavbarProps = {
-  style?: React.CSSProperties;
-  setIsSidebarActive: (isOpen: boolean) => void;
-};
+  style?: React.CSSProperties
+  setIsSidebarActive: (isOpen: boolean) => void
+}
 
 const Navbar = ({ style, setIsSidebarActive }: NavbarProps) => {
   const [selectedLanguage, setSelectedLanguage] = React.useState<string>(
     DEFAULT_SELECTED_LANGUAGE,
-  );
+  )
 
-  const isDesktop = useMediaQuery("(min-width: 1024px)");
-  const isMobile = useMediaQuery("(max-width: 768px)");
+  const isDesktop = useMediaQuery("(min-width: 1024px)")
+  const isMobile = useMediaQuery("(max-width: 768px)")
 
   const renderSidebarToggleMenu = (
     <div className="flex items-center gap-2">
@@ -52,7 +50,7 @@ const Navbar = ({ style, setIsSidebarActive }: NavbarProps) => {
         className="mt-1 flex size-8 items-center justify-center p-0"
       />
     </div>
-  );
+  )
 
   return (
     <header
@@ -92,9 +90,9 @@ const Navbar = ({ style, setIsSidebarActive }: NavbarProps) => {
         </div>
       </nav>
     </header>
-  );
-};
+  )
+}
 
 /* -------------------------------------------------------------------------- */
 
-export default Navbar;
+export default Navbar

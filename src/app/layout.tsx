@@ -1,23 +1,22 @@
-import "./globals.css";
-
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import NextTopLoader from "nextjs-toploader";
-import QueryProvider from "@/components/providers/query-provider";
-import ThemeProvider from "@/components/providers/theme-provider";
-import { Toaster } from "@mijn-ui/components/toaster";
+import type { Metadata } from "next"
+import { Inter } from "next/font/google"
+import { Toaster } from "@mijn-ui/components/toaster"
+import QueryProvider from "@/components/providers/query-provider"
+import ThemeProvider from "@/components/providers/theme-provider"
+import "./globals.css"
+import NextTopLoader from "nextjs-toploader"
 
 export const metadata: Metadata = {
   title: "MijnUI Template",
   description: "Template for MijnUI component library",
-};
+}
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"] })
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
@@ -35,5 +34,5 @@ export default function RootLayout({
         </QueryProvider>
       </body>
     </html>
-  );
+  )
 }

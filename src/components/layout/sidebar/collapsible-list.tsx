@@ -1,26 +1,26 @@
-import * as React from "react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { PiDotOutlineFill } from "react-icons/pi";
-import { Button, buttonStyles } from "@mijn-ui/components/button";
-import { useMediaQuery } from "@/hooks/use-media-query";
-import { cn } from "@mijn-ui/utils";
-import { SidebarListsType } from "@/_constants/SIDEBAR_DATA";
+import * as React from "react"
+import Link from "next/link"
+import { usePathname } from "next/navigation"
+import { Button, buttonStyles } from "@mijn-ui/components/button"
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from "@mijn-ui/components/collapsible";
-import { LuChevronDown } from "react-icons/lu";
+} from "@mijn-ui/components/collapsible"
+import { cn } from "@mijn-ui/utils"
+import { SidebarListsType } from "@/_constants/SIDEBAR_DATA"
+import { useMediaQuery } from "@/hooks/use-media-query"
+import { LuChevronDown } from "react-icons/lu"
+import { PiDotOutlineFill } from "react-icons/pi"
 
 /* -------------------------------------------------------------------------- */
 
 type CollapsibleListProps = {
-  lists: SidebarListsType[];
-  activeIndex: number;
-  setActiveIndex: (index: number) => void;
-  onClick: (isOpen: boolean) => void;
-};
+  lists: SidebarListsType[]
+  activeIndex: number
+  setActiveIndex: (index: number) => void
+  onClick: (isOpen: boolean) => void
+}
 
 const CollapsibleLists = ({
   lists,
@@ -28,23 +28,23 @@ const CollapsibleLists = ({
   setActiveIndex,
   onClick,
 }: CollapsibleListProps) => {
-  const isMobile = useMediaQuery("(max-width: 768px)");
-  const currentPath = usePathname();
+  const isMobile = useMediaQuery("(max-width: 768px)")
+  const currentPath = usePathname()
 
   const handleToggle = (index: number) => {
-    setActiveIndex(index === activeIndex ? -1 : index);
-  };
+    setActiveIndex(index === activeIndex ? -1 : index)
+  }
 
   const handleClick = () => {
-    return isMobile && onClick(false);
-  };
+    return isMobile && onClick(false)
+  }
 
-  if (!lists) return null;
+  if (!lists) return null
 
   return (
     <div className="flex w-full flex-col items-center">
       {lists.map(({ icon, title, list, link }, index) => {
-        const isCollapsibleList = Array.isArray(list) && !link;
+        const isCollapsibleList = Array.isArray(list) && !link
 
         if (isCollapsibleList) {
           return (
@@ -97,7 +97,7 @@ const CollapsibleLists = ({
                 </ul>
               </CollapsibleContent>
             </Collapsible>
-          );
+          )
         }
 
         if (!link) {
@@ -116,7 +116,7 @@ const CollapsibleLists = ({
               )}
               {title}
             </Button>
-          );
+          )
         }
 
         return (
@@ -137,11 +137,11 @@ const CollapsibleLists = ({
             )}
             {title}
           </Link>
-        );
+        )
       })}
     </div>
-  );
-};
+  )
+}
 
 const CollapsibleIcon = ({
   className,
@@ -155,7 +155,7 @@ const CollapsibleIcon = ({
       )}
       {...props}
     />
-  );
-};
+  )
+}
 
-export default CollapsibleLists;
+export default CollapsibleLists

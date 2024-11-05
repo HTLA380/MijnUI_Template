@@ -1,5 +1,3 @@
-import { LuChevronLeft, LuChevronRight } from "react-icons/lu";
-
 import {
   Pagination,
   PaginationContent,
@@ -8,14 +6,15 @@ import {
   PaginationNextEllipsis,
   PaginationPreviousButton,
   PaginationPreviousEllipsis,
-} from "@mijn-ui/components/pagination";
+} from "@mijn-ui/components/pagination"
+import { LuChevronLeft, LuChevronRight } from "react-icons/lu"
 
 type TablePaginationProps = {
-  total?: number;
-  itemsPerPage: number;
-  currentPage: number;
-  onChangePage: (page: number) => void;
-};
+  total?: number
+  itemsPerPage: number
+  currentPage: number
+  onChangePage: (page: number) => void
+}
 
 const TablePaginator = ({
   total,
@@ -44,7 +43,7 @@ const TablePaginator = ({
         </PaginationNextButton>
       </PaginationContent>
     </Pagination>
-  );
-};
+  )
+}
 
-export default TablePaginator;
+export default TablePaginator

@@ -1,60 +1,57 @@
-import React, { useState } from "react";
-
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { BsGrid3X3GapFill } from "react-icons/bs";
-import { LuArrowRight } from "react-icons/lu";
-import { getSidebarActiveInfo, SidebarData } from "@/_constants/SIDEBAR_DATA";
-
-import { Button, buttonStyles } from "@mijn-ui/components/button";
-import { useMediaQuery } from "@/hooks/use-media-query";
-import { cn } from "@mijn-ui/utils";
-import ClickAwayListener from "@/utils/click-away-listener";
-
-import Logo from "../../common/logo";
-import CollapsibleLists from "./collapsible-list";
+import React, { useState } from "react"
+import Link from "next/link"
+import { usePathname } from "next/navigation"
+import { Button, buttonStyles } from "@mijn-ui/components/button"
+import { cn } from "@mijn-ui/utils"
+import Logo from "../../common/logo"
+import CollapsibleLists from "./collapsible-list"
+import { SidebarData, getSidebarActiveInfo } from "@/_constants/SIDEBAR_DATA"
+import { useMediaQuery } from "@/hooks/use-media-query"
+import ClickAwayListener from "@/utils/click-away-listener"
+import { BsGrid3X3GapFill } from "react-icons/bs"
+import { LuArrowRight } from "react-icons/lu"
 
 /* -------------------------------------------------------------------------- */
 
 type SidebarProps = {
-  isOpen: boolean;
-  setIsOpen: (isOpen: boolean) => void;
-};
+  isOpen: boolean
+  setIsOpen: (isOpen: boolean) => void
+}
 
 const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
-  const path = usePathname();
+  const path = usePathname()
 
   // Get active menu and collapsible indices
-  const activeSidebarInfo = getSidebarActiveInfo(path);
+  const activeSidebarInfo = getSidebarActiveInfo(path)
 
   // State for current menu index
   const [currentMenuIndex, setCurrentMenuIndex] = useState<number>(
     activeSidebarInfo?.index || 0,
-  );
+  )
 
   // State for active indices of collapsible lists
   const [activeIndices, setActiveIndices] = useState<{ [key: number]: number }>(
     {
       [currentMenuIndex]: activeSidebarInfo?.collapsibleIndex || -1,
     },
-  );
+  )
 
-  const isDesktop = useMediaQuery("(min-width: 1024px)");
+  const isDesktop = useMediaQuery("(min-width: 1024px)")
 
   const handleSetActiveIndex = (index: number) => {
     setActiveIndices((prev) => ({
       ...prev,
       [currentMenuIndex]: index,
-    }));
-  };
+    }))
+  }
 
   const handleSidebarIconClick = (index: number) => {
-    setCurrentMenuIndex(index);
-    setIsOpen(true);
-  };
+    setCurrentMenuIndex(index)
+    setIsOpen(true)
+  }
 
-  const currentSidebarData = SidebarData[currentMenuIndex];
-  const currentActiveIndex = activeIndices[currentMenuIndex] ?? -1;
+  const currentSidebarData = SidebarData[currentMenuIndex]
+  const currentActiveIndex = activeIndices[currentMenuIndex] ?? -1
 
   return (
     <ClickAwayListener onClickAway={() => setIsOpen(false)}>
@@ -121,15 +118,15 @@ const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
         <SidebarToggler isOpen={isOpen} setIsOpen={setIsOpen} />
       </aside>
     </ClickAwayListener>
-  );
-};
+  )
+}
 
 /* -------------------------------------------------------------------------- */
 
 type SidebarTogglerProps = {
-  isOpen: boolean;
-  setIsOpen: (isOpen: boolean) => void;
-};
+  isOpen: boolean
+  setIsOpen: (isOpen: boolean) => void
+}
 
 const SidebarToggler = ({ isOpen, setIsOpen }: SidebarTogglerProps) => (
   <Button
@@ -141,19 +138,19 @@ const SidebarToggler = ({ isOpen, setIsOpen }: SidebarTogglerProps) => (
       className={`transition-all duration-300 ${isOpen ? "rotate-180" : "rotate-0"}`}
     />
   </Button>
-);
+)
 
 /* -------------------------------------------------------------------------- */
 
 type SidebarIconProps = {
-  variant?: "outline" | "text";
-  title: string;
-  icon: React.ReactNode;
-  index: number;
-  currentMenuIndex: number;
-  onClick?: (index: number) => void;
-  className?: string;
-};
+  variant?: "outline" | "text"
+  title: string
+  icon: React.ReactNode
+  index: number
+  currentMenuIndex: number
+  onClick?: (index: number) => void
+  className?: string
+}
 
 const SidebarIcon = ({
   title,
@@ -181,6 +178,6 @@ const SidebarIcon = ({
   >
     {icon}
   </Button>
-);
+)
 
-export default Sidebar;
+export default Sidebar

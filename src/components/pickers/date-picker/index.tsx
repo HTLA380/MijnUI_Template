@@ -1,22 +1,20 @@
-import React, { useState } from "react";
-
-import { formatDate } from "date-fns";
-import { LuCalendar } from "react-icons/lu";
-
-import { Calendar } from "@mijn-ui/components/calendar";
+import React, { useState } from "react"
+import { Calendar } from "@mijn-ui/components/calendar"
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@mijn-ui/components/popover";
+} from "@mijn-ui/components/popover"
+import { formatDate } from "date-fns"
+import { LuCalendar } from "react-icons/lu"
 
 type DatePickerProps = {
-  date: Date | undefined;
-  onDatePick: (date: Date | undefined) => void;
-};
+  date: Date | undefined
+  onDatePick: (date: Date | undefined) => void
+}
 
 const DatePicker = ({ date, onDatePick }: DatePickerProps) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false)
 
   return (
     <Popover open={isOpen} onOpenChange={setIsOpen}>
@@ -32,7 +30,7 @@ const DatePicker = ({ date, onDatePick }: DatePickerProps) => {
         <Calendar mode="single" selected={date} onSelect={onDatePick} />
       </PopoverContent>
     </Popover>
-  );
-};
+  )
+}
 
-export default DatePicker;
+export default DatePicker

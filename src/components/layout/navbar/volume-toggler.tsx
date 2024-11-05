@@ -1,14 +1,12 @@
-import React from "react";
-
-import { FaVolumeLow, FaVolumeXmark } from "react-icons/fa6";
-
-import { Button } from "@mijn-ui/components/button";
-import { cn } from "@mijn-ui/utils";
+import React from "react"
+import { Button } from "@mijn-ui/components/button"
+import { cn } from "@mijn-ui/utils"
+import { FaVolumeLow, FaVolumeXmark } from "react-icons/fa6"
 
 /* -------------------------------------------------------------------------- */
 
 const VolumeToggler = () => {
-  const [isActivated, setIsActivated] = React.useState(false);
+  const [isActivated, setIsActivated] = React.useState(false)
 
   return (
     <Button
@@ -23,7 +21,7 @@ const VolumeToggler = () => {
     >
       {isActivated ? <FaVolumeLow /> : <FaVolumeXmark />}
     </Button>
-  );
-};
+  )
+}
 
-export default VolumeToggler;
+export default VolumeToggler

@@ -1,5 +1,5 @@
-import { AiFillProduct } from "react-icons/ai";
-import { BsBarChartLineFill } from "react-icons/bs";
+import { AiFillProduct } from "react-icons/ai"
+import { BsBarChartLineFill } from "react-icons/bs"
 import {
   FaAddressBook,
   FaCashRegister,
@@ -12,15 +12,15 @@ import {
   FaUsers,
   FaUtensilSpoon,
   FaWarehouse,
-} from "react-icons/fa";
+} from "react-icons/fa"
 import {
   FaCartShopping,
   FaCodeCompare,
   FaGears,
   FaHandHoldingDollar,
   FaShop,
-} from "react-icons/fa6";
-import { PiTreeViewFill } from "react-icons/pi";
+} from "react-icons/fa6"
+import { PiTreeViewFill } from "react-icons/pi"
 
 export const ALL_APPS = [
   {
@@ -118,8 +118,8 @@ export const ALL_APPS = [
     link: "/restaurant/table/list",
     icon: <FaUtensilSpoon />,
   },
-];
+]
 
 export const getExistingApps = () => {
-  return ALL_APPS.map(({ link }) => link);
-};
+  return ALL_APPS.map(({ link }) => link)
+}

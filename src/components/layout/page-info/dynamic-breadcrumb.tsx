@@ -1,30 +1,28 @@
-import React from "react";
-
-import Link from "next/link";
-import { isExistingUrl } from "@/_constants/SIDEBAR_DATA";
-
+import React from "react"
+import Link from "next/link"
 import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbSeparator,
-} from "@mijn-ui/components/breadcrumbs";
-import { cn } from "@mijn-ui/utils";
+} from "@mijn-ui/components/breadcrumbs"
+import { cn } from "@mijn-ui/utils"
+import { isExistingUrl } from "@/_constants/SIDEBAR_DATA"
 
 /* -------------------------------------------------------------------------- */
 
 type DynamicBreadcrumbProps = {
-  paths: { name: string; link: string }[];
-};
+  paths: { name: string; link: string }[]
+}
 
 const DynamicBreadcrumb = ({ paths }: DynamicBreadcrumbProps) => {
   return (
     <Breadcrumb>
       <BreadcrumbList className="sm:gap-1">
         {paths.map((path, index) => {
-          const isLastItem = index === paths.length - 1;
-          const isPathExist = isExistingUrl(path.link);
+          const isLastItem = index === paths.length - 1
+          const isPathExist = isExistingUrl(path.link)
 
           return (
             <React.Fragment key={path.name}>
@@ -47,11 +45,11 @@ const DynamicBreadcrumb = ({ paths }: DynamicBreadcrumbProps) => {
               </BreadcrumbItem>
               {!isLastItem && <BreadcrumbSeparator />}
             </React.Fragment>
-          );
+          )
         })}
       </BreadcrumbList>
     </Breadcrumb>
-  );
-};
+  )
+}
 
-export default DynamicBreadcrumb;
+export default DynamicBreadcrumb

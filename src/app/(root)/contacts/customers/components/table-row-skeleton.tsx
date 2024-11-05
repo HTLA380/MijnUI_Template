@@ -1,4 +1,4 @@
-import { TableCell, TableRow } from "@mijn-ui/components/table";
+import { TableCell, TableRow } from "@mijn-ui/components/table"
 
 /* -------------------------------------------------------------------------- */
 
@@ -63,7 +63,7 @@ const TableRowSkeleton = () => {
         <div className="h-10 animate-pulse rounded-full bg-neutral px-1"></div>
       </TableCell>
     </TableRow>
-  );
-};
+  )
+}
 
-export default TableRowSkeleton;
+export default TableRowSkeleton

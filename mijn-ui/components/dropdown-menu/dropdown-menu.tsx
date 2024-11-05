@@ -1,27 +1,27 @@
-"use client";
+"use client"
 
-import * as React from "react";
-import { cn } from "@mijn-ui/utils";
-import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu";
-import { LuCheck, LuChevronRight, LuCircle } from "react-icons/lu";
+import * as React from "react"
+import { cn } from "@mijn-ui/utils"
+import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu"
+import { LuCheck, LuChevronRight, LuCircle } from "react-icons/lu"
 
-const DropdownMenu = DropdownMenuPrimitive.Root;
+const DropdownMenu = DropdownMenuPrimitive.Root
 
-const DropdownMenuTrigger = DropdownMenuPrimitive.Trigger;
+const DropdownMenuTrigger = DropdownMenuPrimitive.Trigger
 
-const DropdownMenuGroup = DropdownMenuPrimitive.Group;
+const DropdownMenuGroup = DropdownMenuPrimitive.Group
 
-const DropdownMenuPortal = DropdownMenuPrimitive.Portal;
+const DropdownMenuPortal = DropdownMenuPrimitive.Portal
 
-const DropdownMenuSub = DropdownMenuPrimitive.Sub;
+const DropdownMenuSub = DropdownMenuPrimitive.Sub
 
-const DropdownMenuRadioGroup = DropdownMenuPrimitive.RadioGroup;
+const DropdownMenuRadioGroup = DropdownMenuPrimitive.RadioGroup
 
 type DropdownMenuSubTriggerProps = React.ComponentPropsWithRef<
   typeof DropdownMenuPrimitive.SubTrigger
 > & {
-  inset?: boolean;
-};
+  inset?: boolean
+}
 
 const DropdownMenuSubTrigger = ({
   className,
@@ -42,10 +42,10 @@ const DropdownMenuSubTrigger = ({
     {children}
     <LuChevronRight className="ml-auto" />
   </DropdownMenuPrimitive.SubTrigger>
-);
+)
 type DropdownMenuSubContentProps = React.ComponentPropsWithRef<
   typeof DropdownMenuPrimitive.SubContent
->;
+>
 
 const DropdownMenuSubContent = ({
   className,
@@ -60,11 +60,11 @@ const DropdownMenuSubContent = ({
     )}
     {...props}
   />
-);
+)
 
 type DropdownMenuContentProps = React.ComponentPropsWithRef<
   typeof DropdownMenuPrimitive.Content
->;
+>
 
 const DropdownMenuContent = ({
   className,
@@ -83,11 +83,11 @@ const DropdownMenuContent = ({
       {...props}
     />
   </DropdownMenuPrimitive.Portal>
-);
+)
 
 type DropdownMenuItemProps = React.ComponentPropsWithRef<
   typeof DropdownMenuPrimitive.Item
-> & { inset?: boolean };
+> & { inset?: boolean }
 
 const DropdownMenuItem = ({
   className,
@@ -104,11 +104,11 @@ const DropdownMenuItem = ({
     )}
     {...props}
   />
-);
+)
 
 type DropdownMenuCheckboxItemProps = React.ComponentPropsWithRef<
   typeof DropdownMenuPrimitive.CheckboxItem
->;
+>
 
 const DropdownMenuCheckboxItem = ({
   className,
@@ -133,11 +133,11 @@ const DropdownMenuCheckboxItem = ({
     </span>
     {children}
   </DropdownMenuPrimitive.CheckboxItem>
-);
+)
 
 type DropdownMenuRadioItemProps = React.ComponentPropsWithRef<
   typeof DropdownMenuPrimitive.RadioItem
->;
+>
 
 const DropdownMenuRadioItem = ({
   className,
@@ -160,11 +160,11 @@ const DropdownMenuRadioItem = ({
     </span>
     {children}
   </DropdownMenuPrimitive.RadioItem>
-);
+)
 
 type DropdownMenuLabelProps = React.ComponentPropsWithRef<
   typeof DropdownMenuPrimitive.Label
-> & { inset?: boolean };
+> & { inset?: boolean }
 
 const DropdownMenuLabel = ({
   className,
@@ -181,11 +181,11 @@ const DropdownMenuLabel = ({
     )}
     {...props}
   />
-);
+)
 
 type DropdownMenuSeparatorProps = React.ComponentPropsWithRef<
   typeof DropdownMenuPrimitive.Separator
->;
+>
 
 const DropdownMenuSeparator = ({
   className,
@@ -197,7 +197,7 @@ const DropdownMenuSeparator = ({
     className={cn("-mx-1 my-1 h-px bg-neutral", className)}
     {...props}
   />
-);
+)
 
 const DropdownMenuShortcut = ({
   className,
@@ -208,9 +208,9 @@ const DropdownMenuShortcut = ({
       className={cn("ml-auto text-xs tracking-widest opacity-60", className)}
       {...props}
     />
-  );
-};
-DropdownMenuShortcut.displayName = "DropdownMenuShortcut";
+  )
+}
+DropdownMenuShortcut.displayName = "DropdownMenuShortcut"
 
 export {
   DropdownMenu,
@@ -228,4 +228,4 @@ export {
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
   DropdownMenuRadioGroup,
-};
+}

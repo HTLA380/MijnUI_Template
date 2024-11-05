@@ -1,22 +1,21 @@
-import Image from "next/image";
-
+import Image from "next/image"
 import {
   Select,
   SelectContent,
   SelectItem,
-  SelectValue,
   SelectTrigger,
-} from "@mijn-ui/components/select";
+  SelectValue,
+} from "@mijn-ui/components/select"
 
 type LanguageSelectorProps = {
   LanguageOptions: {
-    name: string;
-    alt: string;
-    src: string;
-  }[];
-  selectedLanguage: string;
-  onValueChange: (value: string) => void;
-};
+    name: string
+    alt: string
+    src: string
+  }[]
+  selectedLanguage: string
+  onValueChange: (value: string) => void
+}
 
 const LanguageSelector = ({
   LanguageOptions,
@@ -52,7 +51,7 @@ const LanguageSelector = ({
         ))}
       </SelectContent>
     </Select>
-  );
-};
+  )
+}
 
-export default LanguageSelector;
+export default LanguageSelector

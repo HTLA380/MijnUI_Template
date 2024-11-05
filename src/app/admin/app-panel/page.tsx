@@ -1,11 +1,9 @@
-import React from "react";
-
-import Link from "next/link";
-import { ALL_APPS } from "@/_constants/PAGES";
-import Greeting from "@/app/admin/app-panel/greeting";
-
-import { buttonStyles } from "@mijn-ui/components/button";
-import { cn } from "@mijn-ui/utils";
+import React from "react"
+import Link from "next/link"
+import { buttonStyles } from "@mijn-ui/components/button"
+import { cn } from "@mijn-ui/utils"
+import Greeting from "@/app/admin/app-panel/greeting"
+import { ALL_APPS } from "@/_constants/PAGES"
 
 const AppPanel = () => {
   return (
@@ -39,7 +37,7 @@ const AppPanel = () => {
         </div>
       </div>
     </main>
-  );
-};
+  )
+}
 
-export default AppPanel;
+export default AppPanel
