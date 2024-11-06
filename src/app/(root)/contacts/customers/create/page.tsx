@@ -13,7 +13,7 @@ import { useCreateCustomer } from "@/app/(root)/contacts/customers/hooks/use-cus
 import {
   CUSTOMER_PREFERRED_CONTACT,
   CUSTOMER_STATUS,
-} from "@/_constants/CUSTOMER"
+} from "../../_constants/CUSTOMER"
 import { useRouter } from "nextjs-toploader/app"
 import { toast } from "sonner"
 

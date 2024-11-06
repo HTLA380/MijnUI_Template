@@ -13,8 +13,8 @@ import {
   TableCell,
 } from "@mijn-ui/components/table"
 import { cn } from "@mijn-ui/utils"
+import { CUSTOMER_PREFERRED_CONTACT } from "../../_constants/CUSTOMER"
 import { User } from "../types"
-import { CUSTOMER_PREFERRED_CONTACT } from "@/_constants/CUSTOMER"
 import {
   getRandomContactId,
   getRandomDateTime,
