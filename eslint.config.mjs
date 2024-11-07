@@ -33,6 +33,10 @@ const configs = [
     rules: {
       "import/no-anonymous-default-export": "off",
       "@typescript-eslint/no-explicit-any": "off",
+      "linebreak-style": [
+        "error",
+        process.platform === "win32" ? "windows" : "unix",
+      ],
     },
   },
 ]
