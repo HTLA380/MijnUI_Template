@@ -10,7 +10,7 @@ const ItemsPerPageArray = [10, 20, 30]
 export const useProductTable = () => {
   const [itemsPerPage, setItemsPerPage] = useState<number>(ItemsPerPageArray[0])
   const [currentPage, setCurrentPage] = useState<number>(1)
-  const [sorting, setSorting] = useState({ column: "firstName", order: "asc" })
+  const [sorting, setSorting] = useState({ column: "title", order: "asc" })
   const [searchInput, setSearchInput] = useState<string>("")
   const [selectedProductsId, setSelectedProductsId] = useState<number[]>([])
   const [isAllProductSelected, setIsAllProductSelected] =
