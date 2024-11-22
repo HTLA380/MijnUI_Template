@@ -90,7 +90,7 @@ const TableActions = ({
         {renderExportReport}
 
         <Link
-          href={"/contacts/customers/create"}
+          href={"/product/add"}
           className={cn(
             buttonStyles(),
             "size-8 rounded-full p-0 md:size-10 md:w-auto md:gap-2 md:rounded-md md:px-3 md:text-sm",
