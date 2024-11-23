@@ -6,7 +6,6 @@ import { Button } from "@mijn-ui/components/button"
 import { Input } from "@mijn-ui/components/input"
 import { Label } from "@mijn-ui/components/label"
 import { FaX } from "react-icons/fa6"
-import { IconContext } from "react-icons/lib"
 import { LuImagePlus } from "react-icons/lu"
 
 export type ImageUploadField = {
@@ -40,12 +39,7 @@ const ImageUpload = ({ id, name }: ImageUploadField) => {
         <div
           className={`flex flex-col justify-center items-center gap-4 md:6 text-neutral-text rounded-md border border-main-border px-4 py-6 md:p-8 `}
         >
-          <IconContext.Provider
-            value={{ className: "text-[3.5em] md:text-[5em]" }}
-          >
-            <LuImagePlus />
-          </IconContext.Provider>
-
+          <LuImagePlus className="text-[3.5em] md:text-[5em]" />
           <p className="text-xs md:text-sm text-center">
             Click to browse or <br /> Drag and Drop image
           </p>
