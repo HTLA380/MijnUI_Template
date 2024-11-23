@@ -6,6 +6,7 @@ import { Button } from "@mijn-ui/components/button"
 import { Dialog } from "@mijn-ui/components/dialog"
 import Spinner from "@/components/loader/spinner"
 import addBrandAction from "@/app/(root)/product/actions/add-brand"
+import addCategoryAction from "@/app/(root)/product/actions/add-category"
 import AddModalContent from "@/app/(root)/product/add/components/add-modal-content"
 import ImageUpload, {
   ImageUploadField,
@@ -97,7 +98,7 @@ const CreateProduct = () => {
   )
 }
 
-const modalSubmitHandlers = [addBrandAction, addBrandAction]
+const modalSubmitHandlers = [addBrandAction, addCategoryAction]
 
 type ProductFormItemsType = {
   imageUploadFields: ImageUploadField[]
