@@ -80,15 +80,12 @@ const TableActions = ({
   return (
     <div className="flex w-full flex-col flex-wrap items-start justify-center gap-2 rounded-t-2xl bg-surface p-5 pb-2 sm:flex-row sm:items-center sm:justify-between md:flex-nowrap md:p-5 lg:gap-x-4">
       <div className="max-w-fit md:w-3/4">
-        <h3 className="text-sm font-semibold md:text-base">All Customers</h3>
-
+        <h3 className="text-sm font-semibold md:text-base">All Products</h3>
         {renderSearchInput}
       </div>
-
       <div className="mx-2 flex min-w-fit shrink-0 flex-wrap items-center justify-end gap-2 md:w-1/4">
         {totalSelectedUsers > 0 && renderDeleteDialog}
         {renderExportReport}
-
         <Link
           href={"/product/add"}
           className={cn(

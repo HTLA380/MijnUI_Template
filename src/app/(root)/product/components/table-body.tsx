@@ -7,7 +7,7 @@ import TableRowSkeleton from "./table-row-skeleton"
 
 /* -------------------------------------------------------------------------- */
 
-type CustomerTableBodyProps = {
+type ProductTableBodyProps = {
   products: Product[] | undefined
   handleCheck: (id: number) => void
   selectedProductsId: number[]
@@ -19,12 +19,12 @@ const TableBody = ({
   handleCheck,
   selectedProductsId,
   isLoading,
-}: CustomerTableBodyProps) => {
+}: ProductTableBodyProps) => {
   const renderLoadingSkeleton = Array.from(Array(10).keys()).map((_, index) => (
     <TableRowSkeleton key={index} />
   ))
 
-  const renderCustomerRows = products?.map((product) => (
+  const renderProductRows = products?.map((product) => (
     <TableRow
       product={product}
       key={`product-${product.id}`}
@@ -36,7 +36,7 @@ const TableBody = ({
     <MijnUITableBody
       className={cn({ "pointer-events-none opacity-60": isLoading })}
     >
-      {isLoading ? renderLoadingSkeleton : renderCustomerRows}
+      {isLoading ? renderLoadingSkeleton : renderProductRows}
     </MijnUITableBody>
   )
 }

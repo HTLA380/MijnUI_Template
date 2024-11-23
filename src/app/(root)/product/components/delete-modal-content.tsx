@@ -27,7 +27,7 @@ const DeleteModalContent = ({
       </AlertDialogTitle>
       <AlertDialogDescription className="text-xs sm:text-sm">
         This action is irreversible. It will permanently delete the selected
-        customers from your data table.
+        products from your data table.
       </AlertDialogDescription>
 
       <AlertDialogFooter>
@@ -56,7 +56,7 @@ const DeleteModalContent = ({
 
       <p className="pointer-events-none absolute right-10 top-0 max-w-60 -translate-y-1/2 rounded-md bg-main p-2 text-xs text-main-text opacity-0 shadow-lg transition duration-300 ease-out peer-focus:pointer-events-auto peer-focus:opacity-100">
         This delete action will simulate a delete request and will not actually
-        remove customers.
+        remove products.
       </p>
     </AlertDialogContent>
   )
